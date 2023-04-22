@@ -59,6 +59,12 @@
       "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+        "path": "zsh"
+    },
+   },
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.macOptionIsMeta": true,
   "glassit.alpha": 240,
   "explorer.autoReveal": true,
@@ -75,4 +81,3 @@
     "editor.formatOnType": true
   }
 }
-

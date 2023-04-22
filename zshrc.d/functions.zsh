@@ -92,3 +92,22 @@ function ,kustomize-logs {
   pod=$(kubectl get pods -n flux-system | grep kustomize | awk '{print $1}')
   kubectl logs -f -n flux-system $pod
 }
+
+function ,gh__issues {
+  fzfSelected=$(gh issue list -R "$1" | fzf )
+  fzfResult="$?"
+
+  if [ "$fzfResult" = "0" -a -n "$fzfSelected" ]; then
+    gh issue view -R "$1" "$(echo "$fzfSelected" | awk -F "\t" '{print $1}')"
+  fi
+}
+
+function ,gh__merge {
+  # This will have to do for now, this is the only way
+  # that we can get a clean merge that preserves the commit
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout main
+  git pull --rebase
+  git merge $branch --ff-only
+  # Then review, and push
+}

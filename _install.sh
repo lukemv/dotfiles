@@ -9,7 +9,7 @@ function join() {
 function make_symlnks() {
   echo "[!] Installing dotfiles"
   local thisdir=$(pwd)
-  dotfiles=("zshrc" "zshrc.d" "tmux.conf" "vimrc" "gitconfig" "gitconfig.d")
+  dotfiles=("bashrc" "zshrc" "zshrc.d" "tmux.conf" "vimrc" "gitconfig" "gitconfig.d")
   for file in "${dotfiles[@]}"
   do
     echo " [-] installing $file"
