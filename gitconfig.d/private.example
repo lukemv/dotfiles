@@ -1,0 +1,27 @@
+[user]
+	name = me@example.com
+	email = me@example.com
+  signingkey = SEEBELOW
+
+# $ gpg --list-secret-keys --keyid-format=long
+# ---------------------------------------
+# sec   ed25519/<SIGNING_KEY> 2022-02-23 [SC] [expires: 2023-02-23]
+
+# For public dotfiles and private workstations, make multiple GPG keys.
+# Generate the key with 'gpg --default-new-key-algo rsa4096 --gen-key'.
+# Add corporate key to global gitconfig and Github repo's .git/config.
+# Edit the .git/config file with GPG key linked to Github email.
+# The repo's .git/config file overrides global gpg key and user info.
+# Check company's IT policies to ensure this is allowed.
+
+# Add the following to the .git/config file of your dotfiles repo:
+
+# [core]
+# ...
+# [user]
+#   name = you
+#   email = you@yourgithubemail.com
+#   signingkey = YOURGITHUBGPGKEY
+# [remote "origin"]
+#         url = https://github.com/you/dotfiles.git
+#         fetch = +refs/heads/*:refs/remotes/origin/*

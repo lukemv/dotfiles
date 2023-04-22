@@ -1,0 +1,16 @@
+[core]
+	editor = vim
+[include]
+    path = ~/.gitconfig.d/user
+[log]
+	decorate = true
+[alias]
+	lg=log --graph --color --decorate --oneline --all
+[credential]
+  helper = cache --timeout=86400
+[push]
+	autoSetupRemote = true
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg

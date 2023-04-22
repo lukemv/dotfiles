@@ -1,0 +1,78 @@
+{
+  "editor.rulers": [80, 100],
+  "editor.tabSize": 2,
+  "editor.fontSize": 12,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "extensions.ignoreRecommendations": true,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.statusBar.visible": true,
+  "go.useLanguageServer": true,
+  "git.enableSmartCommit": true,
+  "vim.useSystemClipboard": true,
+  "explorer.compactFolders": false,
+  "yaml.format.enable": true,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "terminal.integrated.inheritEnv": false,
+  "git.confirmSync": false,
+  "editor.suggestSelection": "first",
+  "git.autofetch": true,
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": true,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "redhat.telemetry.enabled": true,
+  "explorer.confirmDelete": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.inlineSuggest.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.maxComputationTime": 0,
+  "editor.minimap.enabled": false,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.persistentSessionScrollback": 10000,
+  "workbench.startupEditor": "none",
+  "go.testOnSave": true,
+  "go.coverOnSave": true,
+  "go.coverageDecorator": {
+    "type": "gutter",
+    "coveredHighlightColor": "rgba(64,128,128,0.5)",
+    "uncoveredHighlightColor": "rgba(128,64,64,0.25)",
+    "coveredGutterStyle": "blockgreen",
+    "uncoveredGutterStyle": "blockred"
+  },
+  "go.coverOnSingleTest": true,
+  "editor.multiCursorModifier": "alt",
+  "window.restoreWindows": "none",
+  "vim.smartRelativeLine": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    }
+  ],
+  "terminal.integrated.macOptionIsMeta": true,
+  "glassit.alpha": 240,
+  "explorer.autoReveal": true,
+  "workbench.colorTheme": "GitHub Dark",
+  "jupyter.askForKernelRestart": false,
+  "files.associations": {
+    "*.tfvars": "hcl"
+  },
+  "workbench.colorCustomizations": {
+    "terminalCursor.foreground": "#00ffaa"
+  },
+  "terminal.integrated.cursorBlinking": true,
+  "[python]": {
+    "editor.formatOnType": true
+  }
+}
+
