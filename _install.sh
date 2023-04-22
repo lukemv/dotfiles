@@ -15,6 +15,12 @@ function install_configs() {
     echo " [-] installing $filepath"
     symlink="${HOME}/.config/${filepath}"
     realfile="${thisdir}/config/${filepath}"
+
+    # Ensure that the parent folder exists before trying
+    # to create the symlink in that path.
+    parentdir="$(dirname "$symlink")"
+    [ ! -d $parentdir  ] && mkdir -p $parentdir
+
     [ -e $symlink  ] && rm -rf $symlink
     ln -s $realfile $symlink
   done
@@ -42,5 +48,21 @@ function install_dotfiles() {
   echo "-------------------------------"
 }
 
+function install_ohmy() {
+  if [ ! -d "$HOME/.oh-my-zsh" ]
+  then
+    pushd /tmp > /dev/null
+    curl --insecure -OL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    popd > /dev/null
+    sha=$(shasum /tmp/install.sh)
+    res=$(echo $sha | awk '$1=="32cfb5d2b7e4a21f61ff4fc676dd8f0e056eb310"{print"VALID"}')
+    [ "$res" = "VALID" ] && chmod a+x /tmp/install.sh && /tmp/install.sh
+    [ "$res" != "VALID" ] && echo "oh-my-zsh shasum is invalid want: 32cfb5d2b7e4a21f61ff4fc676dd8f0e056eb310 got: $sha"
+  else
+    echo "[!] Skipping zsh installation"
+  fi
+}
+
+install_ohmy
 install_dotfiles
 install_configs
