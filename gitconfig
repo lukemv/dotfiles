@@ -1,7 +1,7 @@
 [core]
 	editor = vim
 [include]
-    path = ~/.gitconfig.d/user
+    path = ~/.gitconfig.d/private
 [log]
 	decorate = true
 [alias]
