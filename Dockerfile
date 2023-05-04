@@ -7,7 +7,7 @@ WORKDIR /home/me
 USER me
 
 COPY .  .
-RUN ./_install.sh
+RUN ./install.sh
 
 WORKDIR /home/me/tests
 RUN go get
