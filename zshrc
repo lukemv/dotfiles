@@ -106,3 +106,11 @@ if [ -d $HOME/.zshrc.d ]; then
     source $file
   done
 fi
+
+export SHARED_DOTFILES_PATH="$HOME/dotfiles-shared"
+
+if [ -d $SHARED_DOTFILES_PATH ]; then
+  for file in $SHARED_DOTFILES_PATH/functions/*.sh; do
+    source $file
+  done
+fi
