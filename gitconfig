@@ -9,8 +9,4 @@
 [credential]
   helper = cache --timeout=86400
 [push]
-	autoSetupRemote = true
-[commit]
-  gpgsign = true
-[gpg]
-  program = gpg
+	default = current
