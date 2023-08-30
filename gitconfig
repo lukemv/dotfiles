@@ -10,3 +10,5 @@
   helper = cache --timeout=86400
 [push]
 	default = current
+[safe]
+    directory = *
