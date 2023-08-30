@@ -111,3 +111,8 @@ function ,gh__merge {
   git merge $branch --ff-only
   # Then review, and push
 }
+
+function ,provision {
+  cd /srv/bootstrap/ansible
+  ansible-playbook -c 'local' playbook.yml --tags "user"
+}

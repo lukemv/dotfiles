@@ -10,3 +10,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.krew/bin:${PATH}"
 export PATH="$HOME/code/tfenv/bin:${PATH}"
+
+# This allows me to retain history between my environment
+# being killed and recreated
+export HISTFILE="/srv/code/zsh_history_soe"
