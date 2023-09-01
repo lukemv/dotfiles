@@ -114,5 +114,6 @@ function ,gh__merge {
 
 function ,provision {
   cd /srv/bootstrap/ansible
+  ansible-galaxy install -r requirements.yml
   ansible-playbook -c 'local' playbook.yml --tags "user"
 }
