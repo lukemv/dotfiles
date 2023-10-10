@@ -32,6 +32,18 @@ YOUR STUFF
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
+## Adding a second ID to the key
+
+1. Find out the key ID using `gpg --list-secret-keys --keyid-format=long`
+2. Edit the key with `gpg --edit-key <ID>`
+3. On the GnuPG prompt, use `gpg> adduid`
+4. Answer to the interactive prompts for details.
+5. Confirm the details.
+6. Passphrase for the key will be asked.
+7. Remember to save with `gpg> save`
+
+You could also remove the old user ID without email address using `gpg> deluid`
+
 ## Other random tweaks
 
 Allow press and hold in Visual Studio Code.
