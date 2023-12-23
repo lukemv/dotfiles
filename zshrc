@@ -2,15 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 mkdir -p ~/code
 
-[[ -r ~/code/znap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/code/znap
-
-source ~/code/znap/znap.zsh  # Start Znap
-
-znap source marlonrichert/zsh-autocomplete
-
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 
@@ -80,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( git z )
+plugins=( git z zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
 
