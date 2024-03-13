@@ -49,8 +49,19 @@ function zc {
   code "$( z -e ${args})"
 }
 
-function zcr() {
-  code $(z | fzf | awk '{print $2}')
+# Open a new code editor in a directory
+function zcd {
+  local folder=$(z | fzf)
+  if [ ! -z "$folder" ]; then
+    code $folder
+  fi
+}
+
+function zf {
+  local file=$(fdfind | fzf)
+  if [ ! -z "$file" ]; then
+    code -r $file
+  fi
 }
 
 function kgnode {
