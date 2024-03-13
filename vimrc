@@ -4,6 +4,7 @@ filetype off
 call plug#begin()
 
 Plug 'VundleVim/Vundle.vim'
+Plug 'hashivim/vim-terraform'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'chase/vim-ansible-yaml'
@@ -76,7 +77,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " Set relative numbers to make jumping easier
-set relativenumber
+set nonumber
 
 " cd to current file path
 nnoremap ,cd :cd %:p:h<CR>
@@ -88,7 +89,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Special characters
 set list
-set listchars=tab:·\ ,eol:¬,trail:­
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=

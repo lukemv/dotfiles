@@ -5,6 +5,7 @@ alias kctx="kubectl ctx"
 alias kns="kubectl ns"
 alias tf="terraform"
 alias commit="git rev-parse --short HEAD"
+alias fd='fdfind'
 alias gri="git rebase --interactive"
 alias gp="git push"
 alias gpf="git push --force"
