@@ -6,10 +6,16 @@ function join() {
   echo "$*"
 }
 
+function install_plug () {
+  echo "[!] Installing Plug"
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+}
+
 function install_configs() {
   echo "[!] Installing config files"
   local thisdir=$(pwd)
-  local configs=("gh/config.yml")
+  local configs=("gh/config.yml" "nvim/init.vim")
   for filepath in "${configs[@]}"
   do
     echo " [-] installing $filepath"
@@ -63,6 +69,7 @@ function install_ohmy() {
   fi
 }
 
+install_plug
 install_ohmy
 install_dotfiles
 install_configs
