@@ -43,4 +43,5 @@ return require('packer').startup(function(use)
   }
 
   use('sindrets/diffview.nvim')
-end)
+  use('eandrju/cellular-automaton.nvim')
+ end)
