@@ -13,3 +13,6 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias gres="git checkout main && git pull --rebase"
 alias mres="git checkout master && git pull --rebase"
 alias gsa="git stash apply"
+
+alias nacl="code ~/code/nacl"
+alias iac="code ~/code/iac-development"
