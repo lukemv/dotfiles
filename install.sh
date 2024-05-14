@@ -6,21 +6,16 @@ function join() {
   echo "$*"
 }
 
-function install_plug () {
-  echo "[!] Installing Plug"
-  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-}
 
 function install_configs() {
   echo "[!] Installing config files"
   local thisdir=$(pwd)
-  local configs=("gh/config.yml" "nvim/init.vim")
+  local configs=("gh" "nvim")
   for filepath in "${configs[@]}"
   do
     echo " [-] installing $filepath"
     symlink="${HOME}/.config/${filepath}"
-    realfile="${thisdir}/config/${filepath}"
+    realfile="${thisdir}/${filepath}"
 
     # Ensure that the parent folder exists before trying
     # to create the symlink in that path.
