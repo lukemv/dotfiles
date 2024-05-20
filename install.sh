@@ -35,7 +35,7 @@ function install_configs() {
 function install_dotfiles() {
 	echo "[!] Installing dotfiles"
 	local thisdir=$(pwd)
-	local dotfiles=("bashrc" "zshrc" "zshrc.d" "tmux.conf" "vimrc" "gitconfig" "gitconfig.d")
+	local dotfiles=("bashrc" "zshrc" "zshrc.d" "tmux.conf" "vimrc" "gitconfig" "gitignore_global" "gitconfig.d")
 	for file in "${dotfiles[@]}"; do
 		echo " [-] installing $file"
 		symlink="${HOME}/.${file}"
