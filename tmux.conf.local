@@ -474,3 +474,12 @@ tmux_conf_uninstall_plugins_on_reload=true
 # "$@"
 # # /!\ do not remove the previous line
 # #     do not write below this line
+
+
+############## CUSTOM BINDS ####################
+bind-key -n C-l next-window
+bind-key -n C-h previous-window
+bind-key -n C-w kill-window
+bind-key -n C-n new-window
+
+
