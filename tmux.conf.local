@@ -482,4 +482,5 @@ bind-key -n C-h previous-window
 bind-key -n C-w kill-window
 bind-key -n C-n new-window
 
+bind-key -n C-o display-popup -E "sh -c '~/dotfiles/scripts/tmux-window-select.sh'"
 
