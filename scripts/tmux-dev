@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import yaml
+import libtmux
+
+if len(sys.argv) != 2:
+    print("Usage: tmux-dev <session_name>")
+    sys.exit(1)
+
+session_name = sys.argv[1]
+config_file = os.path.expanduser(f"~/.private/tmux-{session_name}.yaml")
+
+if not os.path.exists(config_file):
+    print(f"Configuration file {config_file} does not exist.")
+    sys.exit(1)
+
+# Load window configurations from YAML file
+with open(config_file, 'r') as file:
+    config = yaml.safe_load(file)
+
+window_configs = config['windows']
+
+server = libtmux.Server()
+session = server.sessions.filter(session_name=session_name)
+
+if not session:
+    session = server.new_session(session_name, window_name=window_configs[0]["name"])
+    session.windows[0].panes[0].send_keys(window_configs[0]["command"])
+else:
+    session = session[0]
+
+# Ensure all windows exist with correct names and commands
+for index, config in enumerate(window_configs):
+    window_name = config["name"]
+    window_command = config["command"]
+
+    windows = session.windows.filter(window_name=window_name)
+    if not windows:
+        window = session.new_window(window_name=window_name)
+        if window_command:
+            window.panes[0].send_keys(window_command)
+    else:
+        window = windows[0]
+        if window.window_name != window_name:
+            window.rename_window(window_name)
+
+# Move all windows to high indices
+high_index_start = 100
+for index, config in enumerate(window_configs):
+    window_name = config["name"]
+    window = session.windows.filter(window_name=window_name)[0]
+    window.move_window(high_index_start + index)
+
+# Reorder windows to the correct positions
+for index, config in enumerate(window_configs):
+    window_name = config["name"]
+    window = session.windows.filter(window_name=window_name)[0]
+    window.move_window(index + 1)
+
+# Attach to the session or switch client
+if "TMUX" not in os.environ:
+    session.attach_session()
+else:
+    server.switch_client(target_session=session_name)
+
