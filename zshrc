@@ -107,9 +107,6 @@ if [ -d $HOME/.zshrc.d ]; then
   for file in $HOME/.zshrc.d/*.zsh; do
     source $file
   done
-  for file in $HOME/.private/*.zsh; do
-    source $file
-  done
 fi
 
 export SHARED_DOTFILES_PATH="$HOME/dotfiles-shared"
