@@ -4,20 +4,25 @@ local map = require("helpers.keys").map
 map("i", "jk", "<esc>")
 
 -- Quick access to some common actions
-map("n", "<leader>fw", "<cmd>w<cr>", "Write")
-map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
-map("n", "<leader>qq", "<cmd>q<cr>", "Quit")
-map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
-map("n", "<leader>dw", "<cmd>close<cr>", "Window")
+-- map("n", "<leader>fw", "<cmd>w<cr>", "Write")
+-- map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
+-- map("n", "<leader>qq", "<cmd>q<cr>", "Quit")
+-- map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
+-- map("n", "<leader>dw", "<cmd>close<cr>", "Window")
 
 -- Diagnostic keymaps
-map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
+-- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
 
 -- Easier access to beginning and end of lines
+-- LM: This doens't seem to work for me, perhaps there's
+-- some sort of tmux escape sequence that's killing me.
+map("n", "<leader>e", ":Explore<CR>", "Vim file explorer")
+
 map("n", "<M-h>", "^", "Go to beginning of line")
 map("n", "<M-l>", "$", "Go to end of line")
 
 -- Better window navigation
+-- LM: I probably can't live without these.
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
 map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
 map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
@@ -35,11 +40,23 @@ map("n", "<C-Down>", ":resize -2<CR>")
 map("n", "<C-Left>", ":vertical resize +2<CR>")
 map("n", "<C-Right>", ":vertical resize -2<CR>")
 
+
 -- Deleting buffers
 local buffers = require("helpers.buffers")
 map("n", "<leader>db", buffers.delete_this, "Current buffer")
 map("n", "<leader>do", buffers.delete_others, "Other buffers")
 map("n", "<leader>da", buffers.delete_all, "All buffers")
+
+
+-- Diff binds
+map("n", "<leader>ddo", ":DiffviewOpen<CR>", "Diffview Open")
+map("n", "<leader>ddc", ":DiffviewClose<CR>", "Diffview Close")
+
+-- Git binds
+map("n", "<leader>gc", ":Git commit<CR>", "Git create commit")
+map("n", "<leader>gl", ":Git commit<CR>", "Git list commits")
+map("n", "<leader>gb", ":Git blame<CR>", "Git show blame")
+
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>")
