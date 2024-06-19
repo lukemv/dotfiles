@@ -7,6 +7,7 @@ local opts = {
 	termguicolors = true,
 	number = true,
 	relativenumber = true,
+	undofile = true,
 }
 
 -- Set options from table
