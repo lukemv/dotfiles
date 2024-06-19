@@ -34,11 +34,20 @@ return {
 				}))
 			end, "Search in current buffer")
 
-			map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
+			-- map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
+			map("n", "<leader>sf", function()
+				require("telescope.builtin").git_files({ recurse_submodules = true })
+			end, "Git Files")
+
+			map("n", "<leader>sa", function()
+				require("telescope.builtin").find_files({ hidden = true })
+			end, "All Files")
+
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Help")
 			map("n", "<leader>sw", require("telescope.builtin").grep_string, "Current word")
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Grep")
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Diagnostics")
+			map("n", "<leader>sc", require("telescope.builtin").command_history, "Command History")
 
 			map("n", "<C-p>", require("telescope.builtin").keymaps, "Search keymaps")
 		end,
