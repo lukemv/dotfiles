@@ -1,10 +1,5 @@
 -- Miscelaneous fun stuff
 return {
-	-- Comment with haste
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
 	-- Move stuff with <M-j> and <M-k> in both normal and visual mode
 	{
 		"echasnovski/mini.move",
@@ -20,5 +15,7 @@ return {
 		},
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"tpope/vim-commentary", -- Add comments and things
 	"tpope/vim-surround", -- Surround stuff with the ys-, cs-, ds- commands
+	"vmware-archive/salt-vim", -- SaltStack development, syntax for salt files
 }

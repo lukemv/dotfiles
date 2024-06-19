@@ -21,6 +21,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pylsp",
+					"yamlls"
 				},
 				automatic_installation = true,
 			})
@@ -138,6 +139,19 @@ return {
 							autopep8 = {
 								enabled = false,
 							},
+						},
+					},
+				},
+			})
+
+			require("lspconfig")["yamlls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					yaml = {
+						-- Add a list of yaml schemas here that you want to use
+						schemas = {
+							["https://json.schemastore.org/prometheus.json"] = "**/prometheus.yml",
 						},
 					},
 				},

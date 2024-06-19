@@ -4,9 +4,9 @@ local map = require("helpers.keys").map
 map("i", "jk", "<esc>")
 
 -- Quick access to some common actions
--- map("n", "<leader>fw", "<cmd>w<cr>", "Write")
+map("n", "<leader>fw", "<cmd>w<cr>", "Write")
 -- map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
--- map("n", "<leader>qq", "<cmd>q<cr>", "Quit")
+map("n", "<leader>qq", "<cmd>q<cr>", "Quit")
 -- map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
 -- map("n", "<leader>dw", "<cmd>close<cr>", "Window")
 
@@ -40,7 +40,6 @@ map("n", "<C-Down>", ":resize -2<CR>")
 map("n", "<C-Left>", ":vertical resize +2<CR>")
 map("n", "<C-Right>", ":vertical resize -2<CR>")
 
-
 -- Deleting buffers
 local buffers = require("helpers.buffers")
 map("n", "<leader>db", buffers.delete_this, "Current buffer")
@@ -71,3 +70,9 @@ end, "Toggle between light and dark themes")
 
 -- Clear after search
 map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
+
+
+-- Terminal mappings
+map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
+map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
+

@@ -17,3 +17,18 @@ end
 -- Set other options
 local colorscheme = require("helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
+
+-- Set commentstring for YAML files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "yaml",
+    callback = function()
+        vim.bo.commentstring = "# %s"
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "yml",
+    callback = function()
+        vim.bo.commentstring = "# %s"
+    end,
+})

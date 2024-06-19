@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "50fcf17db7c75af80e6b6109acfbfb4504768780" },
   "bg.nvim": { "branch": "main", "commit": "61e1150dd5900eaf73700e4776088c2131585f99" },
   "bufferline.nvim": { "branch": "main", "commit": "243893ba9d5d1049dd451a25cab32ec7f8f67bcf" },
@@ -32,8 +31,11 @@
   "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "rose-pine": { "branch": "main", "commit": "8c4660cfe697621bcc61d37b3651ffed94fe7fed" },
+  "salt-vim": { "branch": "master", "commit": "6ca9e3500cc39dd417b411435d58a1b720b331cc" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "trouble.nvim": { "branch": "main", "commit": "58a3acfc6d8d819324dab4c87068596319032e64" },
+  "vim-commentary": { "branch": "master", "commit": "c4b8f52cbb7142ec239494e5a2c4a512f92c4d07" },
   "vim-fugitive": { "branch": "master", "commit": "64d6cafb9dcbacce18c26d7daf617ebb96b273f3" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
