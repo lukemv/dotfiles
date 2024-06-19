@@ -3,6 +3,7 @@ local opts = {
 	tabstop = 4,
 	expandtab = true,
 	wrap = false,
+	swapfile = false,
 	termguicolors = true,
 	number = true,
 	relativenumber = true,
