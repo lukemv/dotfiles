@@ -18,4 +18,5 @@ return {
 	"tpope/vim-commentary", -- Add comments and things
 	"tpope/vim-surround", -- Surround stuff with the ys-, cs-, ds- commands
 	"vmware-archive/salt-vim", -- SaltStack development, syntax for salt files
+	"mbbill/undotree", -- Manages undo operations in the best way
 }

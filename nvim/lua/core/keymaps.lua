@@ -76,3 +76,4 @@ map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
 map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 
+map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
