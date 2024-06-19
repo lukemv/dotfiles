@@ -52,12 +52,6 @@ map("n", "<leader>da", buffers.delete_all, "All buffers")
 map("n", "<leader>ddo", ":DiffviewOpen<CR>", "Diffview Open")
 map("n", "<leader>ddc", ":DiffviewClose<CR>", "Diffview Close")
 
--- Git binds
-map("n", "<leader>gc", ":Git commit<CR>", "Git create commit")
-map("n", "<leader>gl", ":Git commit<CR>", "Git list commits")
-map("n", "<leader>gb", ":Git blame<CR>", "Git show blame")
-
-
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>")
 map("n", "<S-h>", ":bprevious<CR>")
