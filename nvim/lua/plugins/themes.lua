@@ -1,7 +1,7 @@
 -- Themes
 return {
 	"typicode/bg.nvim",
-
+	"folke/tokyonight.nvim",
 	"ellisonleao/gruvbox.nvim",
 
 	{
