@@ -71,9 +71,10 @@ end, "Toggle between light and dark themes")
 -- Clear after search
 map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
 
-
 -- Terminal mappings
-map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
+-- LM: This one doesn't work, it keeps opening a new terminal
+-- randomly, I'll leave it commented out until I figure out what it's clashing with
+-- map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
