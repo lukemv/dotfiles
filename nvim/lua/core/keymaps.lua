@@ -78,3 +78,4 @@ map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
+map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
