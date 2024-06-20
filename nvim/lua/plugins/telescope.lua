@@ -48,7 +48,7 @@ return {
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Grep")
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Diagnostics")
 			map("n", "<leader>sc", require("telescope.builtin").command_history, "Command History")
-
+			map("n", "<leader>ss", require("telescope.builtin").git_stash, "Git Stash")
 			map("n", "<C-p>", require("telescope.builtin").keymaps, "Search keymaps")
 		end,
 	},
