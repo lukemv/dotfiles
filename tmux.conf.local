@@ -382,7 +382,7 @@ bind-key -n C-i last-window
 bind-key -n C-Right next-window
 bind-key -n C-Left previous-window
 # This is my window selector, this allows me to quickly list windows in the current session
-# after choosing a window TAB will be used to toggle back and forth between the
+# after choosing a window C-i will be used to toggle back and forth between the
 bind-key -n C-o display-popup -E "sh -c '~/dotfiles/scripts/tmux-window-select.sh'"
 
 # -- tpm -----------------------------------------------------------------------
@@ -466,3 +466,5 @@ tmux_conf_uninstall_plugins_on_reload=true
 # "$@"
 # # /!\ do not remove the previous line
 # #     do not write below this line
+unbind-key -T root Tab
+
