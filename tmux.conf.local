@@ -378,13 +378,9 @@ set -g mode-keys vi
 ############## CUSTOM BINDS ####################
 bind-key -n C-w kill-pane
 bind-key -n C-n new-window
-bind-key -n C-i last-window
-bind-key -n C-Right next-window
-bind-key -n C-Left previous-window
 # This is my window selector, this allows me to quickly list windows in the current session
 # after choosing a window C-i will be used to toggle back and forth between the
 bind-key -n C-o display-popup -E "sh -c '~/dotfiles/scripts/tmux-window-select.sh'"
-
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
