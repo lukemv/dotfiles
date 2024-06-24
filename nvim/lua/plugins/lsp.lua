@@ -21,6 +21,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pylsp",
+					"terraform-ls",
 					"yamlls"
 				},
 				automatic_installation = true,
@@ -156,6 +157,14 @@ return {
 					},
 				},
 			})
+
+			-- Terraform
+			require("lspconfig")["terraformls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+
 		end,
 	},
 }

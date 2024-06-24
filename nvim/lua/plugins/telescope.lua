@@ -36,11 +36,11 @@ return {
 
 			-- map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
 			map("n", "<leader>sf", function()
-				require("telescope.builtin").git_files({ recurse_submodules = true })
+				require("telescope.builtin").git_files({ recurse_submodules = true, no_ignore = true })
 			end, "Git Files")
 
 			map("n", "<leader>sa", function()
-				require("telescope.builtin").find_files({ hidden = true })
+				require("telescope.builtin").find_files({ hidden = true, recurse_submodules = true, no_ignore = true})
 			end, "All Files")
 
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Help")
