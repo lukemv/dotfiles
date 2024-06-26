@@ -11,6 +11,6 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.krew/bin:${PATH}"
 export PATH="$HOME/code/tfenv/bin:${PATH}"
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$PATH:/opt/nvim/bin"
+export PATH="$PATH:$HOME/.local/nvim-linux64/bin"
 export PATH="$PATH:$HOME/dotfiles/scripts"
 
