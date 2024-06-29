@@ -19,6 +19,7 @@ return {
 						u = { name = "Undo Tree" },
 						b = { name = "Debugging" },
 						g = { name = "Commentary" },
+						t =	{ name = "Terminal" },
 					}
 				}
 			)
