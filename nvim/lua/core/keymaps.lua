@@ -106,22 +106,19 @@ map("n", "<leader>cr", ":ChatGPTRun code_readability_analysis<CR>", "Code Readab
 map("v", "<leader>cr", ":ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis")
 
 
-map("n", "<leader>tr", function ()
-  vim.cmd('terminal')
-  vim.cmd('startinsert')
-  vim.fn.feedkeys('ls\n')
+map("n", "<leader>tr", function()
+	vim.cmd('terminal')
+	vim.cmd('startinsert')
+	vim.fn.feedkeys('ls\n')
 
-  vim.cmd('enew')
-  vim.cmd('terminal')
-  vim.cmd('startinsert')
-  vim.fn.feedkeys('top\n')
+	vim.cmd('enew')
+	vim.cmd('terminal')
+	vim.cmd('startinsert')
+	vim.fn.feedkeys('top\n')
 
-  vim.cmd('enew')
-  vim.cmd('terminal')
-  vim.cmd('startinsert')
-  vim.fn.feedkeys('htop\n')
+	vim.cmd('enew')
+	vim.cmd('terminal')
+	vim.cmd('startinsert')
+	vim.fn.feedkeys('htop\n')
 end, "Open terminal")
-
-
-
 
