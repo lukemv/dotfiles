@@ -40,7 +40,7 @@ return {
 			end, "Git Files")
 
 			map("n", "<leader>sa", function()
-				require("telescope.builtin").find_files({ hidden = true, recurse_submodules = true, no_ignore = true})
+				require("telescope.builtin").find_files({ hidden = true })
 			end, "All Files")
 
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Help")
