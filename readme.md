@@ -59,19 +59,3 @@ defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 ```
 
-## Installing vim plug
-
-```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-## Tmux navigation
-
-Split Vertical: cmd + d
-Split Horizontal: cmd + shift + d
-Move between splits and editor: cmd + []
-Move between tabs: cmd + shift + []
-
-Explorer: cmd+shift+e
-Git: cmd+shift+g
