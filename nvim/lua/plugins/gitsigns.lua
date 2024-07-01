@@ -4,6 +4,16 @@ return {
 		require("gitsigns").setup({
 		  on_attach = function(bufnr)
 			local gitsigns = require('gitsigns')
+			gitsigns.setup({
+				current_line_blame_opts = {
+					virt_text = true,
+					virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+					delay = 100,
+					ignore_whitespace = false,
+					virt_text_priority = 100,
+				}
+			})
+
 			local map = require("helpers.keys").map
 
 			-- Navigation
