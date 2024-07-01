@@ -13,6 +13,4 @@
 	default = current
 [safe]
     directory = *
-[user]
-	name = lukem
-	email = 23546514+lukemv@users.noreply.github.com
+
