@@ -13,6 +13,4 @@
 	default = current
 [safe]
     directory = *
-[user]
-	name = lukem
-	email = x@mucc.au
+
