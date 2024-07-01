@@ -384,7 +384,7 @@ set -g mode-keys vi
 # This is my window selector, this allows me to quickly list windows in the current session
 # after choosing a window C-i will be used to toggle back and forth between the
 # bind-key -n C-o display-popup -E "sh -c '~/dotfiles/scripts/tmux-window-select.sh'"
-bind-key -n C-o display-popup -E "sh -c '~/dotfiles/scripts/tmux-select.sh'"
+bind-key -n C-i display-popup -E "sh -c '~/dotfiles/scripts/tmux-select.sh'"
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
