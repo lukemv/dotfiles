@@ -80,7 +80,12 @@ map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 
+map("n", "<leader>gcom", ":Git commit<CR>", "Git Commit")
+map("n", "<leader>gpf", ":Git push<CR>", "Git Commit")
+map("n", "<leader>gs", ":Git status<CR>", "Git Status")
+
 -- ChatGPT Keys
+-- TODO: move this madness somewhere else.
 map("n", "<leader>cc", ":ChatGPT<CR>", "ChatGPT")
 map("v", "<leader>ce", ":ChatGPTEditWithInstruction<CR>", "Edit with instruction")
 map("n", "<leader>ce", ":ChatGPTEditWithInstruction<CR>", "Edit with instruction")

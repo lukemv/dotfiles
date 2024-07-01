@@ -24,7 +24,7 @@ return {
 			pcall(require("telescope").load_extension, "fzf")
 
 			local map = require("helpers.keys").map
-			map("n", "<leader>fr", require("telescope.builtin").oldfiles, "Recently opened")
+			map("n", "<leader>sr", require("telescope.builtin").oldfiles, "Search Recent Files")
 			map("n", "<leader><space>", require("telescope.builtin").buffers, "Open buffers")
 			map("n", "<leader>/", function()
 				-- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -32,24 +32,28 @@ return {
 					winblend = 10,
 					previewer = false,
 				}))
-			end, "Search in current buffer")
+			end, "Search Current buffer")
 
 			-- map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
 			map("n", "<leader>sf", function()
 				require("telescope.builtin").git_files({ recurse_submodules = true, no_ignore = true })
-			end, "Git Files")
+			end, "Search Git Files")
 
 			map("n", "<leader>sa", function()
 				require("telescope.builtin").find_files({ hidden = true })
-			end, "All Files")
+			end, "Search All Files")
 
-			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Help")
-			map("n", "<leader>sw", require("telescope.builtin").grep_string, "Current word")
-			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Grep")
-			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Diagnostics")
-			map("n", "<leader>sc", require("telescope.builtin").command_history, "Command History")
-			map("n", "<leader>ss", require("telescope.builtin").git_stash, "Git Stash")
-			map("n", "<C-p>", require("telescope.builtin").keymaps, "Search keymaps")
+			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Search Help")
+			map("n", "<leader>sw", require("telescope.builtin").grep_string, "Search Current word")
+			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Search Grep")
+			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Search Diagnostics")
+			map("n", "<leader>ss", require("telescope.builtin").git_stash, "Search Git Stash")
+
+			-- Git stuff is here.
+			map("n", "<leader>gb", require("telescope.builtin").git_bcommits, "Search Git Commits Buffer")
+			map("n", "<leader>gl", require("telescope.builtin").git_commits, "Search Git Commits")
+
+			map("n", "<C-p>", require("telescope.builtin").keymaps, "Search Keymaps")
 		end,
 	},
 }
