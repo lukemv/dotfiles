@@ -128,3 +128,8 @@ function ,provision {
   ansible-galaxy install -r requirements.yml
   ansible-playbook -c 'local' playbook.yml --tags "user"
 }
+
+function ,dockerps {
+  docker ps --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}"
+}
+
