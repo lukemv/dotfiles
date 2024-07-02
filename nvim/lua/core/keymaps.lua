@@ -3,21 +3,22 @@ local map = require("helpers.keys").map
 -- Blazingly fast way out of insert mode
 map("i", "jk", "<esc>")
 
+map("n", "<leader>rc", ":source %<CR>", "Source current file")
+
 -- Quick access to some common actions
 map("n", "<leader>fw", "<cmd>w<cr>", "Write")
+map("n", "<leader>dw", "<cmd>close<cr>", "Close Window")
 -- map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
 map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 -- map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
--- map("n", "<leader>dw", "<cmd>close<cr>", "Window")
 
 -- Diagnostic keymaps
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
 
+map("n", "<leader>e", ":Explore<CR>", "Vim file explorer")
 -- Easier access to beginning and end of lines
 -- LM: This doens't seem to work for me, perhaps there's
 -- some sort of tmux escape sequence that's killing me.
-map("n", "<leader>e", ":Explore<CR>", "Vim file explorer")
-
 map("n", "<M-h>", "^", "Go to beginning of line")
 map("n", "<M-l>", "$", "Go to end of line")
 
@@ -46,10 +47,9 @@ map("n", "<leader>db", buffers.delete_this, "Current buffer")
 map("n", "<leader>do", buffers.delete_others, "Other buffers")
 map("n", "<leader>da", buffers.delete_all, "All buffers")
 
-
 -- Diff binds
-map("n", "<leader>ddo", ":DiffviewOpen<CR>", "Diffview Open")
-map("n", "<leader>ddc", ":DiffviewClose<CR>", "Diffview Close")
+map("n", "<leader>vo", ":DiffviewOpen<CR>", "Diffview Open")
+map("n", "<leader>vc", ":DiffviewClose<CR>", "Diffview Close")
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>")
