@@ -14,10 +14,10 @@ return {
 			preserve_window_layout = { "this", "nameless" },
 		},
 	},
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"tpope/vim-sleuth",     -- Detect tabstop and shiftwidth automatically
 	"tommcdo/vim-fubitive", -- Extend vim-fugitive to use bitbucket URL's
 	"tpope/vim-commentary", -- Add comments and things
-	"tpope/vim-surround", -- Surround stuff with the ys-, cs-, ds- commands
+	"tpope/vim-surround",   -- Surround stuff with the ys-, cs-, ds- commands
 	"vmware-archive/salt-vim", -- SaltStack development, syntax for salt files
-	"mbbill/undotree", -- Manages undo operations in the best way
+	"mbbill/undotree",      -- Manages undo operations in the best way
 }
