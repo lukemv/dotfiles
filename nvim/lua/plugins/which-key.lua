@@ -11,7 +11,6 @@ return {
 				{
 					["<leader>"] = {
 						f = { name = "File" },
-						c = { name = "ChatGPT" },
 						d = { name = "Delete/Close" },
 						q = { name = "Quit" },
 						s = { name = "Search" },
