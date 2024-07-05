@@ -4,6 +4,7 @@ local map = require("helpers.keys").map
 map("i", "jk", "<esc>")
 
 map("n", "<leader>rc", ":source %<CR>", "Source current file")
+map("n", "<leader>tm", ":terminal<CR>:file ", "New named terminal")
 
 -- Quick access to some common actions
 map("n", "<leader>fw", "<cmd>w<cr>", "Write")
