@@ -5,7 +5,7 @@ map("i", "jk", "<esc>")
 
 map("n", "<leader>rc", ":source %<CR>", "Source current file")
 map("n", "<leader>tm", ":terminal<CR>:file ", "New named terminal")
-map('n', "<leader>cp", ":let @\" = expand('%')<CR>", "Copy current path into buffer")
+map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
 -- Quick access to some common actions
 map("n", "<leader>fw", "<cmd>w<cr>", "Write")
