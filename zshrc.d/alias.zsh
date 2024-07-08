@@ -1,21 +1,27 @@
 alias rc="source ~/.zshrc"
+
 alias c="clear"
-alias k="kubectl"
 alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 cx() { cd "$@" && l }
-alias kctx="kubectl ctx"
-alias kns="kubectl ns"
-alias tf="terraform"
-alias commit="git rev-parse --short HEAD"
+
 alias fd='fdfind'
+
 alias gp="git push"
 alias gpf="git push --force"
 alias gs="git stash"
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gsa="git stash apply"
+alias gcur="git rev-parse --short HEAD"
+alias gc="git commit --amend"
+
 alias gres="git checkout main && git pull --rebase"
 alias mres="git checkout master && git pull --rebase"
-alias gsa="git stash apply"
-
-alias nacl="code ~/code/nacl"
-alias iac="code ~/code/iac-development"
+# Kubernetes aliases
+alias k="kubectl"
+alias kctx="kubectl ctx"
+alias kns="kubectl ns"
+# terraform aliases
+alias tf="terraform"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfi="terraform init"
