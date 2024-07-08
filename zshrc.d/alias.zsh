@@ -1,6 +1,8 @@
 alias rc="source ~/.zshrc"
 alias c="clear"
 alias k="kubectl"
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
 alias kctx="kubectl ctx"
 alias kns="kubectl ns"
 alias tf="terraform"
