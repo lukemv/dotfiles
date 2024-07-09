@@ -20,21 +20,6 @@ end
 local colorscheme = require("helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
 
--- Set commentstring for YAML files
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "yaml",
-	callback = function()
-		vim.bo.commentstring = "# %s"
-	end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "yml",
-	callback = function()
-		vim.bo.commentstring = "# %s"
-	end,
-})
-
 if vim.env.SSH_TTY then
   local function paste()
     return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
@@ -54,9 +39,9 @@ if vim.env.SSH_TTY then
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("FixTerraformCommentString", { clear = true }),
+  group = vim.api.nvim_create_augroup("FixWeirdCommentString", { clear = true }),
   callback = function(ev)
     vim.bo[ev.buf].commentstring = "# %s"
   end,
-  pattern = { "terraform", "hcl" },
+  pattern = { "terraform", "hcl", "yaml", "yml" },
 })
