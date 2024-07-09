@@ -35,12 +35,13 @@ function install_configs() {
 function install_dotfiles() {
 	echo "[!] Installing dotfiles"
 	local thisdir=$(pwd)
-	local dotfiles=("bashrc" "zshrc" "zshrc.d" "tmux.conf" "tmux.conf.local" "vimrc" "gitconfig" "gitignore_global" "gitconfig.d" "private")
+	local dotfiles=("bashrc" "zshrc" "zshrc.d" "tmux.conf" "tmux.reset.conf" "vimrc" "gitconfig" "gitignore_global" "gitconfig.d" "private")
 	for file in "${dotfiles[@]}"; do
 		echo " [-] installing $file"
 		symlink="${HOME}/.${file}"
 		realfile="${thisdir}/${file}"
-		[ -e $symlink ] && rm -rf $symlink
+		echo "Deleting $symlink"
+		rm -rf $symlink
 		ln -s $realfile $symlink
 	done
 	echo "[!] All dotfiles are installed"
@@ -49,21 +50,19 @@ function install_dotfiles() {
 	echo "-------------------------------"
 }
 
-function install_ohmy() {
-	if [ ! -d "$HOME/.oh-my-zsh" ]; then
-		pushd /tmp >/dev/null
-		curl --insecure -OL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
-		popd >/dev/null
-		sha=$(shasum /tmp/install.sh)
-		res=$(echo $sha | awk '$1=="32cfb5d2b7e4a21f61ff4fc676dd8f0e056eb310"{print"VALID"}')
-		[ "$res" = "VALID" ] && chmod a+x /tmp/install.sh && /tmp/install.sh
-		[ "$res" != "VALID" ] && echo "oh-my-zsh shasum is invalid want: 32cfb5d2b7e4a21f61ff4fc676dd8f0e056eb310 got: $sha"
-	else
-		echo "[!] Skipping zsh installation"
-	fi
+function install_spaceship() {
+	mkdir -p "$HOME/.zsh"
+	git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$HOME/.zsh/spaceship"
+	git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
 }
 
-install_plug
-install_ohmy
+function install_tpm() {
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+install_spaceship
+install_tpm
 install_dotfiles
 install_configs
+

@@ -1,14 +1,17 @@
-FROM golang:1.20.3-buster
+FROM rockylinux:9.3
+RUN dnf makecache
+# Install my shell
+RUN dnf install -y zsh tmux git gcc-c++
 
-RUN apt update && apt install -y zsh
+# Create my user
 RUN useradd -ms /usr/bin/zsh me
-
-WORKDIR /home/me
+# Set workdir to my home directory 
 USER me
+WORKDIR /home/me
 
-COPY .  .
-RUN ./install.sh
+ENV PATH="/home/me/.cargo/bin:${PATH}"
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+RUN echo 'source ~/.cargo/env' >> /home/me/.bashrc
 
-WORKDIR /home/me/tests
-RUN go get
-RUN go test -v ./...
+RUN cargo install eza
+
