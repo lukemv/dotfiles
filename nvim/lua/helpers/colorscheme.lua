@@ -17,10 +17,25 @@ end
 
 -- Uncomment the colorscheme to use
 -- local colorscheme = get_if_available("tokyonight")
--- local colorscheme = get_if_available("catppuccin")
+local colorscheme = get_if_available("catppuccin")
 -- local colorscheme = get_if_available('gruvbox')
-local colorscheme = get_if_available('rose-pine')
+-- local colorscheme = get_if_available('rose-pine')
 -- local colorscheme = get_if_available('everforest')
 -- local colorscheme = get_if_available('melange')
 
+require("catppuccin").setup({
+	integrations = {
+			cmp = true,
+			gitsigns = true,
+			nvimtree = true,
+			treesitter = true,
+			notify = false,
+			mini = {
+					enabled = true,
+					indentscope_color = "",
+			},
+	}
+})
+
 return colorscheme
+
