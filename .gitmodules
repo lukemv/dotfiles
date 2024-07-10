@@ -1,0 +1,16 @@
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "spaceship-prompt"]
+	path = spaceship-prompt
+	url = https://github.com/spaceship-prompt/spaceship-prompt
+[submodule "zsh-autosuggestions"]
+	path = zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "tpm"]
+	path = tpm
+	url = https://github.com/tmux-plugins/tpm
