@@ -5,13 +5,14 @@ RUN dnf install -y zsh tmux git gcc-c++
 
 # Create my user
 RUN useradd -ms /usr/bin/zsh me
-# Set workdir to my home directory 
+# Set workdir to my home directory
+
 USER me
 WORKDIR /home/me
 
+# Install rust so that we can use rust tools
 ENV PATH="/home/me/.cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN echo 'source ~/.cargo/env' >> /home/me/.bashrc
 
 RUN cargo install eza
-

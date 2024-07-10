@@ -1,0 +1,30 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+
+- shell:
+  - [ git submodule update --init --recursive, Installing submodules ]
+
+- clean: ['~']
+
+- create:
+  - ~/.local/bin
+  - ~/.config
+  - ~/.zsh
+  - ~/.tmux/plugins/
+
+- link:
+    ~/.gitignore_global: gitignore_global
+    ~/.tmux.conf: tmux.conf
+    ~/.tmux.reset.conf: tmux.reset.conf
+    ~/.bashrc: bashrc
+    ~/.zshrc: zshrc
+    ~/.zshrc.d: zshrc.d
+    ~/.config/nvim: nvim
+    ~/.config/gh: gh
+    ~/.local/scripts: scripts
+    ~/.zsh/spaceship: spaceship-prompt
+    ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
+    ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
+    ~/.tmux/plugins/tpm: tpm
