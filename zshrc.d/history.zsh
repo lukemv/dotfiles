@@ -10,5 +10,5 @@ setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY 
 # ensures that each command entered in the current session is appended to the history file immediately after execution
 setopt APPENDHISTORY 
-export HISTTIMEFORMAT="%d/%m/%Y %H:%M] 
+export HISTTIMEFORMAT="%d/%m/%Y %H:%M]"
 
