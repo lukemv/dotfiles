@@ -7,6 +7,7 @@ cx() { cd "$@" && l }
 
 alias fd='fdfind'
 
+alias gl="git log"
 alias gp="git push"
 alias gpf="git push --force"
 alias gs="git stash"
