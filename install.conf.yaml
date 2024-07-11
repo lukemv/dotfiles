@@ -15,6 +15,7 @@
   - ~/.tmux/plugins/
 
 - link:
+    ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.tmux.conf: tmux.conf
     ~/.tmux.reset.conf: tmux.reset.conf
