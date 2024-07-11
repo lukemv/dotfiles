@@ -12,6 +12,7 @@ alias gp="git push"
 alias gpf="git push --force"
 alias gs="git stash"
 alias gsa="git stash apply"
+alias gfa="git fetch --all"
 alias gcur="git rev-parse --short HEAD"
 alias gc="git commit --amend"
 
