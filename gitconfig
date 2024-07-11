@@ -5,8 +5,6 @@
     path = ~/.gitconfig.d/private
 [log]
 	decorate = true
-[alias]
-	lg=log --graph --color --decorate --oneline --all
 [credential]
   helper = cache --timeout=86400
 [push]
