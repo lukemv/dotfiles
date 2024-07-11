@@ -25,6 +25,7 @@ alias tf="terraform"
 alias tfp="terraform plan"
 alias tfa="terraform apply"
 alias tfi="terraform init"
+alias dotfiles="cd ~/.dotfiles"
 
 # http xh aliases
 alias http="xh"
