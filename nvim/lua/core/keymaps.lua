@@ -7,7 +7,7 @@ map("i", "jk", "<esc>")
 -- randomly, I'll leave it commented out until I figure out what it's clashing with
 -- map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
-map("t", "<C-k>", "<C-\\><C-n>", "Terminal Escape")
+map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 
 map("n", "<leader>rc", ":source %<CR>", "Source current file")
 map("n", "<leader>tm", ":terminal<CR>:file ", "New named terminal")
