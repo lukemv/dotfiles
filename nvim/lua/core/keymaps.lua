@@ -2,22 +2,19 @@ local map = require("helpers.keys").map
 
 -- Blazingly fast way out of insert mode
 map("i", "jk", "<esc>")
+-- Terminal mappings
+-- LM: This one doesn't work, it keeps opening a new terminal
+-- randomly, I'll leave it commented out until I figure out what it's clashing with
+-- map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
+map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
+map("t", "<C-k>", "<C-\\><C-n>", "Terminal Escape")
 
 map("n", "<leader>rc", ":source %<CR>", "Source current file")
 map("n", "<leader>tm", ":terminal<CR>:file ", "New named terminal")
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
--- Quick access to some common actions
-map("n", "<leader>fw", "<cmd>w<cr>", "Write")
-map("n", "<leader>dw", "<cmd>close<cr>", "Close Window")
--- map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
-map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
--- map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
-
 -- Diagnostic keymaps
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
-
-map("n", "<leader>e", ":Explore<CR>", "Vim file explorer")
 -- Easier access to beginning and end of lines
 -- LM: This doens't seem to work for me, perhaps there's
 -- some sort of tmux escape sequence that's killing me.
@@ -42,12 +39,26 @@ map("n", "<C-Up>", ":resize +2<CR>")
 map("n", "<C-Down>", ":resize -2<CR>")
 map("n", "<C-Left>", ":vertical resize +2<CR>")
 map("n", "<C-Right>", ":vertical resize -2<CR>")
-
+--
 -- Deleting buffers
 local buffers = require("helpers.buffers")
 map("n", "<leader>db", buffers.delete_this, "Current buffer")
 map("n", "<leader>do", buffers.delete_others, "Other buffers")
 map("n", "<leader>da", buffers.delete_all, "All buffers")
+
+local function write_and_delete()
+  vim.cmd('w')
+  buffers.delete_this()
+end
+
+-- Quick access to some common actions
+map("n", "<leader>fw", "<cmd>w<cr>", "File Write")
+-- Map the <leader>fe to the write_and_delete function
+map('n', '<leader>fd', write_and_delete, "Write and exit")
+map("n", "<leader>dw", "<cmd>close<cr>", "Close Window")
+map("n", "<leader>fa", "<cmd>wa<cr>", "Write all")
+map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
+map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
 
 -- Diff binds
 map("n", "<leader>vo", ":DiffviewOpen<CR>", "Diffview Open")
@@ -72,12 +83,6 @@ end, "Toggle between light and dark themes")
 
 -- Clear after search
 map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
-
--- Terminal mappings
--- LM: This one doesn't work, it keeps opening a new terminal
--- randomly, I'll leave it commented out until I figure out what it's clashing with
--- map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
-map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
