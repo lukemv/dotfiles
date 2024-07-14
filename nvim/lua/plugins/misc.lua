@@ -14,7 +14,6 @@ return {
 			preserve_window_layout = { "this", "nameless" },
 		},
 	},
-	"nvim-tree/nvim-web-devicons",
 	"tpope/vim-sleuth",     -- Detect tabstop and shiftwidth automatically
 	"tommcdo/vim-fubitive", -- Extend vim-fugitive to use bitbucket URL's
 	"tpope/vim-commentary", -- Add comments and things
