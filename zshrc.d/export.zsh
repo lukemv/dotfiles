@@ -1,5 +1,3 @@
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/code/"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
@@ -12,4 +10,5 @@ export PATH="$HOME/.krew/bin:${PATH}"
 export PATH="$HOME/code/tfenv/bin:${PATH}"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/scripts"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 

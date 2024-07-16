@@ -44,5 +44,16 @@ ENV PATH="/home/me/.cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN echo 'source ~/.cargo/env' >> /home/me/.bashrc
 
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
 RUN cargo install eza
 RUN cargo install ripgrep
+RUN cargo install atuin
+
+RUN set -x; cd "$(mktemp -d)" && \
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" && \
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" && \
+  KREW="krew-${OS}_${ARCH}" && \
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && \
+  tar zxvf "${KREW}.tar.gz" && \
+  ./"${KREW}" install krew

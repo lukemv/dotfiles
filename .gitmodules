@@ -14,3 +14,6 @@
 [submodule "tpm"]
 	path = tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "zsh-z"]
+	path = zsh-z
+	url = git@github.com:rupa/z.git
