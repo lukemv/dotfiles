@@ -27,5 +27,6 @@
     ~/.local/scripts: scripts
     ~/.zsh/spaceship: spaceship-prompt
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
+    ~/.zsh/zsh-z: zsh-z
     ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.tmux/plugins/tpm: tpm

@@ -16,3 +16,7 @@ fi
 source ~/.zsh/spaceship/spaceship.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-z/z.sh
+source "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
