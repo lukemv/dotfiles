@@ -24,6 +24,7 @@ local colorscheme = get_if_available("catppuccin")
 -- local colorscheme = get_if_available('melange')
 
 require("catppuccin").setup({
+	transparent_background = true,
 	integrations = {
 			cmp = true,
 			gitsigns = true,
