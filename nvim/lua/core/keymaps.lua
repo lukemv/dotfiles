@@ -7,11 +7,13 @@ map("i", "jk", "<esc>")
 -- randomly, I'll leave it commented out until I figure out what it's clashing with
 -- map("n", "<C-m>", ":terminal<CR>", "Terminal Start")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
+
 map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 
 map("n", "<leader>rc", ":source %<CR>", "Source current file")
-map("n", "<leader>tm", ":terminal<CR>:file ", "New named terminal")
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
+
+map("n", "<leader>tt", ":terminal<CR>:file t-", "New named terminal")
 
 -- Diagnostic keymaps
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
@@ -27,6 +29,12 @@ map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
 map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
 map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
 map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
+
+-- Navigate to other windows straight out of terminal insert mode
+map("t", "<C-h>", "<C-\\><C-n><C-w><C-h>", "Terminal Escape and navigate to window left")
+map("t", "<C-l>", "<C-\\><C-n><C-w><C-l>", "Terminal Escape and navigate windows right")
+map("t", "<C-j>", "<C-\\><C-n><C-w><C-j>", "Terminal Escape and navigate to window down")
+map("t", "<C-k>", "<C-\\><C-n><C-w><C-k>", "Terminal Escape and navigate windows up")
 
 -- Move with shift-arrows
 map("n", "<S-Left>", "<C-w><S-h>", "Move window to the left")
@@ -61,8 +69,18 @@ map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
 
 -- Diff binds
-map("n", "<leader>vo", ":DiffviewOpen<CR>", "Diffview Open")
-map("n", "<leader>vc", ":DiffviewClose<CR>", "Diffview Close")
+local function toggle_diffview()
+  if next(require('diffview.lib').views) == nil then
+    vim.cmd('DiffviewOpen')
+  else
+    vim.cmd('DiffviewClose')
+  end
+end
+
+-- Git workflow, it's not the most efficient but it
+-- works for me
+map("n", "<leader>vv", toggle_diffview, "Diffview Toggle")
+map("n", "<leader>vc", ":Git commit<CR>", "Git Commit")
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>")
@@ -87,7 +105,4 @@ map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 
-map("n", "<leader>gcom", ":Git commit<CR>", "Git Commit")
-map("n", "<leader>gpf", ":Git push<CR>", "Git Commit")
-map("n", "<leader>gs", ":Git status<CR>", "Git Status")
 
