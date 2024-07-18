@@ -16,6 +16,7 @@
 
 - link:
     ~/.gitconfig: gitconfig
+    ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
     ~/.tmux.conf: tmux.conf
     ~/.tmux.reset.conf: tmux.reset.conf
