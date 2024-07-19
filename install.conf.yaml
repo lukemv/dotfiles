@@ -15,6 +15,7 @@
   - ~/.tmux/plugins/
 
 - link:
+    ~/.config/atuin/config.toml: atuin/config.toml
     ~/.gitconfig: gitconfig
     ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
