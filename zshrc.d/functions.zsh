@@ -44,26 +44,6 @@ function scripts {
   ls ~/.scripts
 }
 
-function zc {
-  readonly args=${1:?"required <args> for z missing"}
-  nvim "$( z -e ${args})"
-}
-
-# Open a new code editor in a directory
-function zcd {
-  local folder=$(z | fzf)
-  if [ ! -z "$folder" ]; then
-    nvim $folder
-  fi
-}
-
-function zf {
-  local file=$(fdfind | fzf)
-  if [ ! -z "$file" ]; then
-    nvim -r $file
-  fi
-}
-
 function kgnode {
   kg_resource "node"
 }
