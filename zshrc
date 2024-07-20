@@ -1,4 +1,7 @@
 # Load all files from .shell/bashrc.d directory
+autoload -Uz compinit
+compinit
+
 if [ -d $HOME/.zshrc.d ]; then
   for file in $HOME/.zshrc.d/*.zsh; do
     source $file
@@ -17,6 +20,5 @@ source ~/.zsh/spaceship/spaceship.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-z/z.sh
-source "$HOME/.atuin/bin/env"
-
+source ~/.atuin/bin/env
 eval "$(atuin init zsh)"

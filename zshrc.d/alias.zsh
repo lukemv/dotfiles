@@ -5,8 +5,6 @@ alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 cx() { cd "$@" && l }
 
-alias fd='fdfind'
-
 alias gl="git log"
 alias gp="git push"
 alias gpf="git push --force"
