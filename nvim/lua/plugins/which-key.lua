@@ -19,6 +19,7 @@ return {
 						b = { name = "Debugging" },
 						g = { name = "Commentary" },
 						t =	{ name = "Terminal" },
+						v =	{ name = "Version Control" },
 					}
 				}
 			)
