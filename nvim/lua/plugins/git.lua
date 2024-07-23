@@ -6,9 +6,5 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		config = function ()
-			local map = require("helpers.keys").map
-			-- TODO: Add fugitive keymaps here.
-		end
 	}
 }
