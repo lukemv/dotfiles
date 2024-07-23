@@ -33,9 +33,6 @@ return {
 			  end
 			end)
 
-			map('n', '<leader>hr', gitsigns.reset_hunk, "Reset hunk")
-
-
 			-- some line here
 			-- map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Stage hunk")
 			-- map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Reset hunk")
@@ -46,7 +43,7 @@ return {
 			-- map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end, "Blame line")
 			-- map('n', '<leader>hd', gitsigns.diffthis, "Diff this")
 			-- map('n', '<leader>hD', function() gitsigns.diffthis('~') end, "Diff this (cached)")
-			map('n', '<leader>tb', gitsigns.toggle_current_line_blame, "Toggle blame line")
+			map('n', '<leader>vb', gitsigns.toggle_current_line_blame, "Git Blame Toggle")
 			map('n', '<leader>td', gitsigns.toggle_deleted, "Toggle deleted")
 
 			-- Text object

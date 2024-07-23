@@ -1,6 +1,7 @@
 return {
 	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 500
@@ -10,16 +11,16 @@ return {
 			wk.register(
 				{
 					["<leader>"] = {
-						f = { name = "File" },
+						b = { name = "Debugging" },
 						d = { name = "Delete/Close" },
+						f = { name = "File" },
+						g = { name = "Commentary" },
+						l = { name = "LSP" },
 						q = { name = "Quit" },
 						s = { name = "Search" },
-						l = { name = "LSP" },
 						u = { name = "Undo Tree" },
-						b = { name = "Debugging" },
-						g = { name = "Commentary" },
-						t =	{ name = "Terminal" },
 						v =	{ name = "Version Control" },
+						x =	{ name = "Trouble" },
 					}
 				}
 			)

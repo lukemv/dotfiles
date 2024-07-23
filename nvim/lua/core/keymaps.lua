@@ -6,10 +6,6 @@ map("i", "jk", "<esc>")
 -- Terminal mappings
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal Exit")
 map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
-map("n", "<leader>tt", ":terminal<CR>:file t-", "New named terminal")
-
-map("n", "<leader>rc", ":source %<CR>", "Source current file")
-map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 -- Diagnostic keymaps
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
 
@@ -45,7 +41,6 @@ map("n", "<leader>do", buffers.delete_others, "Delete Other buffers")
 map("n", "<leader>da", buffers.delete_all, "Delete All buffers")
 map("n", "<leader>dw", "<cmd>close<cr>", "Close Window")
 
-
 -- Quick access to some common actions
 map("n", "<leader>fw", "<cmd>w<cr>", "File Write")
 local function write_and_delete()
@@ -77,9 +72,12 @@ map("n", "<S-h>", ":bprevious<CR>")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- Toggles
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
+-- Keybinds that don't really follow a good convention
+map("n", "<leader>tt", ":terminal<CR>:file t-", "New named terminal")
+map("n", "<leader>rc", ":source %<CR>", "Source current file")
+map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
 -- Clear after search
 map("n", "<leader>hl", "<cmd>nohl<cr>", "Clear highlights")

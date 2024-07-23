@@ -9,10 +9,10 @@ return {
 				width = 30,
 			},
 			renderer = {
-				group_empty = true,
+				group_empty = false,
 			},
 			filters = {
-				dotfiles = true,
+				dotfiles = false,
 				git_ignored = false,
 			},
 		})

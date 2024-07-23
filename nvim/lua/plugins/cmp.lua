@@ -80,6 +80,7 @@ return {
 					end, { "i", "s" }),
 				}),
 				formatting = {
+					expandable_indicator = false,
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
 						-- Kind icons
