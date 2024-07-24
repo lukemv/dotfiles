@@ -16,6 +16,7 @@
 
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
+    ~/.config/ghorg: ghorg 
     ~/.gitconfig: gitconfig
     ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
