@@ -99,17 +99,16 @@
 ## For details on the supported regular expression syntax, see
 ## https://docs.rs/regex/latest/regex/#syntax
 history_filter = [
-  ".*OP_CONNECT_TOKEN.*",
-  "^ping.+",
-  "^which.+",
-  "^cd.+",
-  "^ls.+",
-  "^rm.+",
-  "htop",
-  "clear",
-  "c",
+  ".*_TOKEN.*",
+  # "^ping.+",
+  # "^which.+",
+  # "^cd.+",
+  # "^ls.+",
+  # "^rm.+",
+  # "htop",
+  # "clear",
   "gpf",
-  "git log",
+  # "git log",
   "gl"
 ]
 
