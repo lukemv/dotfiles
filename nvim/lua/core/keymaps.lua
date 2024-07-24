@@ -64,10 +64,6 @@ end
 map("n", "<leader>vv", toggle_diffview, "Diffview Toggle")
 map("n", "<leader>vc", ":Git commit<CR>", "Git Commit")
 
--- Navigate buffers
-map("n", "<S-l>", ":bnext<CR>")
-map("n", "<S-h>", ":bprevious<CR>")
-
 -- Stay in indent mode
 map("v", "<", "<gv")
 map("v", ">", ">gv")
