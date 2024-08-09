@@ -68,6 +68,7 @@ map("n", "<leader>vc", ":Git commit<CR>", "Git Commit")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+map("n", "<leader>o", ":Oil .<CR>", "Oil Open")
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 -- Keybinds that don't really follow a good convention
