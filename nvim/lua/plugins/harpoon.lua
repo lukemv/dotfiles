@@ -17,11 +17,12 @@ return {
 
 		vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-		-- Note: I can't seem to find good keys for these :D
+		-- I only keep 3 buffers in my list of harpoonable things
+		-- If there are more than 3 things I find another way
 		vim.keymap.set("n", "<S-h>", function() harpoon:list():select(1) end)
 		vim.keymap.set("n", "<S-j>", function() harpoon:list():select(2) end)
-		vim.keymap.set("n", "<S-k>", function() harpoon:list():select(3) end)
-		vim.keymap.set("n", "<S-l>", function() harpoon:list():select(4) end)
+		-- Shift K is used to inspect the tag under the cursor
+		vim.keymap.set("n", "<S-l>", function() harpoon:list():select(3) end)
 		-- Toggle previous & next buffers stored within Harpoon list
 		-- vim.keymap.set("n", "<S-h>", function() harpoon:list():prev() end)
 		-- vim.keymap.set("n", "<S-l>", function() harpoon:list():next() end)
