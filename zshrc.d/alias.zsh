@@ -14,6 +14,8 @@ alias gfa="git fetch --all"
 alias gcur="git rev-parse --short HEAD"
 alias gc="git commit --amend"
 
+alias dps="docker ps"
+
 alias gres="git checkout main && git pull --rebase"
 alias mres="git checkout master && git pull --rebase"
 # Kubernetes aliases
