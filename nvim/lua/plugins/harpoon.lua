@@ -15,7 +15,7 @@ return {
 
 		vim.keymap.set("n", "<leader>a", hadd)
 
-		vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+		vim.keymap.set("n", "<leader>w", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 		-- I only keep 3 buffers in my list of harpoonable things
 		-- If there are more than 3 things I find another way
