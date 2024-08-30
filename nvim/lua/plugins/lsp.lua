@@ -113,6 +113,14 @@ return {
 				},
 			})
 
+			-- Terraform
+			require("lspconfig")["terraformls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+				},
+			})
+
 			-- Python
 			require("lspconfig")["pylsp"].setup({
 				on_attach = on_attach,
