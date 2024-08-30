@@ -48,6 +48,7 @@ local function write_and_delete()
   buffers.delete_this()
 end
 map('n', '<leader>fd', write_and_delete, "File Write & Exit")
+map('n', '<leader>fv', "<cmd>wq<cr>", "File Write & Quit (Save and Quit)")
 map("n", "<leader>fa", "<cmd>wa<cr>", "File Write all")
 map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
