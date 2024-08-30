@@ -9,7 +9,9 @@ local opts = {
   relativenumber = true,
   undofile = true,
   mouse = "",
-  clipboard = "unnamedplus"
+  clipboard = "unnamedplus",
+  backup = false,
+  writebackup = false,
 }
 
 for opt, val in pairs(opts) do
