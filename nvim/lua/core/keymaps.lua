@@ -9,6 +9,8 @@ map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 -- Diagnostic keymaps
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
 
+map("n", "<leader>|", "<cmd>vsplit<cr>", "Split Vertically")
+
 -- Better window navigation
 -- LM: I probably can't live without these.
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
@@ -75,8 +77,7 @@ map("n", "-", "<CMD>Oil<CR>", "Oil Open Parent")
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 -- Keybinds that don't really follow a good convention
-map("n", "<leader>tt", ":terminal<CR>:file t-", "New named terminal")
-map("n", "<leader>rc", ":source %<CR>", "Source current file")
+map("n", "<leader>t", ":terminal<CR>:file t-", "New named terminal")
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
 -- Clear after search
