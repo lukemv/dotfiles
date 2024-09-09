@@ -7,6 +7,7 @@ local opts = {
   termguicolors = true,
   number = true,
   relativenumber = true,
+  conceallevel = 2,
   undofile = true,
   mouse = "",
   clipboard = "unnamedplus",
