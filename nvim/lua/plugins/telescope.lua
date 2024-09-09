@@ -34,11 +34,6 @@ return {
 				}))
 			end, "Search Current buffer")
 
-			-- map("n", "<leader>sf", require("telescope.builtin").find_files, "Files")
-			map("n", "<leader>sf", function()
-				require("telescope.builtin").git_files({ recurse_submodules = true, no_ignore = true })
-			end, "Search Git Files")
-
 			map("n", "<leader>sa", function()
 				require("telescope.builtin").find_files({ recurse_submodules = true, hidden = true, no_ignore = true })
 			end, "Search All Files")
@@ -49,7 +44,7 @@ return {
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Search Diagnostics")
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Search Grep")
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Search Help")
-			map("n", "<leader>ss", require("telescope.builtin").git_stash, "Search Git Stash")
+			map("n", "<leader>ss", require("telescope.builtin").git_status, "Search Git Status")
 			-- Git stuff is here.
 			map("n", "<leader>gb", require("telescope.builtin").git_bcommits, "Search Git Commits Buffer")
 			map("n", "<leader>gl", require("telescope.builtin").git_commits, "Search Git Commits")
