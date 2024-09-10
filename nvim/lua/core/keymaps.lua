@@ -10,6 +10,7 @@ map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 -- map('n', 'gx', vim.diagnostic.open_float, "Show diagnostics under cursor")
 
 map("n", "<leader>|", "<cmd>vsplit<cr>", "Split Vertically")
+map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
 
 -- Better window navigation
 -- LM: I probably can't live without these.
