@@ -12,6 +12,10 @@ map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 map("n", "<leader>|", "<cmd>vsplit<cr>", "Split Vertically")
 map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
 
+-- Quickfix list navigation
+map('n', '<leader>n', '<cmd>cnext<cr>', "Go to next item in the Quickfix list")
+map('n', '<leader>p', '<cmd>cprev<cr>', "Go to previous item in the Quickfix list")
+
 -- Better window navigation
 -- LM: I probably can't live without these.
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
