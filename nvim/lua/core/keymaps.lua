@@ -16,6 +16,10 @@ map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
 map('n', '<leader>n', '<cmd>cnext<cr>', "Go to next item in the Quickfix list")
 map('n', '<leader>p', '<cmd>cprev<cr>', "Go to previous item in the Quickfix list")
 
+-- O is for 'Obsidian'
+map('n', '<leader>ot', '<cmd>ObsidianToday<cr>', "Obsidian Today")
+map('n', '<leader>os', '<cmd>ObsidianSearch<cr>', "Obsidian Search")
+
 -- Better window navigation
 -- LM: I probably can't live without these.
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
@@ -50,12 +54,13 @@ map("n", "<leader>dw", "<cmd>close<cr>", "Close Window")
 
 -- Quick access to some common actions
 map("n", "<leader>fw", "<cmd>w<cr>", "File Write")
+-- I never use this one, I should probably delete it.
 local function write_and_delete()
   vim.cmd('w')
   buffers.delete_this()
 end
 map('n', '<leader>fd', write_and_delete, "File Write & Exit")
-map('n', '<leader>fv', "<cmd>wq<cr>", "File Write & Quit (Save and Quit)")
+map('n', '<leader>fv', "<cmd>wq!<cr>", "File Write & Quit (Save and Quit)")
 map("n", "<leader>fa", "<cmd>wa<cr>", "File Write all")
 map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
@@ -76,11 +81,14 @@ map("n", "<leader>vc", ":Git commit<CR>", "Git Commit")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map("n", "<leader>o", "<CMD>Oil .<CR>", "Oil Open")
-map("n", "-", "<CMD>Oil<CR>", "Oil Open Parent")
+-- File navigation is linked to 'e' for 'explore'
+map("n", "<leader>eo", "<cmd>Oil .<cr>", "Oil Open")
+map("n", "-", "<cmd>Oil<cr>", "Oil Open Parent")
+map("n", "<leader>et", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 
+-- 'u' is linked to Undo tree
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
-map("n", "<leader>e", ":NvimTreeToggle<CR>", "NvimTree Toggle")
+--
 -- Keybinds that don't really follow a good convention
 map("n", "<leader>t", ":terminal<CR>:file t-", "New named terminal")
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
