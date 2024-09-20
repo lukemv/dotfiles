@@ -19,6 +19,7 @@ map('n', '<leader>p', '<cmd>cprev<cr>', "Go to previous item in the Quickfix lis
 -- O is for 'Obsidian'
 map('n', '<leader>ot', '<cmd>ObsidianToday<cr>', "Obsidian Today")
 map('n', '<leader>os', '<cmd>ObsidianSearch<cr>', "Obsidian Search")
+map('n', '<leader>oi', '<cmd>ObsidianTemplate<cr>', "Obsidian Template")
 
 -- Better window navigation
 -- LM: I probably can't live without these.
@@ -59,8 +60,8 @@ local function write_and_delete()
   vim.cmd('w')
   buffers.delete_this()
 end
-map('n', '<leader>fd', write_and_delete, "File Write & Exit")
 map('n', '<leader>fv', "<cmd>wq!<cr>", "File Write & Quit (Save and Quit)")
+map('n', '<leader>fd', write_and_delete, "File Write & Exit")
 map("n", "<leader>fa", "<cmd>wa<cr>", "File Write all")
 map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
@@ -103,4 +104,7 @@ map("n", "<leader>ut", function()
 		vim.o.background = "dark"
 	end
 end, "Toggle between light and dark themes")
+
+map('n', '<leader>gpp', "<cmd>GpChatNew<cr>", "GPT Chat New")
+map('n', '<leader>gpd', "<cmd>GpChatDelete<cr>", "GPT Chat Delete")
 

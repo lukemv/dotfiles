@@ -15,6 +15,14 @@ return {
     "nvim-lua/plenary.nvim",
   },
   opts = {
+    templates = {
+      folder = "templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+      -- A map for custom variables, the key should be the variable and the value a function
+      substitutions = {},
+    },
+    preferred_link_style = "markdown",
     workspaces = {
       {
         name = "personal",
@@ -28,7 +36,7 @@ return {
     daily_notes = {
       date_format = "%Y-%m-%d",
       default_tags = { "daily-notes" },
-      template = nil
+      template = "daily_note",
     },
   },
   note_id_func = function(title)
