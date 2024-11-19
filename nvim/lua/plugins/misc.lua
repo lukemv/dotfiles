@@ -20,4 +20,6 @@ return {
 	"tpope/vim-surround",   -- Surround stuff with the ys-, cs-, ds- commands
 	"vmware-archive/salt-vim", -- SaltStack development, syntax for salt files
 	"mbbill/undotree",      -- Manages undo operations in the best way
+	"thirtythreeforty/lessspace.vim", -- Trims trailing spaces and things
+	"ntpeters/vim-better-whitespace" -- Highlight trailing spaces and tabs
 }
