@@ -7,12 +7,13 @@ local opts = {
   termguicolors = true,
   number = true,
   relativenumber = true,
-  conceallevel = 1,
+  conceallevel = 2,
   undofile = true,
   mouse = "",
   clipboard = "unnamedplus",
   backup = false,
   writebackup = false,
+  timeoutlen = 500,
 }
 
 for opt, val in pairs(opts) do
@@ -29,3 +30,4 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   pattern = { "terraform", "hcl", "yaml", "yml" },
 })
+
