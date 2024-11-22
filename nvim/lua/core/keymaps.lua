@@ -18,6 +18,7 @@ map('n', '<leader>p', '<cmd>cprev<cr>', "Go to previous item in the Quickfix lis
 
 -- O is for 'Obsidian'
 map('n', '<leader>ot', '<cmd>ObsidianToday<cr>', "Obsidian Today")
+map('n', '<leader>oy', '<cmd>ObsidianYesterday<cr>', "Obsidian Yesterday")
 map('n', '<leader>os', '<cmd>ObsidianSearch<cr>', "Obsidian Search")
 map('n', '<leader>oi', '<cmd>ObsidianTemplate<cr>', "Obsidian Template")
 
