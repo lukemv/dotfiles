@@ -1,6 +1,6 @@
 local map = require("helpers.keys").map
 
--- This is an addictive way of exiting insert mode. 
+-- This is an addictive way of exiting insert mode.
 map("i", "jk", "<esc>")
 
 -- Terminal mappings
@@ -11,6 +11,9 @@ map("t", "jk", "<C-\\><C-n>", "Terminal Escape")
 
 map("n", "<leader>|", "<cmd>vsplit<cr>", "Split Vertically")
 map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
+
+-- Zoomies
+map('n', '<leader>z', ':ZenMode<CR>')
 
 -- Quickfix list navigation
 map('n', '<leader>n', '<cmd>cnext<cr>', "Go to next item in the Quickfix list")
