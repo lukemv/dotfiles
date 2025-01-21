@@ -113,3 +113,34 @@ function ,dockerps {
   docker ps --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}"
 }
 
+function ,git_tidy() {
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|^refs/remotes/origin/||')
+
+  if [[ -z $default_branch ]]; then
+    if git show-ref --verify --quiet refs/heads/main; then
+      default_branch="main"
+    elif git show-ref --verify --quiet refs/heads/master; then
+      default_branch="master"
+    else
+      echo "Could not determine default branch."
+      return 1
+    fi
+  fi
+
+  git checkout "$default_branch" || return 1
+
+  git fetch --prune
+
+  for branch in $(git branch | sed 's/\*//'); do
+    branch=$(echo $branch | xargs) # Trim whitespace
+
+    if ! git branch -r | grep -q "origin/$branch"; then
+      if [ "$branch" != "$default_branch" ]; then
+        echo "Force deleting local branch '$branch'"
+        git branch -D "$branch"
+      fi
+    fi
+  done
+
+  git remote prune origin
+}
