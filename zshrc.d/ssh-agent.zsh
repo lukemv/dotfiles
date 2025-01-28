@@ -1,16 +1,13 @@
 #!/bin/bash
 AGENT_ENV="$HOME/.ssh/agent.env"
 
-# Start agent if not already running
 start_agent() {
    (umask 077; ssh-agent > "$AGENT_ENV")
    . "$AGENT_ENV" > /dev/null
 }
 
-# Check if the agent is already running
 if [ -f "$AGENT_ENV" ]; then
    . "$AGENT_ENV" > /dev/null
-   # Check if agent is dead and start it again if needed
    if ! ssh-add -l > /dev/null 2>&1; then
        start_agent
    fi
