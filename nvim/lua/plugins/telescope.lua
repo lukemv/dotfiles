@@ -38,6 +38,9 @@ return {
 				require("telescope.builtin").find_files({ recurse_submodules = true, hidden = true, no_ignore = true })
 			end, "Search All Files")
 
+			map("n", "<leader>sn", function()
+				require("telescope.builtin").find_files({ search_dirs = { os.getenv("HOME") .. "/.notes" } })
+			end, "Search Notes")
 			map("n", "<leader>s,", require("telescope.builtin").commands, "Search Commands")
 			map("n", "<leader>s;", require("telescope.builtin").command_history, "Search Command History")
 			map("n", "<leader>s.", require("telescope.builtin").grep_string, "Search Current word")
