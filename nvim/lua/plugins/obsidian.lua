@@ -25,12 +25,8 @@ return {
     preferred_link_style = "markdown",
     workspaces = {
       {
-        name = "personal",
-        path = "~/vaults/bullet-main",
-      },
-      {
         name = "work",
-        path = "~/vaults/work-main",
+        path = "~/.notes",
       },
     },
     daily_notes = {
