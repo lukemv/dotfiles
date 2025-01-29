@@ -41,9 +41,17 @@ return {
 			map("n", "<leader>sn", function()
 				require("telescope.builtin").find_files({ search_dirs = { os.getenv("HOME") .. "/.notes" } })
 			end, "Search Notes")
+
+			-- I wasn't using this serch current word very often and I tend to take notes
+			-- all day so this is better.
+			map("n", "<leader>s.", function()
+				require("telescope.builtin").live_grep({ search_dirs = { os.getenv("HOME") .. "/.notes" } })
+			end, "Grep Notes")
+
+			map("n", "<leader>s.", require("telescope.builtin").grep_string, "Search Current word")
+
 			map("n", "<leader>s,", require("telescope.builtin").commands, "Search Commands")
 			map("n", "<leader>s;", require("telescope.builtin").command_history, "Search Command History")
-			map("n", "<leader>s.", require("telescope.builtin").grep_string, "Search Current word")
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Search Diagnostics")
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Search Grep")
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Search Help")
