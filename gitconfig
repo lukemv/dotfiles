@@ -11,4 +11,5 @@
 	default = current
 [safe]
     directory = *
-
+[advice]
+  skippedCherryPicks = false
