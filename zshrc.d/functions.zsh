@@ -162,3 +162,24 @@ function res() {
   # Now checkout and pull with rebase
   git checkout "$default_branch" && git pull --rebase
 }
+
+
+# Fetch and rebase
+function far() {
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|^refs/remotes/origin/||')
+
+  if [[ -z $default_branch ]]; then
+    if git show-ref --verify --quiet refs/heads/main; then
+      default_branch="main"
+    elif git show-ref --verify --quiet refs/heads/master; then
+      default_branch="master"
+    else
+      echo "Could not determine default branch."
+      return 1
+    fi
+  fi
+
+  # Now checkout and pull with rebase
+  git fetch --all
+  git rebase origin/"$default_branch"
+}
