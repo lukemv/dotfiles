@@ -145,7 +145,7 @@ function ,git_tidy() {
   git remote prune origin
 }
 
-function res() {
+function ,res() {
   default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|^refs/remotes/origin/||')
 
   if [[ -z $default_branch ]]; then
@@ -165,7 +165,7 @@ function res() {
 
 
 # Fetch and rebase
-function far() {
+function ,far() {
   default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|^refs/remotes/origin/||')
 
   if [[ -z $default_branch ]]; then
