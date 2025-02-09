@@ -22,6 +22,17 @@ return {
 
 			-- Enable telescope fzf native, if installed
 			pcall(require("telescope").load_extension, "fzf")
+			local function set_find_command()
+					return {
+							"rg",
+							"--files",
+							"--hidden",
+							"--iglob", "!.git/*",
+							"--iglob", "!.venv/*",
+							"--iglob", "!node_modules/*",
+							"--follow"
+					}
+			end
 
 			local map = require("helpers.keys").map
 			map("n", "<leader>sr", require("telescope.builtin").oldfiles, "Search Recent Files")
@@ -35,7 +46,10 @@ return {
 			end, "Search Current buffer")
 
 			map("n", "<leader>sa", function()
-				require("telescope.builtin").find_files({ recurse_submodules = true, hidden = true, no_ignore = true })
+					require("telescope.builtin").find_files({
+							find_command = set_find_command(),
+							no_ignore = true
+					})
 			end, "Search All Files")
 
 			map("n", "<leader>sn", function()
