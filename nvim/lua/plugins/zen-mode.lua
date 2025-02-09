@@ -4,8 +4,8 @@ return {
 		require("zen-mode").setup {
 			window = {
 				backdrop = 1,
-				width = 120,
-				height = 0.8,
+				width = 1,
+				height = 1,
 			},
 		}
 	end,
