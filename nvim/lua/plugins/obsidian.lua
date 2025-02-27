@@ -20,7 +20,23 @@ return {
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
       -- A map for custom variables, the key should be the variable and the value a function
-      substitutions = {},
+      substitutions = {
+        date = function()
+          return os.date("%Y-%m-%d")
+        end,
+        time = function()
+          return os.date("%H:%M")
+        end,
+        yesterday = function()
+          return os.date("%Y-%m-%d", os.time() - 86400)
+        end,
+        tomorrow = function()
+          return os.date("%Y-%m-%d", os.time() + 86400)
+        end,
+        month = function()
+          return os.date("%Y-%m")
+        end,
+      },
     },
     preferred_link_style = "markdown",
     workspaces = {
