@@ -183,3 +183,14 @@ function ,far() {
   git fetch --all
   git rebase origin/"$default_branch"
 }
+
+,d() {
+    local dir=$(find . -mindepth 1 -type d | fzf --height 40% --layout=reverse --border --preview 'tree -C {} | head -200')
+    # Check if a directory was selected
+    if [ -n "$dir" ]; then
+        cd "$dir" || echo "Error: Unable to change directory to $dir"
+    else
+        echo "No directory selected"
+    fi
+}
+

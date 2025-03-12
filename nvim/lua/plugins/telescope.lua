@@ -1,4 +1,5 @@
 -- Telescope fuzzy finding (all the things)
+local actions = require('telescope.actions')
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -16,6 +17,9 @@ return {
 							["<C-u>"] = false,
 							["<C-d>"] = false,
 						},
+						n = {
+				      ["d"] = actions.delete_buffer
+						}
 					},
 				},
 			})
