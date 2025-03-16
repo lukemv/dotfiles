@@ -194,3 +194,15 @@ function ,far() {
     fi
 }
 
+# uses 'z' to search the recent stack
+# pipes via fzf to select a directory
+# then cd's to that directory
+fz() {
+  local dir=$(z $@ | fzf | awk '{ print $2 }')
+  if [ -n "$dir" ]; then
+      cd "$dir" || echo "Error: Unable to change directory to $dir"
+  else
+      echo "No directory selected"
+  fi
+}
+
