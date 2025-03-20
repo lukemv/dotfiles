@@ -6,11 +6,18 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+			-- Fuzzy Finder Algorithm which requires
+			-- local dependencies to be built.
+			-- Only load if `make` is available
+			{ "nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				cond = vim.fn.executable("make") == 1 },
 		},
 		config = function()
-			require("telescope").setup({
+
+			local telescope = require("telescope")
+
+			telescope.setup({
 				defaults = {
 					mappings = {
 						i = {
@@ -25,7 +32,7 @@ return {
 			})
 
 			-- Enable telescope fzf native, if installed
-			pcall(require("telescope").load_extension, "fzf")
+			pcall(telescope.load_extension, "fzf")
 			local function set_find_command()
 					return {
 							"rg",
@@ -68,14 +75,15 @@ return {
 
 			map("n", "<leader>s.", require("telescope.builtin").grep_string, "Search Current word")
 
+
 			map("n", "<leader>s,", require("telescope.builtin").commands, "Search Commands")
 			map("n", "<leader>s;", require("telescope.builtin").command_history, "Search Command History")
 			map("n", "<leader>sd", require("telescope.builtin").diagnostics, "Search Diagnostics")
 			map("n", "<leader>sg", require("telescope.builtin").live_grep, "Search Grep")
 			map("n", "<leader>sh", require("telescope.builtin").help_tags, "Search Help")
 			map("n", "<leader>ss", require("telescope.builtin").git_status, "Search Git Status")
-			-- Git stuff is here.
-			map("n", "<leader>gb", require("telescope.builtin").git_bcommits, "Search Git Commits Buffer")
+			-- Git stuff is hbre.
+			map("n", "<leader>sb", require("telescope.builtin").git_bcommits, "Search Git Commits Buffer")
 			map("n", "<leader>gl", require("telescope.builtin").git_commits, "Search Git Commits")
 
 			map("n", "<C-p>", require("telescope.builtin").keymaps, "Search Keymaps")
