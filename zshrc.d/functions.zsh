@@ -206,3 +206,37 @@ fz() {
   fi
 }
 
+,docker-volume-find() {
+  if [[ -z "$1" ]]; then
+      echo "Usage: ,docker-volume-find <directory>"
+      return 1
+  fi
+
+  volume_name=$1
+
+  docker ps -aq | while read container_id; do
+      if docker inspect "$container_id" | jq -e ".[] | .Mounts[]? | select(.Name==\"$volume_name\")" > /dev/null; then
+          echo "Volume '$volume_name' is mounted to container ID: $container_id"
+      fi
+  done
+}
+
+,tf_clean() {
+    # Ensure a directory is supplied
+    if [[ -z "$1" ]]; then
+        echo "Usage: tf_clean <directory>"
+        return 1
+    fi
+
+    # Check if the provided argument is a valid directory
+    if [[ ! -d "$1" ]]; then
+        echo "'$1' is not a valid directory."
+        return 1
+    fi
+
+    # Find and remove all .terraform directories
+    find "$1" -type d -name ".terraform" -exec rm -rf {} +
+
+    echo "All .terraform directories removed from '$1' and its subdirectories."
+}
+
