@@ -22,4 +22,3 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-z/z.sh
 source ~/.atuin/bin/env
 eval "$(atuin init zsh)"
-
