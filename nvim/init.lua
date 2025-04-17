@@ -7,3 +7,6 @@ require("core.keymaps")
 -- Other options
 require("core.options")
 
+-- Weird hacks and workarounds
+require("core.hacks")
+
