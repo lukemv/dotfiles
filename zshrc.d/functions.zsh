@@ -163,6 +163,17 @@ function ,res() {
   git checkout "$default_branch" && git pull --rebase
 }
 
+# This function will add the PR number to the commit message
+function ,prbb() {
+  pr_num="$1"
+  subject=$(git log -1 --pretty=format:%s)
+  body=$(git log -1 --pretty=format:%b)
+
+  new_subject="$subject (pull request #$pr_num)"
+
+  git commit --amend -m "$new_subject" -m "$body"
+  git push --force-with-lease
+}
 
 # Fetch and rebase
 function ,far() {

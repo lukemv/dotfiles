@@ -13,3 +13,5 @@
     directory = *
 [advice]
   skippedCherryPicks = false
+[init]
+	defaultBranch = main
