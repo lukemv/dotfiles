@@ -1,0 +1,11 @@
+[Unit]
+Description=Hyprpaper wallpaper service
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/hyprpaper
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+

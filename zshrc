@@ -1,7 +1,4 @@
 # Load all files from .shell/bashrc.d directory
-autoload -Uz compinit
-compinit
-
 if [ -d $HOME/.zshrc.d ]; then
   for file in $HOME/.zshrc.d/*.zsh; do
     source $file
