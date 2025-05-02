@@ -1,6 +1,6 @@
 {%- set user = "lukem" %}
 {%- set id = "1000" %}
-{%- set services = ["waybar", "hyprpaper"] %}
+{%- set services = ["waybar", "hyprpaper", "monitors"] %}
 
 {% for svc in services %}
 profiles.hyprland.systemd.{{ svc }}:

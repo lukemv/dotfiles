@@ -1,4 +1,12 @@
 
+function ,mute {
+  pamixer --mute
+}
+
+function ,unmute {
+  pamixer --mute
+}
+
 function ,alias
 {
   cmd=$(cat ~/dotfiles/zshrc.d/alias.zsh | fzf)
@@ -251,3 +259,43 @@ fz() {
     echo "All .terraform directories removed from '$1' and its subdirectories."
 }
 
+function ,hyprfix {
+  # Discover and export the correct HYPRLAND_INSTANCE_SIGNATURE
+  echo "[hyprfix] Searching for active Hyprland instance..."
+
+  for dir in /run/user/1000/hypr/*; do
+    echo "[hyprfix] Checking: $dir"
+    if [ -S "$dir/.socket.sock" ]; then
+      echo "[hyprfix] Found socket in: $dir"
+      export HYPRLAND_INSTANCE_SIGNATURE=$(basename "$dir")
+      echo "[hyprfix] HYPRLAND_INSTANCE_SIGNATURE set to: $HYPRLAND_INSTANCE_SIGNATURE"
+      break
+    else
+      echo "[hyprfix] No socket found in: $dir"
+    fi
+  done
+
+  # Confirm
+  if [ -z "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    echo "[hyprfix] ❌ No valid Hyprland socket found."
+  else
+    echo "[hyprfix] ✅ Ready to use hyprctl."
+  fi
+}
+
+,gb() {
+  (env -i HOME="$HOME" PATH="$PATH" bash --noprofile --norc -c '
+    set -e
+    cmd_dir="$HOME/dotfiles/goutils/cmd"
+    for path in "$cmd_dir"/*; do
+      [ -d "$path" ] || continue
+      tool="${path##*/}"
+      echo "Installing $tool..."
+      (cd "$HOME/dotfiles/goutils" && go install "./cmd/$tool")
+    done
+  ')
+}
+
+,lock() {
+  swaylock -f -l
+}
