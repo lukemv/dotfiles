@@ -11,4 +11,7 @@ export PATH="$HOME/code/tfenv/bin:${PATH}"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/scripts"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# Some dotfiles for work stuff
+export DOTFILES_SHARED_PATH="$HOME/dotfiles-shared"
+export DOTFILES_WORK_PATH="$HOME/dotfiles-shared"
 

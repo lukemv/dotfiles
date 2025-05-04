@@ -5,13 +5,9 @@ if [ -d $HOME/.zshrc.d ]; then
   done
 fi
 
-export SHARED_DOTFILES_PATH="$HOME/dotfiles-shared"
-
-if [ -d $SHARED_DOTFILES_PATH ]; then
-  for file in $SHARED_DOTFILES_PATH/functions/*.sh; do
-    source $file
-  done
-fi
+for file in $DOTFILES_SHARED_PATH/functions/*.sh; do
+  [ -f "$file" ] && source "$file"
+done
 
 eval "$(starship init zsh)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
