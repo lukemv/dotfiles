@@ -1,6 +1,9 @@
 {%- set user = "lukem" %}
 {%- set id = "1000" %}
-{%- set services = ["waybar", "hyprpaper", "monitors"] %}
+{%- set services = [
+  "waybar",
+  "hyprpaper",
+  "monitors"] %}
 
 {% for svc in services %}
 profiles.hyprland.systemd.{{ svc }}:
@@ -14,4 +17,12 @@ profiles.hyprland.systemd.{{ svc }}:
 swaylock:
   pkg.installed:
     - name: swaylock
+
+# These utils are used for screenshots and annotations
+{% set screenshot_utils = ["grim", "slurp", "swappy"] %}
+{% for util in screenshot_utils %}
+profiles.hyprland.pkg.{{ util }}:
+  pkg.installed:
+    - name: {{ util }}
+{% endfor %}
 
