@@ -299,3 +299,14 @@ function ,hyprfix {
 ,lock() {
   swaylock -f -l
 }
+
+,binds() {
+  echo "ALT + N: lock screen"
+  echo "ALT + W: kill window"
+  echo "ALT + D: wofi"
+}
+
+
+
+
+
