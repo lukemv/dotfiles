@@ -6,3 +6,7 @@ profiles.qol.pkg.nmap:
   pkg.installed:
     - name: nmap
 
+profiles.qol.pkg.dmg2img:
+  pkg.installed:
+    - name: dmg2img
+
