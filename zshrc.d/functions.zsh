@@ -307,6 +307,13 @@ function ,hyprfix {
 }
 
 
-
+gpush() {
+  output=$(git push "$@" 2>&1 | tee /dev/tty)
+  url=$(echo "$output" | grep -Eo 'https://bitbucket\.org/[^ ]+')
+  if [ -n "$url" ]; then
+    xdg-open "$url" >/dev/null 2>&1 &  # Linux
+    # open "$url" >/dev/null 2>&1 &    # macOS
+  fi
+}
 
 

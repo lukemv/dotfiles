@@ -1,20 +1,31 @@
-* {
-  font-family: JetBrainsMono Nerd Font, monospace;
-  font-size: 14px;
-  color: #ffffff;
+
+/* Remove padding from the outer bar container */
+window#waybar {
+  padding: 0;
+  margin: 0;
   background: #1e1e2e;
-  padding: 0 6px;
 }
 
+/* Apply padding to module content instead */
+* {
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 20px;
+  color: #ffffff;
+  background: transparent; /* Leave transparent unless needed */
+}
+
+/* Add internal padding per module */
+#workspaces, #network, #pulseaudio, #clock, #battery, #tray {
+  padding: 0 10px;
+}
+
+/* Workspace styling */
 #workspaces button {
-  background: #2a2a3a;
-  border: none;
-  padding: 0 8px;
+  border: 2px solid #1e1e2e;
   margin: 0 2px;
 }
 
 #workspaces button.active {
-  background: #44475a;
-  border-bottom: 2px solid #ffb86c;
+  border: 2px solid #f5a97f;
 }
 
