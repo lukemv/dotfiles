@@ -58,3 +58,11 @@ Speed up keyrepeat
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 ```
+
+## Login Lingering
+
+This is required to get the monitors automation to work, (after running the linger and monitors salt profiles)
+
+```
+systemctl --user enable --now monitors.timer
+```

@@ -316,4 +316,6 @@ gpush() {
   fi
 }
 
-
+function ,chromefix () {
+  rm -f ~/.config/google-chrome/SingletonLock
+}
