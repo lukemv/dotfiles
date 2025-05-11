@@ -16,7 +16,8 @@
 
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
-    ~/.config/ghorg: ghorg 
+    ~/.config/ghorg: ghorg
+    ~/.config/tmuxinator: tmuxinator
     ~/.gitconfig: gitconfig
     ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
@@ -28,7 +29,6 @@
     ~/.config/nvim: nvim
     ~/.config/gh: gh
     ~/.local/scripts: scripts
-    ~/.zsh/spaceship: spaceship-prompt
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
     ~/.zsh/zsh-z: zsh-z
     ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
