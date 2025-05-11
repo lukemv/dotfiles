@@ -1,9 +1,9 @@
 [Unit]
-Description=Hyprland custom monitors
+Description=Persistent monitor layout manager
 After=graphical-session.target
 
 [Service]
-ExecStart=%h/.local/bin/logtime
+ExecStart=%h/.config/hypr/scripts/monitors.sh
 Restart=always
 RestartSec=2
 StandardOutput=journal
