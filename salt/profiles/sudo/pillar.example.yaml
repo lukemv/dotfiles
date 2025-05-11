@@ -1,0 +1,13 @@
+sudo:
+  users:
+    lukem:
+      nopasswd: true
+      commands: "ALL"
+    buildbot:
+      nopasswd: false
+      commands: "/usr/bin/systemctl restart nginx"
+  groups:
+    wheel:
+      nopasswd: true
+      commands: "ALL"
+
