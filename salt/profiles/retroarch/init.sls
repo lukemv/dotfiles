@@ -1,0 +1,4 @@
+profiles.retroarch.packages:
+  - retroarch
+
+
