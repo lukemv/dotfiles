@@ -1,0 +1,5 @@
+#!/bin/bash
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+export GDK_DPI_SCALE=1.0
+export QT_SCALE_FACTOR=1.0
+/home/lukem/.local/bin/Cursor-0.49.6-x86_64.AppImage "$@" &
