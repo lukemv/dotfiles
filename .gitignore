@@ -2,3 +2,4 @@ gitconfig.d/private
 secrets.zsh
 private/
 ghorg/repos.txt
+.cursor/
