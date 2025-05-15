@@ -15,3 +15,4 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export DOTFILES_SHARED_PATH="$HOME/dotfiles-shared"
 export DOTFILES_WORK_PATH="$HOME/dotfiles-shared"
 
+export BROWSER=google-chrome
