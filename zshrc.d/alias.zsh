@@ -31,3 +31,5 @@ alias tfa="terraform apply"
 alias tfi="terraform init"
 alias dotfiles="cd ~/.dotfiles"
 alias http="xh"
+alias ssh='TERM=xterm-256color ssh'
+

@@ -43,11 +43,11 @@ return {
 
     local map = require("helpers.keys").map
 
-    map("n", "<leader>jl", function()
+    map("n", "<leader>io", function()
       toggle_telescope(harpoon:list())
     end, "Harpoon List")
 
-    map("n", "<leader>ja", function()
+    map("n", "<leader>ij", function()
       harpoon:list():add()
       print("Added to Harpoon")
     end, "Harpoon Add")
