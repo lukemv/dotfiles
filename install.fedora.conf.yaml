@@ -1,0 +1,25 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+
+- shell:
+  - [ git submodule update --init --recursive, Installing submodules ]
+
+- clean: ['~']
+
+- create:
+  - ~/.local/bin
+  - ~/.config
+  - ~/.zsh
+  - ~/.tmux/plugins/
+  - ~/.local/share/applications
+
+- link:
+    ~/.config/hypr: fedora/hypr
+    ~/.config/kitty: fedora/kitty
+    ~/.config/waybar: fedora/waybar
+    ~/.cursor: .cursor
+
+- shell:
+  - [ update-desktop-database ~/.local/share/applications, Updating desktop database ]

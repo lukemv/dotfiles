@@ -1,15 +1,42 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-CONFIG="install.conf.yaml"
+# Check if a config file argument is provided
+if [[ $# -lt 1 ]]; then
+  echo "Error: No config file specified."
+  echo "Usage: $0 <config.yaml> [additional dotbot arguments]"
+  exit 1
+fi
+
+CONFIG="$1"
+
+# Ensure the config file exists
+if [[ ! -f "$CONFIG" ]]; then
+  echo "Error: Config file '$CONFIG' not found."
+  exit 2
+fi
+
 DOTBOT_DIR="dotbot"
-
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+# Sync and update submodules
+if ! git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive; then
+  echo "Error: Failed to sync submodules."
+  exit 3
+fi
+
+if ! git submodule update --init --recursive "${DOTBOT_DIR}"; then
+  echo "Error: Failed to update submodules."
+  exit 4
+fi
+
+# Run Dotbot
+if ! "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@:2}"; then
+  echo "Error: Dotbot execution failed."
+  exit 5
+fi
+

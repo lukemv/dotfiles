@@ -34,13 +34,4 @@
     ~/.zsh/zsh-z: zsh-z
     ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.tmux/plugins/tpm: tpm
-    ~/.local/share/applications/cursor.desktop: desktop-files/cursor.desktop
-    ~/.local/share/applications/google-chrome.desktop: desktop-files/google-chrome.desktop
-    ~/.local/share/applications/1password.desktop: desktop-files/1password.desktop
-    ~/.local/bin/cursor-scaled: desktop-files/wayland-scaled/cursor-scaled
-    ~/.local/bin/google-chrome-scaled: desktop-files/wayland-scaled/google-chrome-scaled
-    ~/.local/bin/1password-scaled: desktop-files/wayland-scaled/1password-scaled
-    ~/.cursor: .cursor
 
-- shell:
-  - [ update-desktop-database ~/.local/share/applications, Updating desktop database ]
