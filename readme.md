@@ -1,5 +1,31 @@
 # Dotfiles and workstation configuration
 
+# Testing upgrades
+
+I'm trying to be able to test everything manually in docker before punching a hole in my daily driver:
+
+```
+docker compose build dot
+docker compose run -it dot /bin/zsh
+```
+
+## Bluetooth
+
+```
+bluetoothctl
+# Inside the prompt:
+power on
+agent on
+default-agent
+scan on
+# Wait for AirPods to appear, then:
+pair XX:XX:XX:XX:XX:XX
+connect XX:XX:XX:XX:XX:XX
+trust XX:XX:XX:XX:XX:XX
+(Airpods: CC:08:FA:EF:4B:FB)
+exit
+```
+
 ## GPG Stuff
 
 Generate a new gpgkey using the algo of your choice.

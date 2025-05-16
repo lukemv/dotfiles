@@ -1,0 +1,7 @@
+services:
+  dot:
+    build:
+      context: .
+      dockerfile: Dockerfile-RHEL
+    volumes:
+      - ./:/home/me/dotfiles
