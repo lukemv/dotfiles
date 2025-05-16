@@ -16,3 +16,4 @@ profiles.qol.package.chromium:
   pkg.installed:
     - name: chromium
 
+
