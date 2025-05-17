@@ -1,0 +1,7 @@
+# QMK rules for flashing keyboards
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="2ff4", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="0478", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="0483", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="6060", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="3297", MODE="0666"
+

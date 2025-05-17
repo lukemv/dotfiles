@@ -16,8 +16,8 @@ log "Starting monitor configuration"
 log "Connected monitors: $MONITORS"
 
 # Always configure laptop monitor first with 150% scaling
-log "Setting $LAPTOP_MONITOR scale to 200%"
-hyprctl keyword monitor "$LAPTOP_MONITOR, preferred, auto, 2.0"
+log "Setting $LAPTOP_MONITOR scale to 150%"
+hyprctl keyword monitor "$LAPTOP_MONITOR, preferred, auto, 1.5"
 
 # Set brightness
 log "Setting brightness to 50%"
@@ -27,7 +27,7 @@ brightnessctl -d intel_backlight set 100% > /dev/null 2>&1
 for MONITOR in $MONITORS; do
     if [[ "$MONITOR" != "$LAPTOP_MONITOR" ]]; then
         log "Setting $MONITOR scale to 150%"
-        hyprctl keyword monitor "$MONITOR, preferred, auto, 1.5"
+        hyprctl keyword monitor "$MONITOR,200 preferred, auto, 1.5"
     fi
 done
 
