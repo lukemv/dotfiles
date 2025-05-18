@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 # Load all files from .shell/bashrc.d directory
 if [ -d $HOME/.zshrc.d ]; then
   for file in $HOME/.zshrc.d/*.zsh; do
@@ -5,9 +8,11 @@ if [ -d $HOME/.zshrc.d ]; then
   done
 fi
 
-for file in $DOTFILES_SHARED_PATH/functions/*.sh; do
-  [ -f "$file" ] && source "$file"
-done
+if [[ -d "$DOTFILES_SHARED_PATH/functions" ]]; then
+  for file in $DOTFILES_SHARED_PATH/functions/*.sh; do
+    [ -f "$file" ] && source "$file"
+  done
+fi
 
 eval "$(starship init zsh)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
