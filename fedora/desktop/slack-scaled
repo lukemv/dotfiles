@@ -2,4 +2,4 @@
 export NIXOS_OZONE_WL=1
 export QT_QPA_PLATFORM=wayland
 export ELECTRON_ENABLE_OZONE=1
-exec /usr/bin/slack --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+exec /usr/bin/slack --enable-features=UseOzonePlatform --ozone-platform=wayland "$@" &
