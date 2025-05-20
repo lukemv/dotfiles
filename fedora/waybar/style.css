@@ -34,10 +34,18 @@ window#waybar {
   color: #ffffff;
   border-radius: 10px;
   background: rgba(30, 30, 46, 0.8); /* #1e1e2e */
-  border: 1px solid rgba(187, 187, 187, 0.8);  /* #bbbbbb 80% opacity */
+  border: 1px solid rgba(187, 187, 187, 0.5);  /* #bbbbbb 80% opacity */
 }
 
 #workspaces button.active {
   border: 2px solid #f5a97f;
 }
 
+tooltip {
+  background-color: rgba(30, 30, 46, 0.95); /* Dark semi-transparent */
+  color: #bbbbbb;                          /* Soft gray text */
+  font-size: 14px;
+  border: 1px solid rgba(187, 187, 187, 0.3); /* Subtle border */
+  border-radius: 6px;                        /* Rounded corners */
+  padding: 6px 10px;
+}
