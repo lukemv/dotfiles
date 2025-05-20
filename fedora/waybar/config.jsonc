@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": ["clock", "custom/utc"],
   "modules-right": ["network", "battery", "pulseaudio"],
 
   "hyprland/workspaces": {
@@ -17,19 +17,27 @@
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": " {volume}%",
     "format-muted": " Muted",
     "on-click": "pavucontrol",
     "on-scroll-up": "pamixer -i 5",
-    "on-scroll-down": "pamixer -d 5",
+    "on-scroll-down": "pamixer -d 5"
   },
 
   "battery": {
-    "format": "{capacity}%",
+    "format": "{capacity}%"
   },
 
   "clock": {
-    "format": "{:%a %d %b %H:%M}"
+    "format": "{:%a %d %b %H:%M}  AEST",
+    "tooltip": false,
+    "interval": 60
+  },
+
+  "custom/utc": {
+    "exec": "date -u '+%H:%M   UTC'",
+    "interval": 60,
+    "tooltip": false
   }
 }
 
