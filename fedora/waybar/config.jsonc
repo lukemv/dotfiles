@@ -18,12 +18,10 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": "🔇",
+    "format-muted": " Muted",
     "on-click": "pavucontrol",
-    "scroll-step": 5,
-    "format-icons": {
-      "default": ["🔈", "🔉", "🔊"]
-    }
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
   },
 
   "battery": {

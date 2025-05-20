@@ -1,9 +1,12 @@
 
 /* Remove padding from the outer bar container */
+
+/* Full bar background */
 window#waybar {
-  padding: 0;
-  margin: 0;
-  background: #1e1e2e;
+    background-color: rgba(0, 0, 0, 0.0); /* fully transparent */
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 /* Apply padding to module content instead */
@@ -15,14 +18,23 @@ window#waybar {
 }
 
 /* Add internal padding per module */
-#workspaces, #network, #pulseaudio, #clock, #battery, #tray {
-  padding: 0 10px;
+#network, #pulseaudio, #clock, #battery, #tray {
+  margin: 1px 4px 6px 4px; /* top, right, bottom, left */
+  padding: 0px 20px;
+  color: #ffffff;
+  border-radius: 10px;
+  background: rgba(30, 30, 46, 0.8); /* #1e1e2e */
+  border: 1px solid rgba(187, 187, 187, 0.5);  /* #bbbbbb 80% opacity */
 }
 
 /* Workspace styling */
 #workspaces button {
-  border: 2px solid #1e1e2e;
-  margin: 0 2px;
+  margin: 1px 4px 6px 4px; /* top, right, bottom, left */
+  padding: 0px 20px;
+  color: #ffffff;
+  border-radius: 10px;
+  background: rgba(30, 30, 46, 0.8); /* #1e1e2e */
+  border: 1px solid rgba(187, 187, 187, 0.8);  /* #bbbbbb 80% opacity */
 }
 
 #workspaces button.active {
