@@ -10,16 +10,15 @@
 
 - create:
   - ~/.local/bin
+  - ~/.local/share
   - ~/.config
   - ~/.zsh
   - ~/.tmux/plugins/
-  - ~/.local/share/applications
 
 - link:
     ~/.config/hypr: fedora/hypr
     ~/.config/kitty: fedora/kitty
     ~/.config/waybar: fedora/waybar
     ~/.cursor: .cursor
+    ~/.local/bin/wofi-launcher: fedora/wofi/launcher.sh
 
-- shell:
-  - [ update-desktop-database ~/.local/share/applications, Updating desktop database ]

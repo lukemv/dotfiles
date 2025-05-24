@@ -1,30 +1,24 @@
-
-/* Remove padding from the outer bar container */
-
-/* Full bar background */
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.0); /* fully transparent */
+    background-color: rgba(0, 0, 0, 0.0);
     border: none;
     box-shadow: none;
     padding: 0;
 }
 
-/* Apply padding to module content instead */
 * {
   font-family: "Inter", sans-serif;
   font-size: 20px;
   color: #ffffff;
-  background: transparent; /* Leave transparent unless needed */
+  background: transparent;
 }
 
-/* Add internal padding per module */
 #network, #pulseaudio, #clock, #battery, #tray, #custom-utc {
-  margin: 1px 4px 6px 4px; /* top, right, bottom, left */
+  margin: 1px 4px 6px 4px;
   padding: 0px 20px;
   color: #ffffff;
   border-radius: 10px;
   background: rgba(30, 30, 46, 0.8); /* #1e1e2e */
-  border: 1px solid rgba(187, 187, 187, 0.5);  /* #bbbbbb 80% opacity */
+  border: 2px solid rgba(20, 20, 20, 0.9);
 }
 
 /* Workspace styling */
