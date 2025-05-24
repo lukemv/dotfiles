@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MONITOR_RESOLUTION=1.5
+MONITOR_PERCENT=$((MONITOR_RESOLUTION * 100))
 LOG_FILE="$HOME/.local/logs/monitor.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
@@ -16,18 +18,18 @@ log "Starting monitor configuration"
 log "Connected monitors: $MONITORS"
 
 # Always configure laptop monitor first with 150% scaling
-log "Setting $LAPTOP_MONITOR scale to 150%"
-hyprctl keyword monitor "$LAPTOP_MONITOR, preferred, auto, 1.5"
+log "Setting $LAPTOP_MONITOR scale to $MONITOR_PERCENT%"
+hyprctl keyword monitor "$LAPTOP_MONITOR, preferred, auto, $MONITOR_RESOLUTION"
+# hyprctl keyword monitor "DP-4, preferred, auto, 2.0"
 
 # Set brightness
 log "Setting brightness to 50%"
 brightnessctl -d intel_backlight set 100% > /dev/null 2>&1
 
-# Configure other monitors with 150% scaling
 for MONITOR in $MONITORS; do
     if [[ "$MONITOR" != "$LAPTOP_MONITOR" ]]; then
-        log "Setting $MONITOR scale to 150%"
-        hyprctl keyword monitor "$MONITOR,200 preferred, auto, 1.5"
+        log "Setting $MONITOR scale to $MONITOR_PERCENT%"
+        hyprctl keyword monitor "$MONITOR, preferred, auto, $MONITOR_RESOLUTION"
     fi
 done
 
