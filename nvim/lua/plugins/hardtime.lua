@@ -4,7 +4,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   event = "VeryLazy",
   opts = {
-    enabled = true,
+    enabled = false,
     max_count = 3,
     disable_mouse = false,
     restriction_mode = "block", -- can be "block" or "hint"
