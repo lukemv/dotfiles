@@ -1,0 +1,35 @@
+name: dotfiles
+root: ~/dotfiles
+
+# Project hooks
+on_project_start: |
+  echo "Starting dotfiles development environment..."
+  export EDITOR=nvim
+
+windows:
+  - dotfiles-nvim:
+      layout: even-horizontal
+      panes:
+        - nvim
+  - shared-nvim:
+      root: ~/dotfiles-shared
+      panes:
+        - nvim
+  - cursor:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/cursor-scaled
+  - firefox:
+      layout: even-horizontal
+      panes:
+        - firefox &
+  - slack:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/slack-scaled
+  - chrome:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/google-chrome-scaled
+
+

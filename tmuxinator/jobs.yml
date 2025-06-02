@@ -1,0 +1,21 @@
+name: jobs
+root: ~/dotfiles
+
+windows:
+  - cursor:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/cursor-scaled
+  - firefox:
+      layout: even-horizontal
+      panes:
+        - firefox &
+  - slack:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/slack-scaled
+  - chrome:
+      layout: even-horizontal
+      panes:
+        - /home/lukem/dotfiles/fedora/desktop/google-chrome-scaled
+
