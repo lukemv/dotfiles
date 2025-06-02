@@ -1,0 +1,13 @@
+[Unit]
+Description=Vector
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/vector --quiet --config /etc/vector/vector.yaml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
