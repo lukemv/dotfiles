@@ -1,2 +1,2 @@
 #!/bin/bash
-GDK_DPI_SCALE=1.0 /usr/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --force-device-scale-factor=1.5 "$@" &
+GDK_DPI_SCALE=1.0 /usr/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland "$@" &

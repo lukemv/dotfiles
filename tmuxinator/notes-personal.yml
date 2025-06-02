@@ -1,8 +1,0 @@
-name: notes-personal
-root: ~/.notes-personal
-
-windows:
-  - notes:
-      layout: even-horizontal
-      panes:
-        - nvim
