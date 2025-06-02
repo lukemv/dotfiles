@@ -3,3 +3,5 @@ secrets.zsh
 private/
 ghorg/repos.txt
 .cursor/
+# For work, workflows
+tmuxinator/hidden-*

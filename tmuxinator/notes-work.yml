@@ -1,8 +1,0 @@
-name: notes-work
-root: ~/.notes
-
-windows:
-  - notes:
-      layout: even-horizontal
-      panes:
-        - nvim
