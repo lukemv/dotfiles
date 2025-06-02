@@ -2,4 +2,4 @@
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 export GDK_DPI_SCALE=1.0
 export QT_SCALE_FACTOR=1.0
-/home/lukem/.local/bin/Obsidian-1.8.10.AppImage "$@" &
+/home/lukem/.local/bin/Obsidian-1.8.10.AppImage --no-sandbox --ozone-platform=wayland --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations "$@" &
