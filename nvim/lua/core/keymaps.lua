@@ -15,10 +15,6 @@ map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
 -- Zoomies
 map('n', '<leader>z', ':ZenMode<CR>')
 
--- Quickfix list navigation
-map('n', '<leader>n', '<cmd>cnext<cr>', "Go to next item in the Quickfix list")
-map('n', '<leader>p', '<cmd>cprev<cr>', "Go to previous item in the Quickfix list")
-
 -- O is for 'Obsidian'
 map('n', '<leader>ot', '<cmd>ObsidianToday<cr>', "Obsidian Today")
 map('n', '<leader>oy', '<cmd>ObsidianYesterday<cr>', "Obsidian Yesterday")
@@ -95,7 +91,24 @@ map("n", "<leader>et", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 --
 -- Keybinds that don't really follow a good convention
-map("n", "<leader>t", ":terminal<CR>:file t-", "New named terminal")
+map("n", "<leader>t", function()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+  if buftype == "terminal" then
+    -- In a terminal buffer: open new terminal in the same local cwd
+    local term_cwd = vim.fn.getcwd(0)
+    vim.cmd("tcd " .. term_cwd)
+    vim.cmd("terminal")
+  elseif bufname ~= "" then
+    -- In a file buffer: open terminal in file's directory
+    local dir = vim.fn.fnamemodify(bufname, ":p:h")
+    vim.cmd("tcd " .. dir)
+    vim.cmd("terminal")
+  else
+    -- In a non-file, non-terminal buffer: open terminal in global cwd
+    vim.cmd("terminal")
+  end
+end, "Open terminal in file/terminal's directory or cwd")
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
 -- Clear after search
@@ -111,4 +124,7 @@ end, "Toggle between light and dark themes")
 
 map('n', '<leader>gpp', "<cmd>GpChatNew<cr>", "GPT Chat New")
 map('n', '<leader>gpd', "<cmd>GpChatDelete<cr>", "GPT Chat Delete")
+
+map('n', '<leader>p', '"0p')
+map('n', '<leader>P', '"0P')
 
