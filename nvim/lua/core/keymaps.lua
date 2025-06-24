@@ -92,23 +92,9 @@ map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
 --
 -- Keybinds that don't really follow a good convention
 map("n", "<leader>t", function()
-  local bufname = vim.api.nvim_buf_get_name(0)
-  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-  if buftype == "terminal" then
-    -- In a terminal buffer: open new terminal in the same local cwd
-    local term_cwd = vim.fn.getcwd(0)
-    vim.cmd("tcd " .. term_cwd)
     vim.cmd("terminal")
-  elseif bufname ~= "" then
-    -- In a file buffer: open terminal in file's directory
-    local dir = vim.fn.fnamemodify(bufname, ":p:h")
-    vim.cmd("tcd " .. dir)
-    vim.cmd("terminal")
-  else
-    -- In a non-file, non-terminal buffer: open terminal in global cwd
-    vim.cmd("terminal")
-  end
-end, "Open terminal in file/terminal's directory or cwd")
+end, "Open terminal cwd")
+
 map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clipboard")
 
 -- Clear after search
