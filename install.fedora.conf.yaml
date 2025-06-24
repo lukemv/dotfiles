@@ -21,4 +21,5 @@
     ~/.config/waybar: fedora/waybar
     ~/.cursor: .cursor
     ~/.local/bin/wofi-launcher: fedora/wofi/launcher.sh
-
+    ~/.config/Cursor/User/settings.json: vscode/settings.json
+    ~/.config/Cursor/User/keybindings.json: vscode/keybindings.json
