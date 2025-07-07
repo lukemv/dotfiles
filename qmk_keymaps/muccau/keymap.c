@@ -12,6 +12,25 @@ enum layers {
     _GAMING,
 };
 
+
+#ifdef RGB_MATRIX_ENABLE
+// Animation types
+// RGB_MATRIX_BREATHING
+// RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+// RGB_MATRIX_GRADIENT_UP_DOWN
+// RGB_MATRIX_RAINBOW_PINWHEELS
+// RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+layer_state_t layer_state_set_user(layer_state_t state) {
+    if (layer_state_cmp(state, _GAMING)) {
+        rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+        rgb_matrix_sethsv(HSV_BLUE); // or your chosen color
+    } else {
+        rgb_matrix_mode(RGB_MATRIX_RAINBOW_PINWHEELS);  // your preferred pattern
+    }
+    return state;
+}
+#endif
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
         KC_GRAVE,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    TG(_GAMING),
