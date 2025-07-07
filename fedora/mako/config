@@ -1,0 +1,53 @@
+
+# Appearance
+background-color=#1e1e2eEE
+text-color=#ffffff
+border-color=#89b4fa
+border-size=2
+border-radius=8
+
+# Dimensions
+width=400
+height=200
+margin=20
+padding=15
+
+# Font
+font=FiraCode Nerd Font 12
+
+# Icons
+icon-location=left
+
+# Behavior
+default-timeout=5000
+ignore-timeout=false
+
+# Progress bar
+progress-color=#89b4fa
+
+# Text alignment
+text-alignment=center
+
+# Corner
+anchor=top-right
+
+# Layer
+layer=overlay
+
+# Grouping
+group-by=app-name
+
+# Colors per urgency
+[urgency=low]
+background-color=#1e1e2eAA
+border-color=#a6e3a1
+
+[urgency=normal]
+background-color=#1e1e2eEE
+border-color=#89b4fa
+
+[urgency=high]
+background-color=#1e1e2eFF
+border-color=#f38ba8
+default-timeout=10000
+
