@@ -9,5 +9,5 @@ profiles.nodejs.install:
         tar -xJf node-{{ node_version }}-linux-x64.tar.xz
         ln -s /opt/nodejs/node-{{ node_version }}-linux-x64/bin/node /usr/bin/node
         ln -s /opt/nodejs/node-{{ node_version }}-linux-x64/bin/npm /usr/bin/npm
+        ln -s /opt/nodejs/node-{{ node_version }}-linux-x64/bin/npx /usr/bin/npx
     - creates: /usr/bin/node
-
