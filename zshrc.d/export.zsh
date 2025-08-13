@@ -9,6 +9,7 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.krew/bin:${PATH}"
 export PATH="$HOME/code/tfenv/bin:${PATH}"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/nodejs/node-v23.11.0-linux-x64/lib/node_modules:$PATH"
 export PATH="$PATH:$HOME/dotfiles/scripts"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Some dotfiles for work stuff
