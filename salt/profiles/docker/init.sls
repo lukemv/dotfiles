@@ -1,9 +1,9 @@
 profiles.docker.repo:
   file.managed:
     - name: /etc/yum.repos.d/docker-ce.repo
-    - source: https://download.docker.com/linux/fedora/docker-ce.repo
+    - source: https://download.docker.com/linux/centos/docker-ce.repo
     - makedirs: True
-    - source_hash: d19388de1ab46e0547d04c576014bc857a60cd4d5ff37f50709b8337c88672a9
+    - skip_verify: True
 
 profiles.docker.packages:
   pkg.installed:
@@ -17,3 +17,13 @@ profiles.docker.systemd.service:
   service.running:
     - name: docker.service
     - enable: True
+
+profiles.docker.user_group:
+  group.present:
+    - name: docker
+  user.present:
+    - name: lukem
+    - groups:
+      - docker
+    - require:
+      - group: profiles.docker.user_group
