@@ -32,6 +32,20 @@ profiles.ruby.rbenv.plugins.build:
     - require:
       - git: profiles.ruby.rbenv.repository
 
+profiles.ruby.rbenv.setup:
+  cmd.run:
+    - name: |
+        export PATH="/usr/local/rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+        rbenv install 3.4.5
+        rbenv global 3.4.5
+        rbenv rehash
+    - require:
+      - git: profiles.ruby.rbenv.plugins.build
+    - user: lukem
+    - env:
+      - PATH: /usr/local/rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # rbenv install 3.4.3 && rbenv global 3.4.3
 
 
