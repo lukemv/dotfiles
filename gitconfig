@@ -15,3 +15,5 @@
   skippedCherryPicks = false
 [init]
 	defaultBranch = main
+[alias]
+	feat = "!f() { git checkout -b feat-$1; }; f"
