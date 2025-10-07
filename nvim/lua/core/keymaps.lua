@@ -70,7 +70,7 @@ local function toggle_diffview()
 end
 
 map("n", "<leader>vv", toggle_diffview, "Diffview Toggle")
-map("n", "<leader>vc", ":Git commit<CR>", "Git Commit")
+map("n", "<leader>vc", "<cmd>Git commit<cr>", "Git Commit")
 
 -- Stay in indent mode
 map("v", "<", "<gv")
