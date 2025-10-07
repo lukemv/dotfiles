@@ -15,12 +15,6 @@ map("n", "<leader>-", "<cmd>split<cr>", "Split Horizontally")
 -- Zoomies
 map('n', '<leader>z', ':ZenMode<CR>')
 
--- O is for 'Obsidian'
-map('n', '<leader>ot', '<cmd>ObsidianToday<cr>', "Obsidian Today")
-map('n', '<leader>oy', '<cmd>ObsidianYesterday<cr>', "Obsidian Yesterday")
-map('n', '<leader>os', '<cmd>ObsidianSearch<cr>', "Obsidian Search")
-map('n', '<leader>oi', '<cmd>ObsidianTemplate<cr>', "Obsidian Template")
-
 -- Better window navigation
 -- LM: I probably can't live without these.
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
@@ -108,9 +102,8 @@ map("n", "<leader>ut", function()
 	end
 end, "Toggle between light and dark themes")
 
-map('n', '<leader>gpp', "<cmd>GpChatNew<cr>", "GPT Chat New")
-map('n', '<leader>gpd', "<cmd>GpChatDelete<cr>", "GPT Chat Delete")
-
-map('n', '<leader>p', '"0p')
-map('n', '<leader>P', '"0P')
+-- Paste without overwriting clipboard
+map('v', '<leader>p', '"_dP', "Paste without overwriting clipboard")
+map('n', '<leader>p', '"+p', "Paste from system clipboard")
+map('n', '<leader>P', '"+P', "Paste from system clipboard before cursor")
 
