@@ -79,7 +79,6 @@ map("v", ">", ">gv")
 -- File navigation is linked to 'e' for 'explore'
 map("n", "<leader>eo", "<cmd>Oil .<cr>", "Oil Open")
 map("n", "-", "<cmd>Oil<cr>", "Oil Open Parent")
-map("n", "<leader>et", ":NvimTreeToggle<CR>", "NvimTree Toggle")
 
 -- 'u' is linked to Undo tree
 map("n", "<leader>u", ":UndotreeToggle<CR>", "Undotree Toggle")
@@ -93,6 +92,20 @@ map('n', "<leader>cp", ":let @+ = expand('%')<CR>", "Copy current path into clip
 
 -- Clear after search
 map("n", "<leader>hl", "<cmd>nohl<cr>", "Clear highlights")
+
+-- Quickfix navigation
+map("n", "<leader>qo", "<cmd>copen<cr>", "Open quickfix")
+map("n", "<leader>qc", "<cmd>cclose<cr>", "Close quickfix")
+map("n", "<leader>qn", "<cmd>cnext<cr>", "Next quickfix item")
+map("n", "<leader>qp", "<cmd>cprev<cr>", "Previous quickfix item")
+
+-- Fix quickfix Enter key (restore default behavior)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "<CR>", "<CR>", { buffer = true, desc = "Open quickfix item" })
+  end,
+})
 -- Switch between light and dark modes
 map("n", "<leader>ut", function()
 	if vim.o.background == "dark" then
