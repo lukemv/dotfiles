@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  qmk-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.qmk
+    container_name: qmk-voyager
+    volumes:
+      # Mount keymap directory
+      - ./qmk_keymaps/muccau:/home/qmk/qmk_firmware/keyboards/zsa/voyager/keymaps/muccau:ro
+      # Mount build script
+      - ./qmk_keymaps/muccau/_build.sh:/home/qmk/build.sh:ro
+      # Mount output directory to get the built firmware
+      - ./keybin:/home/qmk/keybin
+    working_dir: /home/qmk/qmk_firmware
+    command: ["/home/qmk/build.sh"]
