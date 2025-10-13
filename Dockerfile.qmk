@@ -1,0 +1,45 @@
+# QMK Build Environment for ZSA Voyager
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        python3 \
+        python3-pip \
+        build-essential \
+        gcc-arm-none-eabi \
+        binutils-arm-none-eabi \
+        libnewlib-arm-none-eabi \
+        libstdc++-arm-none-eabi-newlib \
+        dfu-util \
+        libusb-1.0-0-dev \
+        wget \
+        curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install QMK CLI
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install qmk
+
+# Create qmk user
+RUN useradd -m qmk
+
+# Clone ZSA QMK firmware repository
+USER qmk
+WORKDIR /home/qmk
+RUN git clone --recurse-submodules https://github.com/zsa/qmk_firmware.git
+WORKDIR /home/qmk/qmk_firmware
+
+# Set up QMK environment
+RUN qmk setup -y
+ENV QMK_HOME=/home/qmk/qmk_firmware
+
+# Create keybin directory for outputs
+RUN mkdir -p /home/qmk/keybin
+
+WORKDIR /home/qmk/qmk_firmware

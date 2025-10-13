@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Create ~/keybin if it doesn't exist
-if [ ! -d ~/keybin ]; then
-  mkdir ~/keybin
-fi
+set -e
 
-# Navigate to ~/zsa-qmk
-pushd ~/zsa-qmk > /dev/null || exit 1
+# Create keybin directory if it doesn't exist
+mkdir -p ~/keybin
 
+# We're already in the qmk_firmware directory in Docker
 # Build the firmware
 make zsa/voyager:custom
 
@@ -15,8 +13,12 @@ make zsa/voyager:custom
 datestamp=$(date +%Y%m%d-%H%M%S)
 
 # Copy the built firmware with a datestamped filename
-cp ./zsa_voyager_custom.bin ~/keybin/custom.${datestamp}.bin
-
-# Return to previous directory
-popd > /dev/null
+if [ -f "./zsa_voyager_custom.bin" ]; then
+    cp ./zsa_voyager_custom.bin ~/keybin/custom.${datestamp}.bin
+    echo "Built firmware: custom.${datestamp}.bin"
+    ls -la ~/keybin/
+else
+    echo "Build failed - no output file found"
+    exit 1
+fi
 

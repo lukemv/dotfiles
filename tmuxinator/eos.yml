@@ -1,9 +1,0 @@
-name: eos
-root: ~/code/lukemv/eos-prototype
-
-windows:
-  - eos:
-      layout: even-horizontal
-      panes:
-        - nvim
-

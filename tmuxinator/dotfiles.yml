@@ -6,32 +6,20 @@ on_project_start: |
   export EDITOR=nvim
 
 windows:
-  - dotfiles-nvim:
-      layout: even-horizontal
+  - dotfiles:
+      root: ~/dotfiles
       panes:
         - nvim
-  - shared-nvim:
+  - shared:
       root: ~/dotfiles-shared
       panes:
         - nvim
-  - firefox:
-      layout: even-horizontal
+  - claude:
+      root: ~/dotfiles
       panes:
-        - firefox &
-  - slack:
-      layout: even-horizontal
+        - claude
+  - terminal:
+      root: ~/dotfiles
       panes:
-        - /home/lukem/dotfiles/fedora/desktop/slack-scaled
-  - chrome:
-      layout: even-horizontal
-      panes:
-        - /home/lukem/dotfiles/fedora/desktop/google-chrome-scaled
-  - cursor:
-      layout: even-horizontal
-      panes:
-        - /home/lukem/dotfiles/fedora/desktop/cursor-scaled
-  - 1password:
-      layout: even-horizontal
-      panes:
-        - /home/lukem/dotfiles/fedora/desktop/1password-scaled
+        - # local terminal
 
