@@ -3,6 +3,10 @@ function ,mute {
   pamixer --mute
 }
 
+function ,muxr {
+  tmuxinator stop $1 && tmuxinator start $1
+}
+
 function ,unmute {
   pamixer --mute
 }
