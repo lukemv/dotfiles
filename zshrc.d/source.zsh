@@ -1,5 +1,5 @@
 # Todo: move these elsewhere
-source "$HOME/.cargo/env"
-source "$HOME/.atuin/bin/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -f "$HOME/.atuin/bin/env" ] && source "$HOME/.atuin/bin/env"
 #
 # source <(fzf --zsh)
