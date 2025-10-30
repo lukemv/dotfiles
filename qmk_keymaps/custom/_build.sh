@@ -2,23 +2,29 @@
 
 set -e
 
-# Create keybin directory if it doesn't exist
-mkdir -p ~/keybin
+# Copy keymap files to a writable unmounted location
+# This is necessary because the Docker mount interferes with QMK module detection
+echo "Copying keymap files to build location..."
+cp -r keyboards/zsa/voyager/keymaps/default keyboards/zsa/voyager/keymaps/mybuild
+cp keyboards/zsa/voyager/keymaps/custom/keymap.c keyboards/zsa/voyager/keymaps/mybuild/
+cp keyboards/zsa/voyager/keymaps/custom/config.h keyboards/zsa/voyager/keymaps/mybuild/
+cp keyboards/zsa/voyager/keymaps/custom/rules.mk keyboards/zsa/voyager/keymaps/mybuild/
 
-# We're already in the qmk_firmware directory in Docker
 # Build the firmware
-make zsa/voyager:custom
+echo "Building firmware..."
+make zsa/voyager:mybuild
 
 # Generate datestamp
 datestamp=$(date +%Y%m%d-%H%M%S)
 
-# Copy the built firmware with a datestamped filename
-if [ -f "./zsa_voyager_custom.bin" ]; then
-    cp ./zsa_voyager_custom.bin ~/keybin/custom.${datestamp}.bin
-    echo "Built firmware: custom.${datestamp}.bin"
-    ls -la ~/keybin/
+# Create keybin directory and copy the built firmware with a datestamped filename
+mkdir -p ~/keybin
+if [ -f "./zsa_voyager_mybuild.bin" ]; then
+    cp ./zsa_voyager_mybuild.bin ~/keybin/custom.${datestamp}.bin
+    echo "✅ Build successful: custom.${datestamp}.bin"
+    ls -lah ~/keybin/
 else
-    echo "Build failed - no output file found"
+    echo "❌ Build failed - no output file found"
     exit 1
 fi
 

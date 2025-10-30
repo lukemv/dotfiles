@@ -5,3 +5,6 @@ ghorg/repos.txt
 .cursor/
 # For work, workflows
 tmuxinator/hidden-*
+
+# QMK compiled firmware binaries
+keybin/
