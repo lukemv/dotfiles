@@ -129,3 +129,41 @@ The pre-install script can generate SSH public keys from existing private keys i
 ### Desktop Environment
 The Hyprland configuration includes window rules, workspace assignments, and integration with Waybar status bar and Mako notifications.
 
+## QMK Keyboard Firmware
+
+The repository includes a complete QMK build system for the ZSA Voyager keyboard with HTTP server for easy firmware distribution.
+
+### Daily Workflow
+```bash
+# Build firmware
+cd qmk_keymaps/muccau && ./build.sh
+
+# Start firmware server (first time only - runs persistently)
+./qmk_keymaps/serve.sh start
+
+# Access firmware at http://localhost:8888/
+```
+
+### Key Files
+- `qmk_keymaps/muccau/keymap.c` - Keymap layout (4 layers: BASE, FN, MEDIA, GAMING)
+- `qmk_keymaps/muccau/config.h` - Keyboard configuration
+- `qmk_keymaps/muccau/rules.mk` - Build rules
+- `qmk_keymaps/serve.sh` - Firmware server management
+- `keybin/` - Compiled firmware output (gitignored)
+
+### Architecture Notes
+- Uses Docker with Ubuntu 22.04, QMK CLI, and ARM GCC toolchain
+- Builds against ZSA's QMK firmware fork (includes required modules)
+- Build script copies keymap to unmounted location (required for module detection)
+- Firmware server runs nginx on port 8888, serves files from `keybin/`
+- Server listens on 0.0.0.0 for network access
+- Output files are timestamped automatically
+
+### Server Commands
+- `./qmk_keymaps/serve.sh start` - Start server
+- `./qmk_keymaps/serve.sh status` - Check status and list files
+- `./qmk_keymaps/serve.sh stop` - Stop server
+- `./qmk_keymaps/serve.sh logs` - View logs
+
+For detailed documentation, see `qmk_keymaps/README.md` and `qmk_keymaps/QUICKSTART.md`.
+
