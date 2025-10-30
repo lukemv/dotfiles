@@ -18,7 +18,7 @@
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
     ~/.config/ghorg: ghorg
-    ~/.config/tmuxinator: tmuxinator
+    ~/.config/tmuxinator: ~/code/tmuxinator-work
     ~/.gitconfig: gitconfig
     ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
