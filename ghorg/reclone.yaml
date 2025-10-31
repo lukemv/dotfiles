@@ -1,0 +1,7 @@
+---
+# Reclone configuration for lukemv GitHub profile
+# This will keep all repositories up to date
+
+lukemv-github:
+  cmd: "ghorg clone lukemv"
+  description: "Clone/update all repositories from lukemv GitHub profile"

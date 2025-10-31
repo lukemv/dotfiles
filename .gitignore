@@ -8,3 +8,4 @@ tmuxinator/hidden-*
 
 # QMK compiled firmware binaries
 keybin/
+.claude/
