@@ -27,6 +27,7 @@ enum custom_keycodes {
     TMUX_PREV,
     TMUX_FIND_SESSION,
     TMUX_FIND_WINDOW,
+    TMUX_Y,
     TMUX_WIN_0,
     TMUX_WIN_1,
     TMUX_WIN_2,
@@ -92,9 +93,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_TMUX] = LAYOUT(
         _______, TMUX_WIN_1, TMUX_WIN_2, TMUX_WIN_3, TMUX_WIN_4, TMUX_WIN_5,           TMUX_WIN_6, TMUX_WIN_7, TMUX_WIN_8, TMUX_WIN_9, TMUX_WIN_0, _______,
-        _______, _______,    _______,    _______,    _______,    _______,              _______,    _______,    _______,    _______,    TMUX_COPY,  _______,
+        _______, _______,    _______,    _______,    _______,    _______,              TMUX_Y,     _______,    _______,    TMUX_VSPLIT,TMUX_COPY,  TMUX_HSPLIT,
         _______, TMUX_PREV,  TMUX_FIND_SESSION, _______, TMUX_FIND_WINDOW, _______,      TMUX_H,     TMUX_J,     TMUX_K,     TMUX_L,     _______,    _______,
-        _______, TMUX_ZOOM,  TMUX_CLOSE, TMUX_NEW,   TMUX_VSPLIT,TMUX_HSPLIT,          _______,    _______,    _______,    _______,    _______,    _______,
+        _______, TMUX_ZOOM,  TMUX_CLOSE, TMUX_NEW,   TMUX_VSPLIT,TMUX_HSPLIT,          TMUX_COPY,  _______,    _______,    _______,    _______,    _______,
                                                       _______,    _______,              _______,    _______
     ),
 };
@@ -184,6 +185,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case TMUX_FIND_WINDOW:
                 send_tmux_prefix();
                 tap_code(KC_F);
+                return false;
+
+            // Kill pane/window (Ctrl+B, y)
+            case TMUX_Y:
+                send_tmux_prefix();
+                tap_code(KC_Y);
                 return false;
 
             // Window switching (Ctrl+B, 0-9)
