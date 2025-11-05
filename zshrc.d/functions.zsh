@@ -8,7 +8,7 @@ function ,muxr {
 }
 
 function ,unmute {
-  pamixer --mute
+  pamixer --unmute
 }
 
 function ,alias
@@ -30,7 +30,6 @@ function ,awsenv {
   echo "AWS_DEFAULT_PROFILE: $AWS_DEFAULT_PROFILE"
   echo "AWS_PROFILE: $AWS_PROFILE"
   echo "AWS_REGION: $AWS_REGION"
-  echo "AWS_PROFILE: $AWS_PROFILE"
   echo "AWS_ROLE_ARN: $AWS_ROLE_ARN"
 }
 
@@ -43,12 +42,22 @@ function ,kdebug {
 }
 
 function ,events-sorted {
-  kubectl get events \
-    --no-headers \
-    --watch-only \
-    --all-namespaces \
-    --field-selector involvedObject.name=temp-db-restorer-nue -ojson \
-    | TZ=UTC jq -r '. | select ( .lastTimestamp | fromdateiso8601 > now - 60 ) | "'"$amber"'\( .kind ):\t\( .lastTimestamp )\t\( .reason )\t\( .involvedObject.fieldPath )\t\( .message )'"$reset"'"'
+  local object_name=$1
+  if [ -z "$object_name" ]; then
+    kubectl get events \
+      --no-headers \
+      --watch-only \
+      --all-namespaces \
+      -ojson \
+      | TZ=UTC jq -r '. | select ( .lastTimestamp | fromdateiso8601 > now - 60 ) | "'"$amber"'\( .kind ):\t\( .lastTimestamp )\t\( .reason )\t\( .involvedObject.fieldPath )\t\( .message )'"$reset"'"'
+  else
+    kubectl get events \
+      --no-headers \
+      --watch-only \
+      --all-namespaces \
+      --field-selector involvedObject.name=$object_name -ojson \
+      | TZ=UTC jq -r '. | select ( .lastTimestamp | fromdateiso8601 > now - 60 ) | "'"$amber"'\( .kind ):\t\( .lastTimestamp )\t\( .reason )\t\( .involvedObject.fieldPath )\t\( .message )'"$reset"'"'
+  fi
 }
 
 function scripts {
@@ -391,6 +400,46 @@ function ,chromefix () {
   local var=$(env | fzf --preview 'echo {}' --preview-window=up:3:wrap)
   if [ -n "$var" ]; then
     echo "$var" | cut -d= -f2-
+  fi
+}
+
+# Search current directory and open file in nvim at git root
+,ff() {
+  local file=$(rg --files --hidden \
+    --glob '!.cache/' \
+    --glob '!.local/share/' \
+    --glob '!.npm/' \
+    --glob '!.cargo/' \
+    --glob '!node_modules/' \
+    --glob '!venv/' \
+    --glob '!.venv/' \
+    --glob '!__pycache__/' \
+    2>/dev/null | fzf --preview 'bat --style=numbers --color=always {} 2>/dev/null || cat {}')
+
+  if [ -n "$file" ]; then
+    # Make absolute path
+    file="$(realpath "$file")"
+
+    # Find the nearest git parent
+    local dir=$(dirname "$file")
+    local git_root=""
+
+    while [ "$dir" != "/" ]; do
+      if [ -d "$dir/.git" ]; then
+        git_root="$dir"
+        break
+      fi
+      dir=$(dirname "$dir")
+    done
+
+    # If we found a git root, cd there; otherwise use file's directory
+    if [ -n "$git_root" ]; then
+      cd "$git_root"
+      nvim "$file"
+    else
+      cd "$(dirname "$file")"
+      nvim "$file"
+    fi
   fi
 }
 
