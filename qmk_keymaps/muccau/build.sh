@@ -8,6 +8,10 @@ set -e
 
 cd "$(dirname "$0")/../.."
 
+# Export current user's UID/GID for Docker
+export USER_UID=$(id -u)
+export USER_GID=$(id -g)
+
 echo "🔨 Building Voyager keymap: muccau"
 
 # Build the Docker image if it doesn't exist
