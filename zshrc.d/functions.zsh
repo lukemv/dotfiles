@@ -323,3 +323,81 @@ gpush() {
 function ,chromefix () {
   rm -f ~/.config/google-chrome/SingletonLock
 }
+
+# === Git FZF Functions ===
+
+# Interactive branch checkout with preview
+,gcb() {
+  local branch=$(git branch --all | grep -v HEAD | sed 's/^[* ]*//' | sed 's/remotes\/origin\///' | sort -u | fzf --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {} | head -200')
+  if [ -n "$branch" ]; then
+    git checkout "$branch"
+  fi
+}
+
+# Interactive branch delete with preview
+,gdb() {
+  local branches=$(git branch | grep -v "^\*" | sed 's/^[* ]*//' | fzf --multi --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {}')
+  if [ -n "$branches" ]; then
+    echo "$branches" | xargs -r git branch -d
+  fi
+}
+
+# Browse commits and show details
+,gshow() {
+  local commit=$(git log --oneline --color=always | fzf --ansi --preview 'git show --color=always {1}' --preview-window=right:60% | awk '{print $1}')
+  if [ -n "$commit" ]; then
+    git show "$commit"
+  fi
+}
+
+# Interactive git stash browser
+,gstash() {
+  local stash=$(git stash list | fzf --preview 'git stash show -p {1}' | cut -d: -f1)
+  if [ -n "$stash" ]; then
+    git stash pop "$stash"
+  fi
+}
+
+# === Docker FZF Functions ===
+
+# Select and exec into container
+,dexec() {
+  local container=$(docker ps --format '{{.Names}}' | fzf --preview 'docker inspect {}')
+  if [ -n "$container" ]; then
+    docker exec -it "$container" /bin/bash
+  fi
+}
+
+# Select and view logs
+,dlogs() {
+  local container=$(docker ps --format '{{.Names}}' | fzf)
+  if [ -n "$container" ]; then
+    docker logs -f "$container"
+  fi
+}
+
+# Select and remove images
+,drmi() {
+  local images=$(docker images --format '{{.Repository}}:{{.Tag}}' | fzf --multi)
+  if [ -n "$images" ]; then
+    echo "$images" | xargs -r docker rmi
+  fi
+}
+
+# === Utility FZF Functions ===
+
+# Environment variables browser
+,env() {
+  local var=$(env | fzf --preview 'echo {}' --preview-window=up:3:wrap)
+  if [ -n "$var" ]; then
+    echo "$var" | cut -d= -f2-
+  fi
+}
+
+# Script launcher
+,script() {
+  local script=$(find ~/.local/scripts ~/dotfiles/scripts -type f -executable 2>/dev/null | fzf --preview 'bat --style=numbers --color=always {} 2>/dev/null || cat {}')
+  if [ -n "$script" ]; then
+    "$script"
+  fi
+}
