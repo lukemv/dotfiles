@@ -1,4 +1,4 @@
-.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs
+.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins
 
 help:
 	@echo "Keyboard Firmware Targets:"
@@ -8,6 +8,9 @@ help:
 	@echo "  keyboard-server-status - Check server status and list files"
 	@echo "  keyboard-server-logs   - View server logs"
 	@echo "  keyboard               - Build firmware and start server"
+	@echo ""
+	@echo "Tmux Targets:"
+	@echo "  tmux-plugins           - Install/update tmux plugins via TPM"
 
 keyboard-build:
 	@echo "Building keyboard firmware..."
@@ -30,3 +33,8 @@ keyboard-server-logs:
 keyboard: keyboard-build keyboard-server-start
 	@echo "Firmware built and server started!"
 	@echo "Access firmware at http://localhost:8888/"
+
+tmux-plugins:
+	@echo "Installing/updating tmux plugins..."
+	@~/.tmux/plugins/tpm/bin/install_plugins
+	@echo "Tmux plugins installed!"
