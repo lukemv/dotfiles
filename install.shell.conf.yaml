@@ -14,6 +14,7 @@
   - ~/.zsh
   - ~/.tmux/plugins/
   - ~/.local/share/applications
+  - ~/.claude
 
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
@@ -34,4 +35,5 @@
     ~/.zsh/zsh-z: zsh-z
     ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.tmux/plugins/tpm: tpm
+    ~/.claude/settings.json: claude/settings.json
 
