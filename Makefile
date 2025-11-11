@@ -1,4 +1,4 @@
-.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins
+.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins pgadmin-start pgadmin-stop pgadmin-logs pgadmin-status
 
 help:
 	@echo "Keyboard Firmware Targets:"
@@ -11,6 +11,12 @@ help:
 	@echo ""
 	@echo "Tmux Targets:"
 	@echo "  tmux-plugins           - Install/update tmux plugins via TPM"
+	@echo ""
+	@echo "Database Tools:"
+	@echo "  pgadmin-start          - Start pgAdmin (http://localhost:5050)"
+	@echo "  pgadmin-stop           - Stop pgAdmin"
+	@echo "  pgadmin-logs           - View pgAdmin logs"
+	@echo "  pgadmin-status         - Check pgAdmin status"
 
 keyboard-build:
 	@echo "Building keyboard firmware..."
@@ -38,3 +44,19 @@ tmux-plugins:
 	@echo "Installing/updating tmux plugins..."
 	@~/.tmux/plugins/tpm/bin/install_plugins
 	@echo "Tmux plugins installed!"
+
+pgadmin-start:
+	@echo "Starting pgAdmin..."
+	@docker compose up -d pgadmin
+	@echo "pgAdmin started at http://localhost:5050"
+	@echo "Login: admin@local.dev / admin"
+
+pgadmin-stop:
+	@echo "Stopping pgAdmin..."
+	@docker compose stop pgadmin
+
+pgadmin-logs:
+	@docker compose logs -f pgadmin
+
+pgadmin-status:
+	@docker compose ps pgadmin
