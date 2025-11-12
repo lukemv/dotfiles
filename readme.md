@@ -92,3 +92,11 @@ This is required to get the monitors automation to work, (after running the ling
 ```
 systemctl --user enable --now monitors.timer
 ```
+
+
+## Documentation
+
+Additional documentation is available in the `docs/` directory:
+
+- [Go Debugging in Neovim](docs/go-debugging.md) - Comprehensive guide to debugging Go applications with nvim-dap
+

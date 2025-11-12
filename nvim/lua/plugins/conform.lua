@@ -1,7 +1,6 @@
 return {
     'stevearc/conform.nvim',
-    opts = {},
-    setup = function()
+    config = function()
         require("conform").setup({
             formatters_by_ft = {
                 lua = { "stylua" },
@@ -12,6 +11,12 @@ return {
                 rust = { "rustfmt", lsp_format = "fallback" },
                 -- Conform will run the first available formatter
                 javascript = { "prettierd", "prettier", stop_after_first = true },
+                -- Go formatting (goimports includes gofmt)
+                go = { "goimports", "gofumpt" },
+            },
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_format = "fallback",
             },
         })
     end,
