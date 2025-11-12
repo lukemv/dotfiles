@@ -21,6 +21,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pylsp",
+					"gopls",
 				},
 				automatic_installation = true,
 			})
@@ -138,6 +139,33 @@ return {
 							autopep8 = {
 								enabled = false,
 							},
+						},
+					},
+				},
+			})
+
+			-- Go
+			require("lspconfig")["gopls"].setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+							shadow = true,
+						},
+						staticcheck = true,
+						gofumpt = true,
+						usePlaceholders = true,
+						completeUnimported = true,
+						hints = {
+							assignVariableTypes = true,
+							compositeLiteralFields = true,
+							compositeLiteralTypes = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
 						},
 					},
 				},
