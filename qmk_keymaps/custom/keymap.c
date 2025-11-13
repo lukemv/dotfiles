@@ -20,7 +20,6 @@ enum custom_keycodes {
     TMUX_L,
     TMUX_COPY,
     TMUX_NEW,
-    TMUX_CLOSE,
     TMUX_ZOOM,
     TMUX_VSPLIT,
     TMUX_HSPLIT,
@@ -38,7 +37,6 @@ enum custom_keycodes {
     TMUX_WIN_7,
     TMUX_WIN_8,
     TMUX_WIN_9,
-    TMUX_NAV_WIN,  // Handles both navigation and moving windows based on shift
 };
 
 #ifdef RGB_MATRIX_ENABLE
@@ -69,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FN] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        CW_TOGG, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                      KC_7,    KC_8,    KC_9,    KC_MINS, KC_SLSH, KC_F12,
         _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,                      KC_4,    KC_5,    KC_6,    KC_PLUS, KC_ASTR, KC_BSPC,
         _______, _______, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR,                      KC_1,    KC_2,    KC_3,    KC_DOT,  KC_EQL,  KC_ENT,
@@ -96,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, TMUX_WIN_1, TMUX_WIN_2, TMUX_WIN_3, TMUX_WIN_4, TMUX_WIN_5,           TMUX_WIN_6, TMUX_WIN_7, TMUX_WIN_8, TMUX_WIN_9, TMUX_WIN_0, _______,
         _______, _______,    _______,    _______,    _______,    _______,              TMUX_Y,     _______,    _______,    TMUX_VSPLIT,TMUX_COPY,  TMUX_HSPLIT,
         _______, TMUX_PREV,  TMUX_FIND_SESSION, _______, TMUX_FIND_WINDOW, _______,      TMUX_H,     TMUX_J,     TMUX_K,     TMUX_L,     _______,    _______,
-        _______, TMUX_ZOOM,  TMUX_CLOSE, TMUX_NEW,   TMUX_VSPLIT,TMUX_HSPLIT,          TMUX_COPY,  _______,    KC_COMMA,   KC_DOT,     _______,    _______,
+        _______, TMUX_ZOOM,  _______,    TMUX_NEW,   _______,TMUX_COPY,                     _______,  _______,    KC_COMMA,   KC_DOT,     _______,    _______,
                                                       _______,    _______,              _______,    _______
     ),
 };
@@ -106,14 +104,34 @@ static void send_tmux_prefix(void) {
     register_code(KC_LCTL);
     tap_code(KC_B);
     unregister_code(KC_LCTL);
-    wait_ms(50);
+    wait_ms(10);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Handle comma/period in TMUX layer for window navigation
+    // Handle special keys in TMUX layer with shift modifiers
     if (IS_LAYER_ON(_TMUX) && record->event.pressed) {
         const uint8_t mods = get_mods();
         const bool shifted = (mods & MOD_MASK_SHIFT);
+
+        // Handle HJKL with shift for pane swapping
+        if (keycode == TMUX_H || keycode == TMUX_J || keycode == TMUX_K || keycode == TMUX_L) {
+            if (shifted) {
+                // Shift+HJKL = Swap panes (Ctrl+B, Shift+H/J/K/L)
+                del_mods(MOD_MASK_SHIFT);
+                send_tmux_prefix();
+                register_code(KC_LSFT);
+                switch(keycode) {
+                    case TMUX_H: tap_code(KC_H); break;
+                    case TMUX_J: tap_code(KC_J); break;
+                    case TMUX_K: tap_code(KC_K); break;
+                    case TMUX_L: tap_code(KC_L); break;
+                }
+                unregister_code(KC_LSFT);
+                set_mods(mods);
+                return false;
+            }
+            // Regular HJKL handled by normal switch case below
+        }
 
         if (keycode == KC_COMMA) {
             if (shifted) {
@@ -180,12 +198,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case TMUX_NEW:
                 send_tmux_prefix();
                 tap_code(KC_C);
-                return false;
-
-            // Close pane (Ctrl+B, x)
-            case TMUX_CLOSE:
-                send_tmux_prefix();
-                tap_code(KC_X);
                 return false;
 
             // Zoom toggle (Ctrl+B, z)
