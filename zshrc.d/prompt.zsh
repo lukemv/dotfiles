@@ -1,1 +1,1 @@
-export SPACESHIP_CHAR_SUFFIX=" "
+# Prompt configuration handled by Starship
