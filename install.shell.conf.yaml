@@ -30,6 +30,7 @@
     ~/.zshrc.d: zshrc.d
     ~/.config/nvim: nvim
     ~/.config/gh: gh
+    ~/.config/starship.toml: starship.toml
     ~/.local/scripts: scripts
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
     ~/.zsh/zsh-z: zsh-z
