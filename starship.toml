@@ -1,6 +1,24 @@
 # Starship prompt configuration
 # Optimized for daily development workflow with emphasis on command timing
 
+# Format - customize order of prompt elements
+format = """
+$time\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$golang\
+$nodejs\
+$python\
+$ruby\
+$docker_context\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character"""
+
 # Command duration - show for all commands, prominently displayed
 [cmd_duration]
 min_time = 0  # Show timing for all commands
@@ -116,9 +134,12 @@ style_user = "bold yellow"
 show_always = false
 
 [hostname]
-format = "[$hostname]($style) in "
+format = "[$hostname]($style) on "
 style = "bold green"
 ssh_only = true
 
 [time]
-disabled = true  # Can enable if you want wall clock time in addition to command duration
+disabled = false
+format = "[$time]($style) "
+time_format = "%T"  # HH:MM:SS format
+style = "bold white"
