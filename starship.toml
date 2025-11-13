@@ -22,18 +22,18 @@ style = "bold purple"
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
 style = "bold red"
-# Simple indicators: just show if dirty (*), remote sync status (arrows), and conflicts
+# Simple indicators: remote sync status (arrows) and conflicts only
 conflicted = "✗ "
 ahead = "↑ "
 behind = "↓ "
 diverged = "↕ "
-up_to_date = "✓"
-untracked = "*"
-stashed = "*"
-modified = "*"
-staged = "*"
-renamed = "*"
-deleted = "*"
+up_to_date = "[✓](bold green)"
+untracked = ""
+stashed = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = ""
 
 # Language versions - only show when in relevant projects
 [golang]
