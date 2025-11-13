@@ -122,5 +122,6 @@
       "Bash([:*)",
       "Bash([[*)"
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true
 }
