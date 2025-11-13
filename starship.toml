@@ -1,9 +1,124 @@
 # Starship prompt configuration
+# Optimized for daily development workflow with emphasis on command timing
 
-# Disable AWS module
+# Command duration - show for all commands, prominently displayed
+[cmd_duration]
+min_time = 0  # Show timing for all commands
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+# Directory - truncate long paths but show context
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold cyan"
+
+# Git branch and status
+[git_branch]
+format = "on [$symbol$branch(:$remote_branch)]($style) "
+style = "bold purple"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "bold red"
+# Simple indicators: just show if dirty (*), remote sync status (arrows), and conflicts
+conflicted = "✗ "
+ahead = "↑ "
+behind = "↓ "
+diverged = "↕ "
+up_to_date = "✓"
+untracked = "*"
+stashed = "*"
+modified = "*"
+staged = "*"
+renamed = "*"
+deleted = "*"
+
+# Language versions - only show when in relevant projects
+[golang]
+format = "via [$symbol($version )]($style)"
+symbol = "🐹 "
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum"]
+
+[nodejs]
+format = "via [$symbol($version )]($style)"
+symbol = "⬢ "
+detect_extensions = ["js", "mjs", "cjs", "ts"]
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[python]
+format = "via [$symbol$pyenv_prefix($version )]($style)"
+symbol = "🐍 "
+detect_extensions = ["py"]
+detect_files = [".python-version", "Pipfile", "requirements.txt", "pyproject.toml"]
+
+[ruby]
+format = "via [$symbol($version )]($style)"
+symbol = "💎 "
+detect_extensions = ["rb"]
+detect_files = ["Gemfile", ".ruby-version"]
+
+# Docker context
+[docker_context]
+format = "via [$symbol$context]($style) "
+symbol = "🐳 "
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+
+# Kubernetes context
+[kubernetes]
+format = "on [$symbol$context( \\($namespace\\))]($style) "
+disabled = false
+detect_files = ["k8s", "kubernetes", "kustomization.yaml"]
+detect_extensions = []
+detect_folders = []
+
+# Character - different symbols for success/failure
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
+# Disable unused cloud providers
 [aws]
 disabled = true
 
-# Disable Google Cloud module
 [gcloud]
 disabled = true
+
+[azure]
+disabled = true
+
+[openstack]
+disabled = true
+
+# Disable other unused modules
+[conda]
+disabled = true
+
+[helm]
+disabled = true
+
+[terraform]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+# Keep useful system info
+[username]
+format = "[$user]($style) in "
+style_user = "bold yellow"
+show_always = false
+
+[hostname]
+format = "[$hostname]($style) in "
+style = "bold green"
+ssh_only = true
+
+[time]
+disabled = true  # Can enable if you want wall clock time in addition to command duration
