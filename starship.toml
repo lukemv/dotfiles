@@ -56,32 +56,32 @@ deleted = ""
 # Language versions - only show when in relevant projects
 [golang]
 format = "via [$symbol($version )]($style)"
-symbol = "🐹 "
+symbol = " "
 detect_extensions = ["go"]
 detect_files = ["go.mod", "go.sum"]
 
 [nodejs]
 format = "via [$symbol($version )]($style)"
-symbol = "⬢ "
+symbol = "󰎙 "
 detect_extensions = ["js", "mjs", "cjs", "ts"]
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 
 [python]
 format = "via [$symbol$pyenv_prefix($version )]($style)"
-symbol = "🐍 "
+symbol = " "
 detect_extensions = ["py"]
 detect_files = [".python-version", "Pipfile", "requirements.txt", "pyproject.toml"]
 
 [ruby]
 format = "via [$symbol($version )]($style)"
-symbol = "💎 "
+symbol = " "
 detect_extensions = ["rb"]
 detect_files = ["Gemfile", ".ruby-version"]
 
 # Docker context
 [docker_context]
 format = "via [$symbol$context]($style) "
-symbol = "🐳 "
+symbol = "  "
 only_with_files = true
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 
