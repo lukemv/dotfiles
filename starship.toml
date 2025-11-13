@@ -25,7 +25,7 @@ style = "bold red"
 # Simple indicators: remote sync status (arrows) and conflicts only
 conflicted = "✗ "
 ahead = "↑ "
-behind = "↓ "
+behind = "[↓](bold yellow)"
 diverged = "↕ "
 up_to_date = "[✓](bold green)"
 untracked = ""
