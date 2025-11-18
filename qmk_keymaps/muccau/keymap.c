@@ -92,8 +92,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_TMUX] = LAYOUT(
         _______, TMUX_WIN_1, TMUX_WIN_2, TMUX_WIN_3, TMUX_WIN_4, TMUX_WIN_5,           TMUX_WIN_6, TMUX_WIN_7, TMUX_WIN_8, TMUX_WIN_9, TMUX_WIN_0, _______,
-        _______, _______,    _______,    _______,    _______,    _______,              TMUX_Y,     _______,    _______,    TMUX_VSPLIT,TMUX_COPY,  TMUX_HSPLIT,
-        _______, TMUX_PREV,  TMUX_FIND_SESSION, _______, TMUX_FIND_WINDOW, _______,      TMUX_H,     TMUX_J,     TMUX_K,     TMUX_L,     _______,    _______,
+        _______, _______,    _______,    _______,    _______,    _______,              TMUX_Y,     _______,    _______,    TMUX_VSPLIT,_______,  TMUX_HSPLIT,
+        _______, _______,  TMUX_FIND_SESSION, _______, TMUX_FIND_WINDOW, _______,      TMUX_H,     TMUX_J,     TMUX_K,     TMUX_L,     _______,    _______,
         _______, TMUX_ZOOM,  _______,    TMUX_NEW,   _______,TMUX_COPY,                     _______,  _______,    KC_COMMA,   KC_DOT,     _______,    _______,
                                                       _______,    _______,              _______,    _______
     ),
