@@ -73,7 +73,6 @@ return {
 				require("telescope.builtin").live_grep({ search_dirs = { os.getenv("HOME") .. "/.notes" } })
 			end, "Grep Notes")
 
-			map("n", "<leader>s.", require("telescope.builtin").grep_string, "Search Current word")
 
 
 			map("n", "<leader>s,", require("telescope.builtin").commands, "Search Commands")
