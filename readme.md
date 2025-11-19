@@ -1,13 +1,42 @@
 # Dotfiles and workstation configuration
 
-# Testing upgrades
+## Quick Start
 
-I'm trying to be able to test everything manually in docker before punching a hole in my daily driver:
+```bash
+# Install shell-only configuration
+make install-shell
 
+# Install desktop environment (Fedora/Wayland)
+make install-desktop
+
+# Run tests to verify everything works
+make test
 ```
+
+## Testing
+
+This repository includes comprehensive [Goss](https://goss.rocks/) tests to validate configurations.
+
+### Test on Host System
+```bash
+make test
+# Or: goss validate --format documentation
+```
+
+### Test in Docker (Safe for Major Changes)
+```bash
+# Build and test in isolated container
+make test-docker
+
+# Or manually explore in container
 docker compose build dot
 docker compose run -it dot /bin/zsh
+cd /home/me/dotfiles
+./install install.shell.conf.yaml
+goss validate --format documentation
 ```
+
+**What gets tested:** Shell configuration, tool installations (nvim, git, tmux, cargo tools), config file symlinks, plugins, and integration tests. See `tests/README.md` for details.
 
 ## Bluetooth
 

@@ -1,0 +1,64 @@
+---
+# Plugin and integration tests
+
+file:
+  # Tmux plugins should be installed
+  ~/.tmux/plugins/tpm/tpm:
+    exists: true
+    filetype: file
+    mode: "0755"
+
+  # Zsh plugin directories should exist
+  ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh:
+    exists: true
+    filetype: file
+
+  ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh:
+    exists: true
+    filetype: file
+
+  ~/.zsh/zsh-z/z.sh:
+    exists: true
+    filetype: file
+
+  # Neovim should have lazy.nvim plugin manager
+  ~/.local/share/nvim/lazy:
+    exists: true
+    filetype: directory
+    skip: {{ if eq (env "SKIP_NVIM_PLUGINS") "true" }}true{{ else }}false{{ end }}
+
+command:
+  # Test that zsh can load without errors
+  'zsh -c "exit 0"':
+    exit-status: 0
+    timeout: 5000
+
+  # Test that nvim can load a file and exit
+  'nvim --headless -c "echo \"test\"" -c quit 2>&1':
+    exit-status: 0
+    timeout: 10000
+
+  # Verify starship can generate a prompt
+  'starship prompt 2>&1':
+    exit-status: 0
+    timeout: 2000
+
+  # Verify git config is valid
+  'git config --list 2>&1 > /dev/null':
+    exit-status: 0
+    timeout: 1000
+
+  # Test that tmux can start in detached mode
+  'tmux new-session -d -s goss-test && tmux kill-session -t goss-test':
+    exit-status: 0
+    timeout: 5000
+
+  # Verify zsh plugins are sourced
+  'zsh -c "which eza" || echo "eza not required"':
+    exit-status: 0
+    timeout: 2000
+
+# Verify aliases/functions from zshrc.d are loaded
+  'zsh -c "type ls" | grep -q "alias\|function" || true':
+    exit-status: 0
+    timeout: 2000

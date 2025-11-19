@@ -1,6 +1,15 @@
-.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins pgadmin-start pgadmin-stop pgadmin-logs pgadmin-status
+.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins pgadmin-start pgadmin-stop pgadmin-logs pgadmin-status test test-host test-docker test-docker-build install-shell install-desktop
 
 help:
+	@echo "Installation Targets:"
+	@echo "  install-shell          - Install shell-only configuration"
+	@echo "  install-desktop        - Install desktop environment (Fedora/Wayland)"
+	@echo ""
+	@echo "Testing Targets:"
+	@echo "  test                   - Run Goss tests on host system"
+	@echo "  test-docker-build      - Build Docker test environment"
+	@echo "  test-docker            - Run Goss tests in Docker container"
+	@echo ""
 	@echo "Keyboard Firmware Targets:"
 	@echo "  keyboard-build         - Build QMK firmware for ZSA Voyager"
 	@echo "  keyboard-server-start  - Start firmware HTTP server (port 8888)"
@@ -17,6 +26,29 @@ help:
 	@echo "  pgadmin-stop           - Stop pgAdmin"
 	@echo "  pgadmin-logs           - View pgAdmin logs"
 	@echo "  pgadmin-status         - Check pgAdmin status"
+
+# Installation targets
+install-shell:
+	@echo "Installing shell configuration..."
+	./install install.shell.conf.yaml
+
+install-desktop:
+	@echo "Installing desktop environment..."
+	./install install.fedora.conf.yaml
+
+# Testing targets
+test:
+	@echo "Running Goss tests on host system..."
+	@goss validate --format documentation
+
+test-docker-build:
+	@echo "Building Docker test environment..."
+	docker compose build dot
+
+test-docker: test-docker-build
+	@echo "Running Goss tests in Docker container..."
+	@echo "First, installing dotfiles in container..."
+	docker compose run --rm dot /bin/zsh -c "cd /home/me/dotfiles && ./install install.shell.conf.yaml && goss validate --format documentation"
 
 keyboard-build:
 	@echo "Building keyboard firmware..."

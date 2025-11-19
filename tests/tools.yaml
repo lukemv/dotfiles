@@ -1,0 +1,79 @@
+---
+# Tool installation and availability tests
+
+command:
+  # Core tools
+  nvim --version:
+    exit-status: 0
+    stdout:
+      - "NVIM v0"
+    timeout: 5000
+
+  git --version:
+    exit-status: 0
+    stdout:
+      - "git version"
+    timeout: 1000
+
+  tmux -V:
+    exit-status: 0
+    stdout:
+      - "tmux"
+    timeout: 1000
+
+  # Rust and cargo tools (may not be installed on all systems)
+  cargo --version:
+    exit-status: 0
+    stdout:
+      - "cargo"
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  eza --version:
+    exit-status: 0
+    stdout:
+      - "eza"
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  rg --version:
+    exit-status: 0
+    stdout:
+      - "ripgrep"
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  # Starship prompt
+  starship --version:
+    exit-status: 0
+    stdout:
+      - "starship"
+    timeout: 1000
+
+  # Atuin shell history
+  atuin --version:
+    exit-status: 0
+    stdout:
+      - "atuin"
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  # Check that nvim can start and exit
+  'nvim --headless +quit':
+    exit-status: 0
+    timeout: 10000
+
+  # Verify key binaries exist (flexible on location - cargo, system, or cargo bin)
+  'which cargo':
+    exit-status: 0
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  'which eza':
+    exit-status: 0
+    timeout: 1000
+    skip: {{ if ne (env "CI") "true" }}false{{ else }}true{{ end }}
+
+  'which rg':
+    exit-status: 0
+    timeout: 1000

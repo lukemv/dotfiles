@@ -1,0 +1,10 @@
+---
+# Main Goss test configuration
+# Run with: goss validate
+# Or in Docker: goss validate --format documentation
+
+gossfile:
+  tests/shell.yaml: {}
+  tests/tools.yaml: {}
+  tests/configs.yaml: {}
+  tests/plugins.yaml: {}

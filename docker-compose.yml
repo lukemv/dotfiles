@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile-RHEL
     volumes:
       - ./:/home/me/dotfiles
+    environment:
+      - SKIP_NVIM_PLUGINS=true
 
   pgadmin:
     image: dpage/pgadmin4:latest
