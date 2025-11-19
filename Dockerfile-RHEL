@@ -34,6 +34,10 @@ RUN make CMAKE_BUILD_TYPE=Release
 RUN make install
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
+# Install Goss for testing
+RUN curl -fsSL https://goss.rocks/install | sh
+
 # Create my user
 RUN useradd -ms /usr/bin/zsh me
 # Set workdir to my home directory

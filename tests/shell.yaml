@@ -1,0 +1,46 @@
+---
+# Shell environment tests
+
+# Verify shells are installed
+package:
+  zsh:
+    installed: true
+  bash:
+    installed: true
+
+# Verify shell binaries exist and are executable
+file:
+  /usr/bin/zsh:
+    exists: true
+    mode: "0755"
+    filetype: file
+  /usr/bin/bash:
+    exists: true
+    mode: "0755"
+    filetype: file
+
+# Verify critical directories exist
+  ~/.local/bin:
+    exists: true
+    filetype: directory
+  ~/.config:
+    exists: true
+    filetype: directory
+  ~/.zsh:
+    exists: true
+    filetype: directory
+  ~/.tmux/plugins:
+    exists: true
+    filetype: directory
+
+# Verify user shell is zsh
+user:
+  {{ env "USER" }}:
+    exists: true
+    shell: /usr/bin/zsh
+
+# Verify PATH contains critical directories
+command:
+  'echo $PATH | grep -q ".local/bin"':
+    exit-status: 0
+    timeout: 1000

@@ -1,0 +1,96 @@
+---
+# Configuration file symlinks and content tests
+
+file:
+  # Shell configurations
+  ~/.zshrc:
+    exists: true
+    filetype: symlink
+  ~/.bashrc:
+    exists: true
+    filetype: symlink
+  ~/.zshrc.d:
+    exists: true
+    filetype: symlink
+
+  # Git configuration
+  ~/.gitconfig:
+    exists: true
+    filetype: symlink
+  ~/.gitconfig.d:
+    exists: true
+    filetype: symlink
+  ~/.gitignore_global:
+    exists: true
+    filetype: symlink
+
+  # Tmux configuration
+  ~/.tmux.conf:
+    exists: true
+    filetype: symlink
+  ~/.tmux.reset.conf:
+    exists: true
+    filetype: symlink
+
+  # Neovim configuration
+  ~/.config/nvim:
+    exists: true
+    filetype: symlink
+
+  # Starship prompt
+  ~/.config/starship.toml:
+    exists: true
+    filetype: symlink
+
+  # Atuin history
+  ~/.config/atuin/config.toml:
+    exists: true
+    filetype: symlink
+
+  # gh CLI
+  ~/.config/gh:
+    exists: true
+    filetype: symlink
+
+  # Scripts directory
+  ~/.local/scripts:
+    exists: true
+    filetype: symlink
+
+  # Zsh plugins
+  ~/.zsh/zsh-autosuggestions:
+    exists: true
+    filetype: symlink
+  ~/.zsh/zsh-z:
+    exists: true
+    filetype: symlink
+  ~/.zsh/zsh-syntax-highlighting:
+    exists: true
+    filetype: symlink
+
+  # Tmux plugin manager
+  ~/.tmux/plugins/tpm:
+    exists: true
+    filetype: symlink
+
+# Verify config files have valid content
+command:
+  # Git config should have basic user setup
+  'grep -q "include" ~/.gitconfig || grep -q "user" ~/.gitconfig':
+    exit-status: 0
+    timeout: 1000
+
+  # Zshrc should source zshrc.d
+  'grep -q "zshrc.d" ~/.zshrc':
+    exit-status: 0
+    timeout: 1000
+
+  # Tmux conf should have TPM plugin line
+  'grep -q "tpm" ~/.tmux.conf':
+    exit-status: 0
+    timeout: 1000
+
+  # Starship should be initialized in zshrc
+  'grep -q "starship" ~/.zshrc':
+    exit-status: 0
+    timeout: 1000
