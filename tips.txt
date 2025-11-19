@@ -1,0 +1,3 @@
+git commit -c ORIG_HEAD → Re-commit with previous message pre-filled
+Ctrl+T → Fuzzy find files and insert path into command line
+Alt+C → Fuzzy cd into directories
