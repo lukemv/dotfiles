@@ -118,10 +118,8 @@
       "Bash(dirname:*)",
       "Bash(basename:*)",
       "Bash(mktemp --dry-run:*)",
-      "Bash(test:*)",
-      "Bash([:*)",
-      "Bash([[*)"
+      "Bash(test:*)"
     ]
   },
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": true
 }
