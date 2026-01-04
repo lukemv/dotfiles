@@ -14,6 +14,7 @@ export PATH="$PATH:$HOME/dotfiles/scripts"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Some dotfiles for work stuff
 export DOTFILES_SHARED_PATH="$HOME/dotfiles-shared"
+export SHARED_DOTFILES_PATH="$HOME/dotfiles-shared"
 export DOTFILES_WORK_PATH="$HOME/dotfiles-shared"
 
 export BROWSER=google-chrome
