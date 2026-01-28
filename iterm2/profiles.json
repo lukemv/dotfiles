@@ -1,0 +1,162 @@
+{
+  "Profiles": [
+    {
+      "Name": "Dotfiles",
+      "Guid": "DOTFILES-5BCE-42D2-A36B-BAE050AFF287",
+
+      "Normal Font": "JetBrainsMonoNFM-Regular 26",
+      "Use Non-ASCII Font": false,
+      "ASCII Anti Aliased": true,
+      "Non-ASCII Anti Aliased": true,
+      "Use Bold Font": true,
+      "Use Italic Font": true,
+      "Use Bright Bold": true,
+      "Draw Powerline Glyphs": true,
+      "ASCII Ligatures": true,
+      "Non-ASCII Ligatures": true,
+      "Horizontal Spacing": 1.0,
+      "Vertical Spacing": 1.1,
+
+      "Cursor Color": {
+        "Red Component": 0.94902,
+        "Green Component": 0.6,
+        "Blue Component": 0.25098
+      },
+      "Cursor Text Color": {
+        "Red Component": 0.11765,
+        "Green Component": 0.11765,
+        "Blue Component": 0.18039
+      },
+      "Cursor Type": 2,
+      "Blinking Cursor": true,
+
+      "Background Color": {
+        "Red Component": 0.11765,
+        "Green Component": 0.11765,
+        "Blue Component": 0.18039
+      },
+      "Foreground Color": {
+        "Red Component": 0.80392,
+        "Green Component": 0.83922,
+        "Blue Component": 0.95686
+      },
+      "Bold Color": {
+        "Red Component": 0.94118,
+        "Green Component": 0.94510,
+        "Blue Component": 0.98039
+      },
+      "Link Color": {
+        "Red Component": 0.54118,
+        "Green Component": 0.67843,
+        "Blue Component": 0.97647
+      },
+      "Selection Color": {
+        "Red Component": 0.26275,
+        "Green Component": 0.27843,
+        "Blue Component": 0.38039
+      },
+      "Selected Text Color": {
+        "Red Component": 0.80392,
+        "Green Component": 0.83922,
+        "Blue Component": 0.95686
+      },
+
+      "Ansi 0 Color": {
+        "Red Component": 0.17647,
+        "Green Component": 0.18824,
+        "Blue Component": 0.27059
+      },
+      "Ansi 1 Color": {
+        "Red Component": 0.95294,
+        "Green Component": 0.54510,
+        "Blue Component": 0.65882
+      },
+      "Ansi 2 Color": {
+        "Red Component": 0.65882,
+        "Green Component": 0.89020,
+        "Blue Component": 0.63137
+      },
+      "Ansi 3 Color": {
+        "Red Component": 0.98039,
+        "Green Component": 0.86275,
+        "Blue Component": 0.52549
+      },
+      "Ansi 4 Color": {
+        "Red Component": 0.54118,
+        "Green Component": 0.67843,
+        "Blue Component": 0.97647
+      },
+      "Ansi 5 Color": {
+        "Red Component": 0.82353,
+        "Green Component": 0.59216,
+        "Blue Component": 0.93725
+      },
+      "Ansi 6 Color": {
+        "Red Component": 0.54118,
+        "Green Component": 0.88627,
+        "Blue Component": 0.94510
+      },
+      "Ansi 7 Color": {
+        "Red Component": 0.72549,
+        "Green Component": 0.75294,
+        "Blue Component": 0.84706
+      },
+      "Ansi 8 Color": {
+        "Red Component": 0.36863,
+        "Green Component": 0.39216,
+        "Blue Component": 0.49412
+      },
+      "Ansi 9 Color": {
+        "Red Component": 0.97647,
+        "Green Component": 0.65882,
+        "Blue Component": 0.74902
+      },
+      "Ansi 10 Color": {
+        "Red Component": 0.74510,
+        "Green Component": 0.92157,
+        "Blue Component": 0.72157
+      },
+      "Ansi 11 Color": {
+        "Red Component": 0.99216,
+        "Green Component": 0.90196,
+        "Blue Component": 0.65882
+      },
+      "Ansi 12 Color": {
+        "Red Component": 0.65882,
+        "Green Component": 0.76078,
+        "Blue Component": 0.98824
+      },
+      "Ansi 13 Color": {
+        "Red Component": 0.87843,
+        "Green Component": 0.71373,
+        "Blue Component": 0.96471
+      },
+      "Ansi 14 Color": {
+        "Red Component": 0.65882,
+        "Green Component": 0.92157,
+        "Blue Component": 0.96471
+      },
+      "Ansi 15 Color": {
+        "Red Component": 0.94118,
+        "Green Component": 0.94510,
+        "Blue Component": 0.98039
+      },
+
+      "Rows": 35,
+      "Columns": 120,
+      "Transparency": 0.05,
+      "Blur": true,
+      "Blur Radius": 20,
+      "Unlimited Scrollback": true,
+      "Scrollback Lines": 10000,
+      "Mouse Reporting": true,
+      "Option Key Sends": 2,
+      "Right Option Key Sends": 0,
+      "Character Encoding": 4,
+      "Prompt Before Closing 2": false,
+      "Working Directory": "/Users/ciano",
+      "Custom Command": "No",
+      "Title Components": 514
+    }
+  ]
+}

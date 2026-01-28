@@ -5,9 +5,11 @@
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
+  - [ mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles, Creating iTerm2 DynamicProfiles directory ]
 
 - clean: ['~']
 
 - link:
     ~/.config/tmuxinator: ~/code/tmuxinator-home
+    ~/Library/Application Support/iTerm2/DynamicProfiles/profiles.json: iterm2/profiles.json
 
