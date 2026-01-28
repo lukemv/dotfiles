@@ -1,0 +1,13 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+
+- shell:
+  - [ git submodule update --init --recursive, Installing submodules ]
+
+- clean: ['~']
+
+- link:
+    ~/.config/tmuxinator: ~/code/tmuxinator-home
+
