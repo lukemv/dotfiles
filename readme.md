@@ -129,6 +129,61 @@ Additional documentation is available in the `docs/` directory:
 
 - [Go Debugging in Neovim](docs/go-debugging.md) - Comprehensive guide to debugging Go applications with nvim-dap
 
+## Git workflow in Neovim
+
+Powered by [Neogit](https://github.com/NeogitOrg/neogit) (status/commit/push UI)
++ [gitsigns](https://github.com/lewis6991/gitsigns.nvim) (inline hunks)
++ [diffview](https://github.com/sindrets/diffview.nvim) (occasional heavy diffs).
+
+### The flow
+
+1. `<leader>vv` — opens Neogit status. All changed files in one buffer.
+2. Move cursor to a file, press `<Tab>` — diff expands inline. `<Tab>` again to collapse.
+3. `<C-j>` / `<C-k>` — jump between hunk headers.
+4. With the cursor on a hunk:
+   - `s` — stage hunk
+   - `u` — unstage
+   - `x` — discard (with confirm)
+5. `cc` — commit (opens message buffer in a tab; `:wq` to commit).
+6. `Pp` — push. `Pf` — force-with-lease push. `Fp` — pull.
+
+### Keymaps
+
+| Keys                         | What it does                                    |
+| ---------------------------- | ----------------------------------------------- |
+| `<leader>vv`                 | Open Neogit status (the main entry point)       |
+| `<leader>vc`                 | Jump straight to commit popup                   |
+| `<leader>vP`                 | Push popup                                      |
+| `<leader>vp`                 | Pull popup                                      |
+| `<leader>vl`                 | Commit log graph                                |
+| `<leader>vd`                 | Raw Diffview (working tree vs HEAD)             |
+| `<leader>vb`                 | Toggle inline blame virtual text                |
+| `<leader>vs` / `<leader>vr`  | Stage / reset hunk under cursor (visual = range)|
+| `<leader>vS` / `<leader>vR`  | Stage / reset entire buffer                     |
+| `<leader>vh`                 | Preview hunk in floating window                 |
+| `]c` / `[c`                  | Next / previous hunk                            |
+
+### Inside the Neogit status buffer
+
+| Key   | Action                                                              |
+| ----- | ------------------------------------------------------------------- |
+| `<Tab>` | Expand/collapse inline diff for file under cursor                 |
+| `s`   | Stage file or hunk under cursor                                     |
+| `u`   | Unstage                                                             |
+| `x`   | Discard (with confirm)                                              |
+| `cc`  | Commit                                                              |
+| `ca`  | Amend                                                               |
+| `Pp`  | Push                                                                |
+| `Pf`  | Push --force-with-lease (the safer `--force`)                       |
+| `Fp`  | Pull                                                                |
+| `b`   | Branch popup (checkout, create, rename, delete)                     |
+| `Z`   | Stash popup                                                         |
+| `?`   | Full keymap help                                                    |
+
+### Escaping diffview if you end up there
+
+Diffview opens in its own tab page. Use `:tabclose` or `:DiffviewClose` to exit.
+
 ## Searching a buffer
 
 These are the options:
