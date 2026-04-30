@@ -129,3 +129,17 @@ Additional documentation is available in the `docs/` directory:
 
 - [Go Debugging in Neovim](docs/go-debugging.md) - Comprehensive guide to debugging Go applications with nvim-dap
 
+## Searching a buffer
+
+These are the options:
+
+| Keys                 | What it does                                                                  |
+| -------------------- | ----------------------------------------------------------------------------- |
+| `<leader>/`          | Telescope fuzzy-search every line in current buffer                           |
+| `<leader>sg`         | Live grep across the project                                                  |
+| `s<chars>`           | Flash jump — type 1-2 chars, hit the label letter that appears, you teleport  |
+| `S`                  | Flash treesitter — labels every syntax node, jump to one                      |
+| `/foo`               | `/` now shows jump labels for matches; hit a label to jump straight there     |
+| `f` / `F` / `t` / `T`| Now show labels for all matches on the line                                   |
+| `<C-s>` (in cmdline) | Toggle Flash on/off mid-search                                                |
+
