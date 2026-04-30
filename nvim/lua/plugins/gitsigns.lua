@@ -31,16 +31,14 @@ return {
 			  end
 			end)
 
-			-- some line here
-			-- map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Stage hunk")
-			-- map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, "Reset hunk")
-			-- map('n', '<leader>hS', gitsigns.stage_buffer, "Stage buffer")
-			-- map('n', '<leader>hu', gitsigns.undo_stage_hunk, "Undo stage hunk")
-			-- map('n', '<leader>hR', gitsigns.reset_buffer, "Reset buffer")
-			-- map('n', '<leader>hp', gitsigns.preview_hunk, "Preview hunk")
-			-- map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end, "Blame line")
-			-- map('n', '<leader>hd', gitsigns.diffthis, "Diff this")
-			-- map('n', '<leader>hD', function() gitsigns.diffthis('~') end, "Diff this (cached)")
+			-- Hunk-level operations (inline, at cursor)
+			map('n', '<leader>vs', gitsigns.stage_hunk, "Stage hunk")
+			map('n', '<leader>vr', gitsigns.reset_hunk, "Reset hunk")
+			map('v', '<leader>vs', function() gitsigns.stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, "Stage hunk")
+			map('v', '<leader>vr', function() gitsigns.reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, "Reset hunk")
+			map('n', '<leader>vh', gitsigns.preview_hunk, "Preview hunk")
+			map('n', '<leader>vR', gitsigns.reset_buffer, "Reset buffer")
+			map('n', '<leader>vS', gitsigns.stage_buffer, "Stage buffer")
 			map('n', '<leader>vb', gitsigns.toggle_current_line_blame, "Git Blame Toggle")
 			map('n', '<leader>td', gitsigns.toggle_deleted, "Toggle deleted")
 
