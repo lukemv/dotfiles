@@ -142,7 +142,7 @@ install_neovim() {
         rm -rf neovim
     fi
 
-    git clone --branch release-0.10 --single-branch https://github.com/neovim/neovim.git
+    git clone --branch release-0.11 --single-branch https://github.com/neovim/neovim.git
     cd neovim
     make CMAKE_BUILD_TYPE=Release
     sudo make install

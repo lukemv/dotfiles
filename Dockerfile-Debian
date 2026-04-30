@@ -7,7 +7,7 @@ RUN apt install -y git ninja-build gettext cmake unzip curl build-essential
 # Install requirements for nvim build
 WORKDIR /tmp
 
-RUN git clone --branch release-0.10 --single-branch https://github.com/neovim/neovim.git
+RUN git clone --branch release-0.11 --single-branch https://github.com/neovim/neovim.git
 
 WORKDIR /tmp/neovim
 RUN make CMAKE_BUILD_TYPE=Release
