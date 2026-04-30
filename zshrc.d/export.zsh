@@ -1,16 +1,32 @@
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/code"
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.npm-global/bin:$PATH"
-export PATH="$HOME/.scripts:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="$HOME/code/tfenv/bin:${PATH}"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$PATH:$HOME/dotfiles/scripts"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Auto-deduplicate path entries (keeps first occurrence). path and PATH are tied.
+typeset -U path PATH
+
+# Prepended in order; later entries take higher priority. Skipped if the directory
+# does not exist on this host so PATH stays clean across machines.
+for _dir in \
+  "$GOPATH/bin" \
+  "$GOROOT/bin" \
+  "/usr/local/go/bin" \
+  "$HOME/.local/bin" \
+  "$HOME/.npm-global/bin" \
+  "$HOME/.scripts" \
+  "$HOME/bin" \
+  "/usr/local/opt/openssl/bin" \
+  "$HOME/code/tfenv/bin" \
+  "/opt/homebrew/bin" \
+  "${KREW_ROOT:-$HOME/.krew}/bin"; do
+  [[ -d $_dir ]] && path=("$_dir" $path)
+done
+
+# Appended (lowest priority).
+for _dir in \
+  "$HOME/dotfiles/scripts"; do
+  [[ -d $_dir ]] && path+=("$_dir")
+done
+unset _dir
 # Some dotfiles for work stuff
 export DOTFILES_SHARED_PATH="$HOME/dotfiles-shared"
 export SHARED_DOTFILES_PATH="$HOME/dotfiles-shared"
