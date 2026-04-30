@@ -60,7 +60,7 @@ map("n", "<leader>fa", "<cmd>wa<cr>", "File Write all")
 map("n", "<leader>qq", "<cmd>q!<cr>", "Quit")
 map("n", "<leader>qa", "<cmd>qa!<cr>", "Quit all")
 
--- Diff binds
+-- Diff binds (Neogit owns <leader>vv and <leader>vc; this is the raw diffview)
 local function toggle_diffview()
   if next(require('diffview.lib').views) == nil then
     vim.cmd('DiffviewOpen')
@@ -69,8 +69,7 @@ local function toggle_diffview()
   end
 end
 
-map("n", "<leader>vv", toggle_diffview, "Diffview Toggle")
-map("n", "<leader>vc", "<cmd>Git commit<cr>", "Git Commit")
+map("n", "<leader>vd", toggle_diffview, "Diffview Toggle")
 
 -- Stay in indent mode
 map("v", "<", "<gv")
