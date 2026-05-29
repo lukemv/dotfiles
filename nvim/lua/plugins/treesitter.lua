@@ -17,7 +17,11 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				-- Add languages to be installed here that you want installed for treesitter
-				ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "vimdoc", "vim", "hcl" },
+				ensure_installed = {
+					"c", "cpp", "go", "lua", "python", "rust", "vimdoc", "vim", "hcl",
+					-- Go ecosystem (requested by go.nvim) + common formats
+					"gomod", "gosum", "gowork", "gotmpl", "sql", "json", "comment",
+				},
 
 				highlight = { enable = true },
 				indent = { enable = true, disable = { "python" } },
