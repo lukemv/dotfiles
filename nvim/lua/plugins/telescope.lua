@@ -1,5 +1,4 @@
 -- Telescope fuzzy finding (all the things)
-local actions = require('telescope.actions')
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -16,6 +15,7 @@ return {
 		config = function()
 
 			local telescope = require("telescope")
+			local actions = require("telescope.actions")
 
 			telescope.setup({
 				defaults = {
