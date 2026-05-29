@@ -2,11 +2,17 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		-- Pin to the master branch + a fixed commit: the main branch is a rewrite
+		-- that drops the classic `.configs.setup{}` API this config relies on
+		-- (incremental_selection, textobjects, indent). `pin = true` keeps
+		-- :Lazy update/sync from ever bumping it across that divide.
+		branch = "master",
+		pin = true,
 		build = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master", pin = true },
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({

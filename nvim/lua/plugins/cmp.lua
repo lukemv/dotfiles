@@ -96,6 +96,9 @@ return {
 					end,
 				},
 				sources = {
+					-- lazydev completions for the Neovim Lua API (group_index 0 so they
+					-- take priority over and dedupe against the lua_ls source)
+					{ name = "lazydev", group_index = 0 },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },

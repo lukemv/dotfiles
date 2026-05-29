@@ -20,8 +20,8 @@ for opt, val in pairs(opts) do
   vim.o[opt] = val
 end
 
--- Colorscheme is now loaded in plugins/themes.lua via the catppuccin config function
--- This was moved there to ensure the plugin is loaded before colorscheme configuration runs
+-- Colorscheme is configured and applied in plugins/themes.lua (catppuccin's
+-- config function, loaded with priority so it runs before other plugins).
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("FixWeirdCommentString", { clear = true }),
