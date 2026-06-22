@@ -15,6 +15,7 @@
   - ~/.tmux/plugins/
   - ~/.local/share/applications
   - ~/.claude
+  - "~/Library/Application Support/lazygit"
 
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
@@ -30,6 +31,8 @@
     ~/.zshrc.d: zshrc.d
     ~/.config/nvim: nvim
     ~/.config/gh: gh
+    ~/.config/lazygit/config.yml: lazygit/config.yml
+    "~/Library/Application Support/lazygit/config.yml": lazygit/config.yml
     ~/.config/starship.toml: starship.toml
     ~/.local/scripts: scripts
     ~/.zsh/zsh-autosuggestions: zsh-autosuggestions
