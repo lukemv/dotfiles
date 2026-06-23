@@ -1,16 +1,16 @@
 -- Fancier statusline
 return {
 	"nvim-lualine/lualine.nvim",
-  dependencies = {
+	dependencies = {
 		'nvim-tree/nvim-web-devicons'
 	},
 	config = function()
-		local colorscheme = require("helpers.colorscheme")
-		local lualine_theme = colorscheme == "default" and "auto" or colorscheme
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = lualine_theme,
+				-- "auto" derives the statusline palette from the active colorscheme,
+				-- so it follows the catppuccin flavour and the light/dark toggle.
+				theme = "auto",
 				component_separators = "|",
 				section_separators = "",
 			},

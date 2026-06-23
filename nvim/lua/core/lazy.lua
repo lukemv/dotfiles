@@ -25,5 +25,12 @@ require("helpers.keys").set_leader(" ")
 -- (The leader key must be set before this)
 require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")
 
-lazy.setup("plugins")
+lazy.setup("plugins", {
+	rocks = {
+		-- Keep the hererocks/luarocks toolchain outside the nvim data dir so it
+		-- survives :Lazy restore and fresh installs. Provisioned by
+		-- scripts/install-luarocks.sh, which builds into this same directory.
+		root = vim.fs.dirname(vim.fn.stdpath("data")) .. "/lazy-rocks",
+	},
+})
 

@@ -5,6 +5,9 @@
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
+  # luarocks (Lua 5.1 + luarocks via hererocks) for lazy.nvim. Optional and
+  # idempotent; `|| true` keeps a missing build toolchain from aborting install.
+  - [ scripts/install-luarocks.sh || true, Installing luarocks for lazy.nvim ]
 
 - clean: ['~']
 
@@ -19,6 +22,7 @@
 
 - link:
     ~/.config/atuin/config.toml: atuin/config.toml
+    ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/ghorg: ghorg
     ~/.config/tmuxinator: ~/code/tmuxinator-work
     ~/.gitconfig: gitconfig

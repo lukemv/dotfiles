@@ -7,7 +7,9 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"L3MON4D3/LuaSnip",
+			-- build compiles the bundled jsregexp C extension, needed for LSP
+			-- snippet regex transformations (e.g. ${1/(.*)/${1:/upcase}/}).
+			{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
@@ -15,7 +17,9 @@ return {
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 
-			require("luasnip/loaders/from_vscode").lazy_load()
+			-- Exclude terraform: terraform-ls provides real, provider-aware
+			-- completion, so the generic friendly-snippets skeletons are just noise.
+			require("luasnip/loaders/from_vscode").lazy_load({ exclude = { "terraform" } })
 
 			local kind_icons = {
 				Text = "",

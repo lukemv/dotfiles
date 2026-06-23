@@ -23,8 +23,8 @@ return {
 					"lua_ls",
 					"pylsp",
 					"gopls",
+					"terraformls",
 				},
-				automatic_installation = true,
 			})
 
 			-- Quick access via keymap
@@ -142,8 +142,13 @@ return {
 
 			-- Go
 			vim.lsp.config("gopls", {
+				-- Attach to Neovim's built-in Go-template filetypes (replaces the
+				-- default list, which includes a `gotmpl` filetype Neovim never sets).
+				filetypes = { "go", "gomod", "gowork", "gotexttmpl", "gohtmltmpl" },
 				settings = {
 					gopls = {
+						-- Let gopls analyse Go template files by extension.
+						templateExtensions = { "tmpl", "gotmpl", "gohtml" },
 						analyses = {
 							unusedparams = true,
 							shadow = true,
@@ -165,8 +170,20 @@ return {
 				},
 			})
 
+			-- Terraform. terraform-ls reads provider schemas after `terraform init`,
+			-- so completion/hover covers every resource of the providers you use.
+			-- Note: terraform-ls takes settings via init_options, not `settings`.
+			vim.lsp.config("terraformls", {
+				init_options = {
+					experimentalFeatures = {
+						prefillRequiredFields = true,
+						validateOnSave = true,
+					},
+				},
+			})
+
 			-- Activate the configured servers.
-			vim.lsp.enable({ "lua_ls", "pylsp", "gopls" })
+			vim.lsp.enable({ "lua_ls", "pylsp", "gopls", "terraformls" })
 		end,
 	},
 }
