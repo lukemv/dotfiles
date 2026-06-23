@@ -31,3 +31,18 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "terraform", "hcl", "yaml", "yml" },
 })
 
+-- Neovim already detects Go templates as `gotexttmpl`/`gohtmltmpl`. gopls is
+-- pointed at those filetypes in plugins/lsp.lua; here we just tell treesitter
+-- to highlight text templates with the `gotmpl` parser.
+vim.treesitter.language.register("gotmpl", { "gotexttmpl" })
+
+-- The global conceallevel (2) hides JSON quotes/syntax. Turn conceal off for
+-- JSON so it shows exactly as written, while keeping conceal elsewhere.
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("JsonNoConceal", { clear = true }),
+  pattern = { "json", "jsonc", "json5" },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+

@@ -1,0 +1,8 @@
+{{/* Go template playground — opens as filetype `gotexttmpl`; gopls attaches
+     (templateExtensions) and the gotmpl treesitter parser highlights it. */}}
+Hello, {{ .Name }}!
+{{ if ge .Age 18 }}
+You are an adult ({{ .Age }} years old).
+{{ else }}
+You are a minor.
+{{ end }}

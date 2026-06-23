@@ -29,3 +29,7 @@ gui:
 
   authorColors:
     "*": "#b4befe"
+os:
+  # Open files in nvim. lazygit fills in the open-at-line flags, and quitting
+  # nvim (:wq / :q) returns straight to lazygit.
+  editPreset: "nvim"

@@ -14,6 +14,7 @@ tools=(
   "github.com/fatih/gomodifytags@latest"
   "github.com/go-delve/delve/cmd/dlv@latest"
   "github.com/davidrjenni/reftools/cmd/fillswitch@latest"
+  "github.com/davidrjenni/reftools/cmd/fillstruct@latest"
   "github.com/bxcodec/faker/cmd/gojsonstruct@latest"
   "golang.org/x/tools/gopls@latest"
   "github.com/kyoh86/richgo@latest"

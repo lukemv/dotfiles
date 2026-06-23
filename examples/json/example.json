@@ -1,0 +1,8 @@
+{
+  "user": {
+    "name": "Luke",
+    "age": 30,
+    "languages": ["go", "python", "lua", "rust"],
+    "active": true
+  }
+}

@@ -1,5 +1,8 @@
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/code"
+# Mirror go's default (GOPATH/bin) explicitly so tools like go.nvim, which check
+# $GOBIN, stop warning. Functionally identical to leaving it unset.
+export GOBIN="$GOPATH/bin"
 
 # Auto-deduplicate path entries (keeps first occurrence). path and PATH are tied.
 typeset -U path PATH
