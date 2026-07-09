@@ -13,6 +13,10 @@ return {
                 javascript = { "prettierd", "prettier", stop_after_first = true },
                 -- Go formatting (goimports includes gofmt)
                 go = { "goimports", "gofumpt" },
+                -- C / C++ (clang-format ships with the Mason clangd package,
+                -- or install standalone via :MasonInstall clang-format)
+                c = { "clang-format" },
+                cpp = { "clang-format" },
             },
             format_on_save = {
                 timeout_ms = 500,
