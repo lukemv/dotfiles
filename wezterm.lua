@@ -2,6 +2,14 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+-- Transparent background with a blurred (acrylic) backdrop.
+-- Lower opacity => more desktop shows through. win32_system_backdrop
+-- 'Acrylic' blurs whatever is behind the window (Windows 11) so text
+-- stays readable over a busy desktop. Use 'Mica'/'Tabbed' for a subtler,
+-- desktop-tinted effect, or 'Disable' for plain transparency with no blur.
+config.window_background_opacity = 0.85
+config.win32_system_backdrop = 'Acrylic'
+
 -- Ctrl+B as leader key (like tmux)
 config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 
