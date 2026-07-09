@@ -24,6 +24,7 @@ return {
 					"pylsp",
 					"gopls",
 					"terraformls",
+					"clangd",
 				},
 			})
 
@@ -182,8 +183,31 @@ return {
 				},
 			})
 
+			-- C / C++ (clangd)
+			-- On Windows, clangd's clang driver auto-detects a standard Visual
+			-- Studio / Build Tools install (via vswhere) and uses the MSVC +
+			-- Windows SDK headers for the standard library. Project-specific
+			-- include paths still need a compile_commands.json (e.g. CMake's
+			-- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON) or a compile_flags.txt in the
+			-- project root. offsetEncoding is pinned to utf-16 to silence the
+			-- "multiple different client offset_encodings" warning.
+			vim.lsp.config("clangd", {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--header-insertion=iwyu",
+					"--completion-style=detailed",
+					"--function-arg-placeholders",
+					"--fallback-style=llvm",
+				},
+				capabilities = {
+					offsetEncoding = { "utf-16" },
+				},
+			})
+
 			-- Activate the configured servers.
-			vim.lsp.enable({ "lua_ls", "pylsp", "gopls", "terraformls" })
+			vim.lsp.enable({ "lua_ls", "pylsp", "gopls", "terraformls", "clangd" })
 		end,
 	},
 }
