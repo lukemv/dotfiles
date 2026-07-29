@@ -121,5 +121,7 @@
       "Bash(test:*)"
     ]
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "agentPushNotifEnabled": true,
+  "model": "opus"
 }
