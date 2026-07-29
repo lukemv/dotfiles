@@ -18,10 +18,12 @@ return {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
             },
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_format = "fallback",
-            },
+            -- No format_on_save: whole-file formatters (black/isort) blow up
+            -- diffs. Format manually with <leader>f instead.
         })
+
+        vim.keymap.set({ "n", "v" }, "<leader>f", function()
+            require("conform").format({ timeout_ms = 500, lsp_format = "fallback" })
+        end, { desc = "Format buffer or selection" })
     end,
 }
