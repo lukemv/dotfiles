@@ -51,5 +51,8 @@ New-SymbolicLinkSafe -Link "$HOME\Documents\WindowsPowerShell\Microsoft.PowerShe
 # Starship config
 New-SymbolicLinkSafe -Link "$HOME\.config\starship.toml" -Target "starship.toml"
 
+# herdr terminal multiplexer
+New-SymbolicLinkSafe -Link "$env:APPDATA\herdr\config.toml" -Target "herdr\config.toml"
+
 Write-Host ""
 Write-Host "Done!" -ForegroundColor Green
