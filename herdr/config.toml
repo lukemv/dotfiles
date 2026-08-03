@@ -1,0 +1,125 @@
+# herdr configuration — mirrors ~/.tmux.conf + ~/.tmux.reset.conf
+#
+# Keybindings accept an array, so most actions carry the tmux key first and the
+# stock herdr key as a fallback. Prefix-less alt+/shift+ bindings mirror the
+# laptop-friendly tmux bindings (and the Voyager TMUX layer); if your terminal
+# eats them, the prefix form still works.
+#
+# Validate with:  herdr config check
+# Apply with:     herdr server reload-config
+
+[theme]
+# tmux: set -g @catppuccin_flavor 'mocha'
+name = "catppuccin-mocha"
+
+[terminal]
+# tmux: splits use -c "#{pane_current_path}"
+new_cwd = "follow"
+
+[keys]
+# tmux: set -g prefix ^B
+prefix = "ctrl+b"
+
+# --- Pane focus: vim keys ------------------------------------------------
+# tmux: bind-key h/j/k/l select-pane -L/-D/-U/-R
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# --- Splits -------------------------------------------------------------
+# tmux: bind | split-window -h   and  bind '"' split-window -h   (side by side)
+# herdr calls a side-by-side split "vertical" (vertical divider).
+split_vertical = ['prefix+|', 'prefix+"', "prefix+v"]
+# tmux: bind - split-window -v   and  bind % split-window -v     (stacked)
+split_horizontal = ["prefix+minus", "prefix+%"]
+
+# tmux: bind z resize-pane -Z
+zoom = "prefix+z"
+
+# --- Windows / tabs -----------------------------------------------------
+# tmux: bind t new-window, bind ^C new-window, bind -n M-c new-window
+new_tab = ["prefix+t", "prefix+ctrl+c", "alt+c", "prefix+c"]
+
+# tmux: bind y / bind -n M-y  -> kill-pane, or kill-window on the last pane
+close_pane = ["prefix+y", "alt+y", "prefix+x"]
+close_tab = "prefix+shift+x"
+
+# tmux: bind -n S-Left/S-Right and bind -n M-,/M-. previous/next-window
+previous_tab = ["prefix+p", "shift+left", "alt+comma"]
+next_tab = ["prefix+n", "shift+right", "alt+period"]
+
+# tmux: bind 1..9 select-window (default)
+switch_tab = "prefix+1..9"
+
+# tmux: bind-key r command-prompt -I "#W" "rename-window '%%'"
+rename_tab = ["prefix+r", "prefix+shift+t"]
+# Moved off prefix+r so rename-window keeps the tmux key.
+resize_mode = "prefix+ctrl+r"
+
+# tmux: bind R source-file ~/.tmux.conf
+reload_config = "prefix+shift+r"
+
+# --- Sessions / workspaces ----------------------------------------------
+# tmux: bind S choose-session, bind -n M-s choose-session
+workspace_picker = ["prefix+shift+s", "alt+s"]
+
+# tmux: bind w / bind ^W list-windows -> herdr's navigate mode
+goto = ["prefix+w", "prefix+g"]
+
+# tmux: bind ^D detach  (plus vanilla prefix+d)
+detach = ["prefix+d", "prefix+ctrl+d", "prefix+q"]
+
+# --- Scrollback ---------------------------------------------------------
+# tmux: bind -n M-b copy-mode. herdr has no vi copy-mode; edit_scrollback
+# opens the buffer in $EDITOR, which is the nearest equivalent.
+edit_scrollback = ["prefix+e", "alt+b"]
+
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+
+# --- Directional pane swapping ------------------------------------------
+# tmux: bind -r H/J/K/L swap-pane in that direction. Not a built-in herdr
+# action, so these shell out to the CLI against the focused pane.
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = "herdr pane swap --direction left"
+
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = "herdr pane swap --direction down"
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = "herdr pane swap --direction up"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = "herdr pane swap --direction right"
+
+[ui]
+# tmux: set -g pane-active-border-style "fg=#fab387,bold" (catppuccin peach).
+# herdr drives pane borders and highlights from the accent token.
+accent = "#fab387"
+
+# tmux: set -g pane-border-lines heavy
+pane_borders = true
+# tmux panes share a single divider rather than sitting in gaps.
+pane_gaps = false
+
+# tmux: bind t new-window creates immediately, with no name prompt.
+prompt_new_tab_name = false
+
+# tmux: set -g set-clipboard on
+copy_on_select = true
+
+# Preserved from your previous herdr config.
+agent_panel_sort = "spaces"
+
+[advanced]
+# tmux: set -g history-limit 1000000 (~50MB of scrollback bytes)
+scrollback_limit_bytes = 50000000

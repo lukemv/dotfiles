@@ -1,5 +1,16 @@
 return {
     'stevearc/conform.nvim',
+    -- No format_on_save: formatting is on demand only.
+    keys = {
+        {
+            "<leader>fm",
+            function()
+                require("conform").format({ async = true, lsp_format = "fallback" })
+            end,
+            mode = { "n", "v" },
+            desc = "Format buffer/selection",
+        },
+    },
     config = function()
         require("conform").setup({
             formatters_by_ft = {
@@ -18,8 +29,11 @@ return {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
             },
+<<<<<<< Updated upstream
             -- No format_on_save: whole-file formatters (black/isort) blow up
             -- diffs. Format manually with <leader>f instead.
+=======
+>>>>>>> Stashed changes
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>f", function()
