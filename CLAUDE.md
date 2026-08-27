@@ -94,10 +94,10 @@ goss validate
 4. Test changes in Docker environment before applying to host system
 
 ### Commit Convention
-- Subject line must be ≤80 characters
-- Must start with `feat:`, `chore:`, or `fix:`
-- Include detailed body wrapped at 100 characters
-- Follow examples in `COMMIT_CONVENTION.md`
+- Conventional Commits, wrapped 50/72
+- Subject ≤72 characters (aim for 50), imperative mood, no trailing period
+- Body wrapped at 72 characters, explaining why rather than restating the diff
+- Full rules in `pi/skills/git-commit-messages/SKILL.md` and `COMMIT_CONVENTION.md`
 
 ## Salt Configuration Management
 
