@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration — mirrors ~/.tmux.conf + ~/.tmux.reset.conf
 #
 # Keybindings accept an array, so most actions carry the tmux key first and the
@@ -73,28 +74,36 @@ goto = ["prefix+w", "prefix+g"]
 # tmux: bind ^D detach  (plus vanilla prefix+d)
 detach = ["prefix+d", "prefix+ctrl+d", "prefix+q"]
 
-# --- Scrollback / copy mode ---------------------------------------------
-# tmux: bind -n M-b copy-mode (and the stock prefix+[).
-copy_mode = ["prefix+[", "alt+b"]
-# Opens the scrollback buffer in $EDITOR (no tmux equivalent).
-edit_scrollback = "prefix+e"
+# --- Scrollback ---------------------------------------------------------
+# tmux: bind -n M-b copy-mode. herdr has no vi copy-mode; edit_scrollback
+# opens the buffer in $EDITOR, which is the nearest equivalent.
+edit_scrollback = ["prefix+e", "alt+b"]
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
-# tmux: bind ^A last-window. herdr has no last_tab; last_pane is the closest.
-last_pane = "prefix+ctrl+a"
 
 # --- Directional pane swapping ------------------------------------------
-# tmux: bind -r H/J/K/L swap-pane in that direction.
-swap_pane_left = "prefix+shift+h"
-swap_pane_down = "prefix+shift+j"
-swap_pane_up = "prefix+shift+k"
-swap_pane_right = "prefix+shift+l"
+# tmux: bind -r H/J/K/L swap-pane in that direction. Not a built-in herdr
+# action, so these shell out to the CLI against the focused pane.
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = "herdr pane swap --direction left"
 
-# Not mappable today (no matching herdr action):
-#   tmux: bind -n C-S-Left/Right and M-</M-> swap-window  (no tab-move action)
-#   tmux: bind -n C-M-w/e/r/t select-window -t 1..4       (switch_tab is 1..9 only)
-#   tmux: bind ^X lock-server, bind P pane-border-status, bind * sync-panes
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = "herdr pane swap --direction down"
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = "herdr pane swap --direction up"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = "herdr pane swap --direction right"
 
 [ui]
 # --- Sidebar: off by default, summoned on demand -------------------------
@@ -126,7 +135,7 @@ prompt_new_tab_name = false
 copy_on_select = true
 
 # Preserved from your previous herdr config.
-agent_panel_sort = "spaces"
+agent_panel_sort = "priority"
 
 [advanced]
 # tmux: set -g history-limit 1000000 (~50MB of scrollback bytes)
