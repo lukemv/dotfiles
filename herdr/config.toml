@@ -112,21 +112,71 @@ type = "shell"
 command = "herdr pane swap --direction right"
 
 [ui]
-# --- Sidebar: off by default, summoned on demand -------------------------
-# tmux had no persistent sidebar; workspaces lived behind `choose-session`.
-# Start collapsed to a narrow status rail and reach the full panel via:
+# =========================================================================
+# Reading the screen: tabs are HORIZONTAL, agents are VERTICAL.
+#
+#   bottom strip  = tabs        (tmux status line: layouts within this space)
+#   left sidebar  = spaces + agents  (what is running, and how it is doing)
+#   pane borders  = the agent living in that pane
+#
+# Nothing that describes a tab appears in the sidebar's first line, and
+# nothing that describes an agent appears in the bottom strip. If it is
+# along the bottom it is a layout; if it is down the side it is a process.
+# =========================================================================
+
+# --- Sidebar: the agent dashboard, visible by default --------------------
+# Previously collapsed to a rail of bare dots, which is precisely the view
+# that makes agents and tabs indistinguishable -- a rail of dots looks like
+# a row of tabs turned on its side. Expanded, every entry names itself.
+#   prefix+b                -> collapse it back for a full-width terminal
 #   prefix+shift+s / alt+s  -> workspace picker (tmux choose-session)
 #   prefix+w / prefix+g     -> navigate mode (tmux list-windows)
-#   prefix+b                -> toggle the sidebar back for a look around
-sidebar_start_collapsed = true
-# "compact" keeps the rail (agent state icons stay visible).
-# Use "hidden" for zero width.
+sidebar_start_collapsed = false
 sidebar_collapsed_mode = "compact"
-# Width used when it is expanded via prefix+b.
-sidebar_width = 26
+# Wider than the old 26: agent rows now carry a name and a state word.
+sidebar_width = 30
+sidebar_max_width = 36
+
+# Group agents under the space that owns them instead of ranking them by
+# urgency. "priority" reshuffles rows as agents change state, which hides
+# the one structural fact worth showing: agents belong to a space, and a
+# space contains tabs.
+agent_panel_sort = "spaces"
+
+# --- Tabs live along the bottom ------------------------------------------
+# NEEDS herdr >= 0.8.0. Older builds log "unknown config key" and ignore
+# the four tab_bar_* keys and status_indicators below, along with the
+# [theme.custom] surfaces; everything else still applies. Check with
+# `herdr --version`, upgrade with `herdr update --handoff`.
+#
+# The tab row sat at the top, directly against the sidebar's top-left
+# corner, so two unrelated lists met at a right angle and read as one
+# widget. At the bottom it becomes the tmux status line it always was.
+# Prefix, Navigate, Copy, and Resize bars replace it while active.
+tab_bar_position = "bottom"
+
+# tmux's status-right. Also a tell that this strip is chrome, not content.
+tab_bar_right = [
+    { type = "zoom" },
+    { type = "hostname" },
+    { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = " · "
+
+# One tab is not a list, and a one-item list is the most confusable object
+# on screen. Hide the strip until a second tab exists.
+hide_tab_bar_when_single_tab = true
+
+# --- Panes announce their own agent --------------------------------------
+# The strongest cue available: the pane border names the agent inside it,
+# so the sidebar entry and the pane are tied together by a shared label
+# instead of by position.
+show_agent_labels_on_pane_borders = true
 
 # tmux: set -g pane-active-border-style "fg=#fab387,bold" (catppuccin peach).
-# herdr drives pane borders and highlights from the accent token.
+# Peach is now the focus colour only -- the active pane and the active tab.
+# Spaces are mauve and agent state is carried by the state icons, so the
+# three layers never share a hue.
 accent = "#fab387"
 
 # tmux: set -g pane-border-lines heavy
@@ -134,14 +184,48 @@ pane_borders = true
 # tmux panes share a single divider rather than sitting in gaps.
 pane_gaps = false
 
+# Shape, not just colour. Blocked, working, done, idle, and unknown become
+# distinct glyphs, legible at a glance and to colour-blind eyes. Dots all
+# look alike, which is half of why a rail of them reads as a tab strip.
+status_indicators = "symbols"
+
 # tmux: bind t new-window creates immediately, with no name prompt.
 prompt_new_tab_name = false
 
 # tmux: set -g set-clipboard on
 copy_on_select = true
 
-# Preserved from your previous herdr config.
-agent_panel_sort = "priority"
+# --- Sidebar rows: say the noun out loud ---------------------------------
+# Stock layout leads with [icon, workspace, tab], so the first thing an
+# agent row says is the name of a tab -- the exact collision to remove.
+# These lead with the agent's own name, bold, and its state in words.
+# The tab is demoted to a dim third line, where it reads as an address
+# rather than a title.
+[ui.sidebar.agents]
+row_gap = 1
+rows = [
+    ["state_icon", { token = "agent", bold = true }, { token = "state_text", dim = true }],
+    [{ token = "terminal_title_stripped", dim = true }],
+    [{ token = "workspace", dim = true }, { token = "tab", dim = true }],
+]
+
+# Spaces get their own hue and no state word, so the two panels never look
+# like the same kind of list.
+[ui.sidebar.spaces]
+row_gap = 1
+rows = [
+    ["state_icon", { token = "workspace", fg = "#cba6f7", bold = true }],
+    [{ token = "branch", dim = true }, "git_status"],
+]
+
+# --- Surfaces: chrome is darker than content -----------------------------
+# The sidebar shared the terminal's background, so the panel had no edge
+# and its rows floated next to pane content. Sinking it one step and
+# lifting the focused row gives the panel a body.
+[theme.custom]
+sidebar_bg = "#11111b"
+active_row_bg = "#1e1e2e"
+selection_bg = "#313244"
 
 [advanced]
 # tmux: set -g history-limit 1000000 (~50MB of scrollback bytes)
