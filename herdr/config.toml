@@ -60,6 +60,9 @@ resize_mode = "prefix+ctrl+r"
 # tmux: bind R source-file ~/.tmux.conf
 reload_config = "prefix+shift+r"
 
+# Sidebar stays hidden by default (see [ui] below); this pulls it back on demand.
+toggle_sidebar = "prefix+b"
+
 # --- Sessions / workspaces ----------------------------------------------
 # tmux: bind S choose-session, bind -n M-s choose-session
 workspace_picker = ["prefix+shift+s", "alt+s"]
@@ -70,38 +73,43 @@ goto = ["prefix+w", "prefix+g"]
 # tmux: bind ^D detach  (plus vanilla prefix+d)
 detach = ["prefix+d", "prefix+ctrl+d", "prefix+q"]
 
-# --- Scrollback ---------------------------------------------------------
-# tmux: bind -n M-b copy-mode. herdr has no vi copy-mode; edit_scrollback
-# opens the buffer in $EDITOR, which is the nearest equivalent.
-edit_scrollback = ["prefix+e", "alt+b"]
+# --- Scrollback / copy mode ---------------------------------------------
+# tmux: bind -n M-b copy-mode (and the stock prefix+[).
+copy_mode = ["prefix+[", "alt+b"]
+# Opens the scrollback buffer in $EDITOR (no tmux equivalent).
+edit_scrollback = "prefix+e"
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
+# tmux: bind ^A last-window. herdr has no last_tab; last_pane is the closest.
+last_pane = "prefix+ctrl+a"
 
 # --- Directional pane swapping ------------------------------------------
-# tmux: bind -r H/J/K/L swap-pane in that direction. Not a built-in herdr
-# action, so these shell out to the CLI against the focused pane.
-[[keys.command]]
-key = "prefix+shift+h"
-type = "shell"
-command = "herdr pane swap --direction left"
+# tmux: bind -r H/J/K/L swap-pane in that direction.
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
 
-[[keys.command]]
-key = "prefix+shift+j"
-type = "shell"
-command = "herdr pane swap --direction down"
-
-[[keys.command]]
-key = "prefix+shift+k"
-type = "shell"
-command = "herdr pane swap --direction up"
-
-[[keys.command]]
-key = "prefix+shift+l"
-type = "shell"
-command = "herdr pane swap --direction right"
+# Not mappable today (no matching herdr action):
+#   tmux: bind -n C-S-Left/Right and M-</M-> swap-window  (no tab-move action)
+#   tmux: bind -n C-M-w/e/r/t select-window -t 1..4       (switch_tab is 1..9 only)
+#   tmux: bind ^X lock-server, bind P pane-border-status, bind * sync-panes
 
 [ui]
+# --- Sidebar: off by default, summoned on demand -------------------------
+# tmux had no persistent sidebar; workspaces lived behind `choose-session`.
+# Start collapsed to a narrow status rail and reach the full panel via:
+#   prefix+shift+s / alt+s  -> workspace picker (tmux choose-session)
+#   prefix+w / prefix+g     -> navigate mode (tmux list-windows)
+#   prefix+b                -> toggle the sidebar back for a look around
+sidebar_start_collapsed = true
+# "compact" keeps the rail (agent state icons stay visible).
+# Use "hidden" for zero width.
+sidebar_collapsed_mode = "compact"
+# Width used when it is expanded via prefix+b.
+sidebar_width = 26
+
 # tmux: set -g pane-active-border-style "fg=#fab387,bold" (catppuccin peach).
 # herdr drives pane borders and highlights from the accent token.
 accent = "#fab387"
