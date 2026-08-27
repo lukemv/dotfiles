@@ -29,11 +29,8 @@ return {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
             },
-<<<<<<< Updated upstream
             -- No format_on_save: whole-file formatters (black/isort) blow up
             -- diffs. Format manually with <leader>f instead.
-=======
->>>>>>> Stashed changes
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>f", function()
