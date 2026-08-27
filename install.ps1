@@ -54,5 +54,8 @@ New-SymbolicLinkSafe -Link "$HOME\.config\starship.toml" -Target "starship.toml"
 # herdr terminal multiplexer
 New-SymbolicLinkSafe -Link "$env:APPDATA\herdr\config.toml" -Target "herdr\config.toml"
 
+# WezTerm
+New-SymbolicLinkSafe -Link "$HOME\.wezterm.lua" -Target "wezterm.lua"
+
 Write-Host ""
 Write-Host "Done!" -ForegroundColor Green
