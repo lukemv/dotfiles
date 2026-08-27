@@ -38,6 +38,38 @@ function New-SymbolicLinkSafe {
     Write-Host "Linked: $Link -> $TargetPath" -ForegroundColor Green
 }
 
+# Writes a real Lua file that dot-sources the repo copy. Used where a symlink
+# is rejected by a consumer -- see the WezTerm note below. Needs no elevation,
+# which New-Item -ItemType SymbolicLink does unless Developer Mode is on.
+function New-LoaderShim {
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [Parameter(Mandatory)][string]$Target,
+        [string]$Comment = ""
+    )
+
+    $targetPath = Join-Path $PSScriptRoot $Target
+    if (-not (Test-Path $targetPath)) {
+        Write-Warning "Target not found: $targetPath"
+        return
+    }
+
+    $parent = Split-Path $Path -Parent
+    if (-not (Test-Path $parent)) {
+        New-Item -ItemType Directory -Path $parent -Force | Out-Null
+    }
+
+    $existing = Get-Item $Path -Force -ErrorAction SilentlyContinue
+    if ($existing -and $existing.LinkType -eq "SymbolicLink") {
+        Remove-Item $Path -Force
+    }
+
+    $relative = $targetPath.Replace($HOME, '') -replace '^\\', ''
+    $body = "$Comment`nreturn dofile(os.getenv('USERPROFILE') .. [[\$relative]])`n"
+    Set-Content -Path $Path -Value $body -Encoding utf8
+    Write-Host "Shimmed: $Path -> $targetPath" -ForegroundColor Green
+}
+
 Write-Host "Installing Windows dotfiles..." -ForegroundColor Cyan
 Write-Host ""
 
@@ -54,8 +86,15 @@ New-SymbolicLinkSafe -Link "$HOME\.config\starship.toml" -Target "starship.toml"
 # herdr terminal multiplexer
 New-SymbolicLinkSafe -Link "$env:APPDATA\herdr\config.toml" -Target "herdr\config.toml"
 
-# WezTerm
-New-SymbolicLinkSafe -Link "$HOME\.wezterm.lua" -Target "wezterm.lua"
+# WezTerm. Not a symlink: the nightly GUI enables the Windows redirection-trust
+# process mitigation, which refuses to traverse reparse points it does not
+# consider trusted and dies with "untrusted mount point (os error 448)" before
+# it can read a linked config. A real file that dofile()s the repo copy keeps
+# the config version-controlled without a reparse point in the path.
+New-LoaderShim -Path "$HOME\.wezterm.lua" -Target "wezterm.lua" -Comment @'
+-- Loader shim for the dotfiles config -- deliberately a real file, not a
+-- symlink; see install.ps1 for why. Edit dotfiles\wezterm.lua, not this.
+'@
 
 # Agent skills (pi). Skills are directories, so each one is linked by name.
 New-SymbolicLinkSafe -Link "$HOME\.pi\agent\skills\git-commit-messages" -Target "pi\skills\git-commit-messages"
