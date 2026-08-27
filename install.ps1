@@ -57,5 +57,8 @@ New-SymbolicLinkSafe -Link "$env:APPDATA\herdr\config.toml" -Target "herdr\confi
 # WezTerm
 New-SymbolicLinkSafe -Link "$HOME\.wezterm.lua" -Target "wezterm.lua"
 
+# Agent skills (pi). Skills are directories, so each one is linked by name.
+New-SymbolicLinkSafe -Link "$HOME\.pi\agent\skills\git-commit-messages" -Target "pi\skills\git-commit-messages"
+
 Write-Host ""
 Write-Host "Done!" -ForegroundColor Green
