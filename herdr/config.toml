@@ -60,7 +60,9 @@ next_tab = ["prefix+n", "shift+right", "alt+period"]
 switch_tab = "prefix+1..9"
 
 # tmux: bind-key r command-prompt -I "#W" "rename-window '%%'"
-rename_tab = ["prefix+r", "prefix+shift+t"]
+# Stock tmux's prefix+, (rename-window) was never unbound in tmux.reset.conf
+# (the unbind-key -a there is commented out), so it still works alongside r.
+rename_tab = ["prefix+r", "prefix+comma", "prefix+shift+t"]
 # Moved off prefix+r so rename-window keeps the tmux key.
 resize_mode = "prefix+ctrl+r"
 
@@ -226,6 +228,9 @@ rows = [
 sidebar_bg = "#11111b"
 active_row_bg = "#1e1e2e"
 selection_bg = "#313244"
+# catppuccin-mocha's default subtext0 (#a6adc8) renders inactive tab labels
+# too dim to read against the bottom tab strip; brighten it toward white.
+subtext0 = "#ffffff"
 
 [advanced]
 # tmux: set -g history-limit 1000000 (~50MB of scrollback bytes)
