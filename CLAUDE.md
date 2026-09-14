@@ -77,6 +77,9 @@ goss validate
 - `tmuxinator/` - tmux session templates
 - `salt/` - Salt configuration management states and profiles
 - `scripts/` - Utility scripts for development and system management
+- `herdr/` - herdr multiplexer config, split into a shared fragment plus a
+  per-platform `[terminal]` block and composed at install time (herdr reads a
+  single `config.toml` and has no include directive, so it cannot be linked)
 - `fedora/hypr/` - Hyprland window manager configuration
 - `qmk_keymaps/` - Custom keyboard firmware configurations
 

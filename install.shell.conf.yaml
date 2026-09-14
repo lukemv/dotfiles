@@ -15,6 +15,10 @@
   # this public repo. Not `|| true`: if the guard cannot be installed we want
   # the install to say so loudly.
   - [ scripts/install-git-hooks.sh, Installing git hooks ]
+  # herdr reads a single config.toml and has no include directive, so its
+  # config is composed from a shared fragment plus a platform one rather than
+  # linked. `|| true`: herdr is not installed on every box.
+  - [ scripts/install-herdr-config.sh || true, Composing herdr config ]
 
 - clean: ['~']
 

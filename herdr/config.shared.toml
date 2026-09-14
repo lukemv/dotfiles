@@ -1,5 +1,12 @@
 onboarding = false
-# herdr configuration — mirrors ~/.tmux.conf + ~/.tmux.reset.conf
+# herdr configuration -- platform-neutral half.
+#
+# herdr has no include directive: it reads exactly one config.toml. So this
+# file is a fragment, concatenated with a platform [terminal] block by
+# scripts/install-herdr-config.sh (Linux/macOS) or install.ps1 (Windows).
+# Edit this file for anything that is not a shell path.
+#
+# Mirrors ~/.tmux.conf + ~/.tmux.reset.conf
 #
 # Keybindings accept an array, so most actions carry the tmux key first and the
 # stock herdr key as a fallback. Prefix-less alt+/shift+ bindings mirror the
@@ -12,16 +19,6 @@ onboarding = false
 [theme]
 # tmux: set -g @catppuccin_flavor 'mocha'
 name = "catppuccin-mocha"
-
-[terminal]
-# Always use PowerShell 7 for new panes; no login-shell probing so panes open fast.
-# Pinned to the x64 7.6.x build (Store/MSIX alias). Bare "pwsh.exe" resolves via
-# PATH to the older x86 7.5.1 MSI in "Program Files (x86)", which is ~65ms slower.
-default_shell = "C:\\Users\\lukem\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe"
-shell_mode = "non_login"
-
-# tmux: splits use -c "#{pane_current_path}"
-new_cwd = "follow"
 
 [keys]
 # tmux: set -g prefix ^B
@@ -37,9 +34,15 @@ focus_pane_right = "prefix+l"
 # --- Splits -------------------------------------------------------------
 # tmux: bind | split-window -h   and  bind '"' split-window -h   (side by side)
 # herdr calls a side-by-side split "vertical" (vertical divider).
-split_vertical = ['prefix+|', 'prefix+"', "prefix+v"]
+#
+# The Voyager _TMUX layer never sends '|': TMUX_HSPLIT taps prefix then '"'
+# (shift+quote) and TMUX_VSPLIT taps prefix then '%' (shift+5), matching the
+# tmux.reset.conf bindings rather than the tmux.conf ones. Both the literal
+# and the shift+<key> spelling are listed because which one arrives depends
+# on how the terminal reports the chord.
+split_vertical = ['prefix+|', 'prefix+"', "prefix+shift+quote", "prefix+shift+backslash", "prefix+v"]
 # tmux: bind - split-window -v   and  bind % split-window -v     (stacked)
-split_horizontal = ["prefix+minus", "prefix+%"]
+split_horizontal = ["prefix+minus", "prefix+%", "prefix+shift+5"]
 
 # tmux: bind z resize-pane -Z
 zoom = "prefix+z"
