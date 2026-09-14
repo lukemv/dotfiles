@@ -8,6 +8,9 @@
   # luarocks (Lua 5.1 + luarocks via hererocks) for lazy.nvim. Optional and
   # idempotent; `|| true` keeps a missing build toolchain from aborting install.
   - [ scripts/install-luarocks.sh || true, Installing luarocks for lazy.nvim ]
+  # tree-sitter CLI, used by nvim-treesitter to build parsers. Same deal:
+  # optional and idempotent, so a download failure doesn't abort install.
+  - [ scripts/install-tree-sitter.sh || true, Installing tree-sitter CLI ]
 
 - clean: ['~']
 
