@@ -1,0 +1,22 @@
+# Identity for personal, publicly-published repositories.
+#
+# Copy to ~/.gitconfig.d/personal and fill in. The [includeIf "gitdir:..."]
+# rule in `gitconfig` selects it for the paths listed there; the machine
+# default in `private` keeps applying everywhere else. So a work machine can
+# commit to work repos as the work identity and to these repos as this one,
+# with no per-repo setup and nothing to remember.
+#
+# Use the address the public commits should carry. GitHub will also issue a
+# no-reply address (Settings > Emails), which keeps any address out of the
+# commit log entirely:
+#
+#   [user]
+#       email = 00000000+you@users.noreply.github.com
+#
+# Pair it with "Block command line pushes that expose my email" on the same
+# settings page, so a mistaken identity is rejected at the server too.
+
+[user]
+	name = Your Name
+	email = you@example.com
+	# signingkey = YOURGPGKEY

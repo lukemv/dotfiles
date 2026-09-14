@@ -38,6 +38,38 @@ fi
 # Join into one alternation so each file is scanned once.
 joined="$(IFS='|'; echo "${PATTERNS[*]}")"
 
+# The scan below only reads file contents. The author and committer identities
+# never appear in a diff -- they go into commit metadata -- so a work address
+# passes straight through it. That is how a third of this repo's history came
+# to carry one. `git var` resolves the identity actually about to be used,
+# including any env override, which `git config user.email` would miss.
+for role in AUTHOR COMMITTER; do
+  ident="$(git var "GIT_${role}_IDENT" 2>/dev/null)" || continue
+  email="${ident##*<}"
+  email="${email%%>*}"
+  [ -n "$email" ] || continue
+
+  printf '%s\n' "$email" | grep -qEi -- "$joined" || continue
+
+  echo >&2
+  echo "BLOCKED: the ${role,,} address is employer-internal." >&2
+  echo "This repository is public, and that address goes into commit" >&2
+  echo "metadata, which the content scan cannot see." >&2
+  echo >&2
+  echo "  $email" >&2
+  echo >&2
+  echo "Set a personal identity for this repository:" >&2
+  echo "  git config user.email <personal address>" >&2
+  echo >&2
+  echo "Or for every repo under a path, via ~/.gitconfig (see gitconfig):" >&2
+  echo '  [includeIf "gitdir:~/dotfiles/"]' >&2
+  echo "      path = ~/.gitconfig.d/personal" >&2
+  echo >&2
+  echo "If this is deliberate: git commit --no-verify" >&2
+  echo >&2
+  exit 1
+done
+
 findings=0
 while IFS= read -r file; do
   [ -n "$file" ] || continue

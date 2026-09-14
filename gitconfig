@@ -3,6 +3,17 @@
 	excludesfile = ~/.gitignore_global
 [include]
     path = ~/.gitconfig.d/private
+
+# The include above is the machine default -- on a work machine, the work
+# identity, which is what work repos should carry. Personal repos must not
+# inherit it: this repo is public, and the author email lands in commit
+# metadata, where githooks/pre-commit's content scan cannot see it.
+#
+# Add a line here for each path holding personal repos. A missing target file
+# is silently ignored by git, so a machine with no ~/.gitconfig.d/personal
+# just keeps the default.
+[includeIf "gitdir:~/dotfiles/"]
+    path = ~/.gitconfig.d/personal
 [log]
 	decorate = true
 [credential]
