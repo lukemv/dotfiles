@@ -1,4 +1,5 @@
 gitconfig.d/private
+gitconfig.d/personal
 secrets.zsh
 private/
 ghorg/repos.txt
