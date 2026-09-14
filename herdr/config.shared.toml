@@ -59,7 +59,17 @@ close_tab = "prefix+shift+x"
 previous_tab = ["prefix+p", "shift+left", "alt+comma"]
 next_tab = ["prefix+n", "shift+right", "alt+period"]
 
+# tmux: bind -n C-S-Left/C-S-Right and bind -n M-</M-> swap-window -d.
+# Shift+, and Shift+. on the Voyager TMUX layer send ctrl+shift+left and
+# ctrl+shift+right, so those are the spellings that actually arrive.
+move_tab_previous = ["ctrl+shift+left", "alt+shift+comma"]
+move_tab_next = ["ctrl+shift+right", "alt+shift+period"]
+
 # tmux: bind 1..9 select-window (default)
+#
+# The Voyager layer also has TMUX_WIN_0 on prefix+0, but tmux.conf sets
+# base-index 1 so window 0 never exists, and herdr rejects an indexed
+# binding outside 1..9. That key is dead on both sides; nothing to map.
 switch_tab = "prefix+1..9"
 
 # tmux: bind-key r command-prompt -I "#W" "rename-window '%%'"
@@ -76,45 +86,39 @@ reload_config = "prefix+shift+r"
 toggle_sidebar = "prefix+b"
 
 # --- Sessions / workspaces ----------------------------------------------
-# tmux: bind S choose-session, bind -n M-s choose-session
-workspace_picker = ["prefix+shift+s", "alt+s"]
+# tmux: bind S choose-session, bind -n M-s choose-session. TMUX_FIND_SESSION
+# sends prefix+s -- stock tmux's choose-session, still live because the
+# unbind-key -a in tmux.reset.conf is commented out.
+workspace_picker = ["prefix+shift+s", "prefix+s", "alt+s"]
 
-# tmux: bind w / bind ^W list-windows -> herdr's navigate mode
-goto = ["prefix+w", "prefix+g"]
+# tmux: bind w / bind ^W list-windows -> herdr's navigate mode.
+# TMUX_FIND_WINDOW sends prefix+f, stock tmux's find-window.
+goto = ["prefix+w", "prefix+f", "prefix+g"]
 
 # tmux: bind ^D detach  (plus vanilla prefix+d)
 detach = ["prefix+d", "prefix+ctrl+d", "prefix+q"]
 
 # --- Scrollback ---------------------------------------------------------
-# tmux: bind -n M-b copy-mode. herdr has no vi copy-mode; edit_scrollback
-# opens the buffer in $EDITOR, which is the nearest equivalent.
-edit_scrollback = ["prefix+e", "alt+b"]
+# tmux: bind -n M-b copy-mode, plus stock prefix+[ which TMUX_COPY sends.
+# herdr gained a native copy mode in 0.9.0, so alt+b moves here from
+# edit_scrollback, which it used to stand in for.
+copy_mode = ["prefix+[", "alt+b"]
+
+# No tmux equivalent: opens the scrollback buffer in $EDITOR.
+edit_scrollback = "prefix+e"
 
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
 
 # --- Directional pane swapping ------------------------------------------
-# tmux: bind -r H/J/K/L swap-pane in that direction. Not a built-in herdr
-# action, so these shell out to the CLI against the focused pane.
-[[keys.command]]
-key = "prefix+shift+h"
-type = "shell"
-command = "herdr pane swap --direction left"
-
-[[keys.command]]
-key = "prefix+shift+j"
-type = "shell"
-command = "herdr pane swap --direction down"
-
-[[keys.command]]
-key = "prefix+shift+k"
-type = "shell"
-command = "herdr pane swap --direction up"
-
-[[keys.command]]
-key = "prefix+shift+l"
-type = "shell"
-command = "herdr pane swap --direction right"
+# tmux: bind -r H/J/K/L swap-pane in that direction, which the Voyager layer
+# sends as prefix+shift+H/J/K/L. These were shell-outs to `herdr pane swap`
+# because the action was not built in; herdr 0.9.0 has it natively, which
+# avoids spawning a CLI process per keypress.
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
 
 [ui]
 # =========================================================================
