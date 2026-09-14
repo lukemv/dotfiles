@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+# Block commits that would publish employer-internal identifiers.
+#
+# This repo is public. Claude Code writes an `autoMode.environment` block into
+# `claude/settings.json` describing whatever infrastructure it is pointed at —
+# internal hostnames, secret paths, deploy targets. That is generated content
+# in a tracked file, so it reaches a staged commit without anyone deciding to
+# put it there. The same applies to notes or scripts pasted in from work.
+#
+# Only ADDED lines are scanned, so existing content never blocks a commit, and
+# only patterns with no match in the current tree are enforced (private IP
+# ranges are deliberately absent: several tracked files already carry them).
+#
+# Extra machine-local patterns can go in `private/secret-patterns.txt`, one
+# extended-regex per line, `#` for comments. That path is gitignored.
+#
+# To commit anyway, when you are certain: git commit --no-verify
+set -uo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+LOCAL_PATTERNS="$REPO_ROOT/private/secret-patterns.txt"
+
+# Employer-internal identifiers. Case-insensitive.
+PATTERNS=(
+  'lifetrading'                 # org name in any domain, repo or URL
+  '\.int\.'                     # internal-only domain segment
+  '\.ops\.'                     # ops subdomain scheme
+  'atlassian\.net'              # Jira/Confluence tenant
+)
+
+if [ -f "$LOCAL_PATTERNS" ]; then
+  while IFS= read -r line; do
+    case "$line" in ''|'#'*) continue ;; esac
+    PATTERNS+=("$line")
+  done < "$LOCAL_PATTERNS"
+fi
+
+# Join into one alternation so each file is scanned once.
+joined="$(IFS='|'; echo "${PATTERNS[*]}")"
+
+findings=0
+while IFS= read -r file; do
+  [ -n "$file" ] || continue
+
+  # The pattern list is itself a list of the strings being looked for, so
+  # scanning it would always match. Nothing else is exempt.
+  case "$file" in
+    githooks/pre-commit|private/secret-patterns.txt) continue ;;
+  esac
+
+  # Skip files staged as binary.
+  git diff --cached --numstat -- "$file" | grep -q '^-' && continue
+
+  # Added lines only: drop the +++ header, strip the leading +.
+  added="$(git diff --cached -U0 -- "$file" | sed -n '/^+++/d; s/^+//p')"
+  [ -n "$added" ] || continue
+
+  hits="$(printf '%s\n' "$added" | grep -nEi -- "$joined" || true)"
+  if [ -n "$hits" ]; then
+    if [ "$findings" -eq 0 ]; then
+      echo
+      echo "BLOCKED: staged changes contain employer-internal identifiers." >&2
+      echo "This repository is public." >&2
+    fi
+    echo >&2
+    echo "  $file" >&2
+    printf '%s\n' "$hits" | cut -c1-160 | sed 's/^/    /' >&2
+    findings=$((findings + 1))
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM)
+
+if [ "$findings" -gt 0 ]; then
+  echo >&2
+  echo "Move the content to an untracked local file, or redact it." >&2
+  echo "If this is a false positive: git commit --no-verify" >&2
+  echo >&2
+  exit 1
+fi
+
+exit 0
