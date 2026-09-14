@@ -152,17 +152,23 @@ sidebar_max_width = 36
 # space contains tabs.
 agent_panel_sort = "spaces"
 
-# --- Tabs live along the bottom ------------------------------------------
+# --- Tabs live along the top ---------------------------------------------
 # NEEDS herdr >= 0.8.0. Older builds log "unknown config key" and ignore
 # the four tab_bar_* keys and status_indicators below, along with the
 # [theme.custom] surfaces; everything else still applies. Check with
 # `herdr --version`, upgrade with `herdr update --handoff`.
 #
-# The tab row sat at the top, directly against the sidebar's top-left
-# corner, so two unrelated lists met at a right angle and read as one
-# widget. At the bottom it becomes the tmux status line it always was.
-# Prefix, Navigate, Copy, and Resize bars replace it while active.
-tab_bar_position = "bottom"
+# Top matches tmux.conf's `set -g status-position top`, which is where the
+# muscle memory actually lives. Prefix, Navigate, Copy, and Resize bars
+# replace this row while active.
+#
+# The bottom was tried first, to stop the tab row and the sidebar meeting at
+# the top-left corner and reading as one widget. That confusion is now
+# addressed directly and does not need the placement: the sidebar has its own
+# darker ground ([theme.custom] sidebar_bg), agents carry symbol state icons
+# rather than bare dots, pane borders name their agent, and sidebar rows lead
+# with the agent name instead of a tab name.
+tab_bar_position = "top"
 
 # tmux's status-right. Also a tell that this strip is chrome, not content.
 tab_bar_right = [
