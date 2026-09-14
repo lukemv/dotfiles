@@ -1,0 +1,15 @@
+# herdr configuration -- Windows [terminal] block.
+#
+# Concatenated onto herdr/config.shared.toml by install.ps1. Only
+# platform-specific settings belong here; keybindings and UI live in the
+# shared fragment.
+
+[terminal]
+# Always use PowerShell 7 for new panes; no login-shell probing so panes open fast.
+# Pinned to the x64 7.6.x build (Store/MSIX alias). Bare "pwsh.exe" resolves via
+# PATH to the older x86 7.5.1 MSI in "Program Files (x86)", which is ~65ms slower.
+default_shell = "C:\\Users\\lukem\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe"
+shell_mode = "non_login"
+
+# tmux: splits use -c "#{pane_current_path}"
+new_cwd = "follow"

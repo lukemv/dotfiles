@@ -1,0 +1,13 @@
+# herdr configuration -- Linux [terminal] block.
+#
+# Concatenated onto herdr/config.shared.toml by
+# scripts/install-herdr-config.sh. Only platform-specific settings belong
+# here; keybindings and UI live in the shared fragment.
+
+[terminal]
+# No default_shell: herdr falls back to the login shell from /etc/passwd,
+# which is zsh on these boxes. Naming it here would only drift.
+shell_mode = "non_login"
+
+# tmux: splits use -c "#{pane_current_path}"
+new_cwd = "follow"
