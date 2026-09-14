@@ -11,6 +11,10 @@
   # tree-sitter CLI, used by nvim-treesitter to build parsers. Same deal:
   # optional and idempotent, so a download failure doesn't abort install.
   - [ scripts/install-tree-sitter.sh || true, Installing tree-sitter CLI ]
+  # pre-commit guard against committing employer-internal identifiers into
+  # this public repo. Not `|| true`: if the guard cannot be installed we want
+  # the install to say so loudly.
+  - [ scripts/install-git-hooks.sh, Installing git hooks ]
 
 - clean: ['~']
 
