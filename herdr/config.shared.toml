@@ -210,6 +210,18 @@ prompt_new_tab_name = false
 # tmux: set -g set-clipboard on
 copy_on_select = true
 
+# --- The copy toast gets out of the typing line --------------------------
+# copy_on_select fires this toast constantly, and its stock "bottom-center"
+# lands it squarely over the prompt -- it occludes the line being typed for
+# the moment it is up, which reads as the text stuttering. Top-right puts it
+# in the corner furthest from the cursor's usual home.
+#
+# It shares that corner with tab_bar_right (zoom, hostname, clock) now that
+# the tab bar is back on top; the toast is transient and draws over it
+# briefly rather than displacing it.
+[ui.toast.clipboard]
+position = "top-right"
+
 # --- Sidebar rows: say the noun out loud ---------------------------------
 # Stock layout leads with [icon, workspace, tab], so the first thing an
 # agent row says is the name of a tab -- the exact collision to remove.
