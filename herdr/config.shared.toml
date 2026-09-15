@@ -228,10 +228,18 @@ position = "top-right"
 # These lead with the agent's own name, bold, and its state in words.
 # The tab is demoted to a dim third line, where it reads as an address
 # rather than a title.
+#
+# $ctx and $ctx_pct are not built-ins: scripts/herdr-context-tokens.sh reports
+# them as pane metadata every few seconds, reading each agent's context size
+# out of its Claude transcript. herdr has no token accounting of its own, so
+# without that poller running these two render empty and the row is the stock
+# three fields. Context size belongs on the state line rather than a line of
+# its own -- how full an agent is says the same kind of thing as whether it is
+# working, and at sidebar_width = 30 the four fields still fit.
 [ui.sidebar.agents]
 row_gap = 1
 rows = [
-    ["state_icon", { token = "agent", bold = true }, { token = "state_text", dim = true }],
+    ["state_icon", { token = "agent", bold = true }, { token = "state_text", dim = true }, { token = "$ctx", dim = true }, { token = "$ctx_pct", dim = true }],
     [{ token = "terminal_title_stripped", dim = true }],
     [{ token = "workspace", dim = true }, { token = "tab", dim = true }],
 ]
