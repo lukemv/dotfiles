@@ -117,10 +117,30 @@
       "Bash(basename:*)",
       "Bash(mktemp --dry-run:*)",
       "Bash(test:*)"
+    ],
+    "deny": [
+      "Bash(salt:*)",
+      "Bash(salt-run:*)",
+      "Bash(salt-key:*)",
+      "Bash(salt-cp:*)",
+      "Bash(scripts/salt-master-refresh.sh:*)",
+      "Bash(./scripts/salt-master-refresh.sh:*)"
     ]
   },
   "model": "opus",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/home/lukem/.claude/hooks/lab-only-guard.py'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "*",
