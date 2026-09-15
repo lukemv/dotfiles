@@ -28,7 +28,6 @@
   - ~/.zsh
   - ~/.tmux/plugins/
   - ~/.local/share/applications
-  - ~/.claude
   - "~/Library/Application Support/lazygit"
 
 - link:
@@ -54,5 +53,4 @@
     ~/.zsh/zsh-z: zsh-z
     ~/.zsh/zsh-syntax-highlighting: zsh-syntax-highlighting
     ~/.tmux/plugins/tpm: tpm
-    ~/.claude/settings.json: claude/settings.json
 
