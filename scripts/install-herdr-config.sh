@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Compose ~/.config/herdr/config.toml from the shared fragment plus this
-# platform's [terminal] block.
+# platform's [terminal] block, and install the sidebar's context-size unit.
 #
 # herdr reads exactly one config.toml and has no include directive, so the
 # config cannot be split with a symlink the way the rest of the dotfiles are.
@@ -19,6 +19,22 @@ for f in "$SHARED" "$PLATFORM"; do
 done
 
 mkdir -p "$(dirname "$DEST")"
+
+# The sidebar's $ctx / $ctx_pct tokens are fed by a poller, not by herdr, so
+# ship its user unit alongside the config that renders them. Linked, not
+# copied, so editing the repo copy is enough. Enabling is left to the user:
+# installing the dotfiles should not start daemons behind their back.
+UNIT_SRC="$REPO_DIR/herdr/herdr-context-tokens.service"
+UNIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
+if [ -f "$UNIT_SRC" ] && command -v systemctl >/dev/null 2>&1; then
+  mkdir -p "$UNIT_DIR"
+  ln -sfn "$UNIT_SRC" "$UNIT_DIR/herdr-context-tokens.service"
+  systemctl --user daemon-reload 2>/dev/null || true
+  if ! systemctl --user is-enabled herdr-context-tokens.service >/dev/null 2>&1; then
+    echo "installed herdr-context-tokens.service; enable it with:"
+    echo "  systemctl --user enable --now herdr-context-tokens.service"
+  fi
+fi
 
 # Generated, not linked: warn anyone who opens it looking for the source.
 NEW="$(mktemp)"

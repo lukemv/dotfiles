@@ -1,0 +1,19 @@
+# Keeps $ctx and $ctx_pct alive in the herdr sidebar. The values carry a TTL
+# of three poll intervals, so if this unit stops they expire by themselves
+# instead of freezing a stale number next to a moving agent.
+[Unit]
+Description=Report Claude context size to herdr as pane metadata
+After=default.target
+
+[Service]
+Type=simple
+# A user unit gets a minimal PATH, and herdr installs to ~/.local/bin.
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.local/scripts/herdr-context-tokens.sh --interval 15
+# Clear on the way out rather than leaving the sidebar to time the values out.
+ExecStopPost=%h/.local/scripts/herdr-context-tokens.sh --clear
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
