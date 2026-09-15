@@ -19,6 +19,14 @@
   # config is composed from a shared fragment plus a platform one rather than
   # linked. `|| true`: herdr is not installed on every box.
   - [ scripts/install-herdr-config.sh || true, Composing herdr config ]
+  # herdr's Claude Code integration writes ~/.claude/hooks/herdr-agent-state.sh,
+  # which reports session state back to the herdr server. herdr generates and
+  # version-stamps that file and overwrites it on update, so the command that
+  # produces it is tracked here rather than the file itself. Idempotent: it
+  # rewrites the hook and re-registers it in ~/.claude/settings.json, which the
+  # work config repo owns and already carries. `|| true`: herdr is not
+  # installed on every box.
+  - [ herdr integration install claude || true, Installing herdr Claude hook ]
 
 - clean: ['~']
 
