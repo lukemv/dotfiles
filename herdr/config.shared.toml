@@ -226,8 +226,11 @@ position = "top-right"
 # Stock layout leads with [icon, workspace, tab], so the first thing an
 # agent row says is the name of a tab -- the exact collision to remove.
 # These lead with the agent's own name, bold, and its state in words.
-# The tab is demoted to a dim third line, where it reads as an address
-# rather than a title.
+# The tab is demoted to a quieter third line, where it reads as an address
+# rather than a title. Nothing uses `dim`: dim renders the sidebar's
+# secondary text near-unreadable against sidebar_bg, so each token names
+# its own foreground instead, and state_text and $ctx_pct carry rules that
+# colour them by what they are reporting.
 #
 # $ctx and $ctx_pct are not built-ins: scripts/herdr-context-tokens.sh reports
 # them as pane metadata every few seconds, reading each agent's context size
@@ -239,9 +242,9 @@ position = "top-right"
 [ui.sidebar.agents]
 row_gap = 1
 rows = [
-    ["state_icon", { token = "agent", bold = true }, { token = "state_text", dim = true }, { token = "$ctx", dim = true }, { token = "$ctx_pct", dim = true }],
-    [{ token = "terminal_title_stripped", dim = true }],
-    [{ token = "workspace", dim = true }, { token = "tab", dim = true }],
+    ["state_icon", { token = "agent", bold = true }, { token = "state_text", fg = "#bac2de", rules = [{ contains = "work", ignore_case = true, fg = "#f9e2af" }, { contains = "run", ignore_case = true, fg = "#f9e2af" }, { contains = "block", ignore_case = true, fg = "#f38ba8" }, { contains = "attention", ignore_case = true, fg = "#f38ba8" }, { contains = "idle", ignore_case = true, fg = "#a6e3a1" }, { contains = "ready", ignore_case = true, fg = "#a6e3a1" }, { contains = "done", ignore_case = true, fg = "#94e2d5" }] }, { token = "$ctx", fg = "#9399b2" }, { token = "$ctx_pct", fg = "#bac2de", rules = [{ gt = 75, fg = "#f9e2af" }, { gt = 90, fg = "#f38ba8" }] }],
+    [{ token = "terminal_title_stripped", fg = "#cdd6f4" }],
+    [{ token = "workspace", fg = "#7f849c" }, { token = "tab", fg = "#7f849c" }],
 ]
 
 # Spaces get their own hue and no state word, so the two panels never look
@@ -250,7 +253,7 @@ rows = [
 row_gap = 1
 rows = [
     ["state_icon", { token = "workspace", fg = "#cba6f7", bold = true }],
-    [{ token = "branch", dim = true }, "git_status"],
+    [{ token = "branch", fg = "#9399b2" }, "git_status"],
 ]
 
 # --- Surfaces: chrome is darker than content -----------------------------
