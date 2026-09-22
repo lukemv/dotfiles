@@ -210,6 +210,12 @@ prompt_new_tab_name = false
 # tmux: set -g set-clipboard on
 copy_on_select = true
 
+[ui.toast]
+delivery = "herdr"
+
+[ui.toast.herdr]
+position = "bottom-right"
+
 # --- The copy toast gets out of the typing line --------------------------
 # copy_on_select fires this toast constantly, and its stock "bottom-center"
 # lands it squarely over the prompt -- it occludes the line being typed for
