@@ -113,12 +113,6 @@ New-LoaderShim -Path "$HOME\.wezterm.lua" -Target "wezterm.lua" -Comment @'
 -- symlink; see install.ps1 for why. Edit dotfiles\wezterm.lua, not this.
 '@
 
-# Claude Code global instructions, Windows only. Every session on this
-# machine reads this file, so edits in dotfiles\claude\CLAUDE.md apply
-# everywhere. settings.json stays unlinked: Claude Code regenerates its
-# autoMode block, which does not belong in this public repo (see b53e2c6).
-New-SymbolicLinkSafe -Link "$HOME\.claude\CLAUDE.md" -Target "claude\CLAUDE.md"
-
 # Agent skills (pi). Skills are directories, so each one is linked by name.
 New-SymbolicLinkSafe -Link "$HOME\.pi\agent\skills\git-commit-messages" -Target "pi\skills\git-commit-messages"
 
