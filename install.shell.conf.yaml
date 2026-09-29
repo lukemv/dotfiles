@@ -33,6 +33,11 @@
 - create:
   - ~/.local/bin
   - ~/.config
+  # dotbot does not make intermediate parents for a link, and a link whose
+  # parent is missing simply fails. ~/.config alone is not enough for a config
+  # that lives one level down.
+  - ~/.config/atuin
+  - ~/.config/lazygit
   - ~/.zsh
   - ~/.tmux/plugins/
   - ~/.local/share/applications
@@ -53,7 +58,6 @@
     ~/.zshrc.d: zshrc.d
     ~/.config/nvim: nvim
     ~/.config/gh: gh
-    ~/.config/lazygit/config.yml: lazygit/config.yml
     "~/Library/Application Support/lazygit/config.yml": lazygit/config.yml
     ~/.config/starship.toml: starship.toml
     ~/.local/scripts: scripts
