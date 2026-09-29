@@ -47,7 +47,6 @@
     ~/.config/atuin/config.toml: atuin/config.toml
     ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/ghorg: ghorg
-    ~/.config/tmuxinator: ~/code/tmuxinator-work
     ~/.gitconfig: gitconfig
     ~/.gitconfig.d: gitconfig.d
     ~/.gitignore_global: gitignore_global
