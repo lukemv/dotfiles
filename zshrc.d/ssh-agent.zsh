@@ -7,6 +7,17 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # Keys are added with: ssh-add --apple-use-keychain ~/.ssh/id_ed25519
   # This is typically done once and persists across reboots
   :
+elif ssh-add -l > /dev/null 2>&1; then
+  # There is already an agent holding keys -- on a remote box that is almost
+  # always one forwarded in by `ssh -A`. Leave it completely alone.
+  #
+  # Everything below would throw it away. Sourcing agent.env replaces
+  # SSH_AUTH_SOCK with a local agent holding nothing, and the ssh-add at the
+  # end reaches for a private key that has no business being on a remote
+  # machine. The session then looks like it has an agent while every command
+  # that needs one fails with "The agent has no identities" -- which is a
+  # confusing way to be told that your dotfiles discarded your credentials.
+  :
 else
   # Linux ssh-agent management
   AGENT_ENV="$HOME/.ssh/agent.env"
@@ -32,4 +43,3 @@ else
     fi
   fi
 fi
-
