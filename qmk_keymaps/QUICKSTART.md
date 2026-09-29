@@ -4,7 +4,7 @@
 
 ```bash
 # 1. Make changes to keymap
-vim qmk_keymaps/custom/keymap.c
+nvim qmk_keymaps/custom/keymap.c
 
 # 2. Build firmware
 cd qmk_keymaps/custom && ./build.sh

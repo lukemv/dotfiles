@@ -84,7 +84,7 @@ function ,node {
 function kg_resource {
   local resource_type=$1
   local pod=$(kubectl get $resource_type --no-headers | fzf | awk '{print $1}')
-  kubectl get $resource_type/$pod -o yaml | vim -c 'set syntax=yaml' -
+  kubectl get $resource_type/$pod -o yaml | nvim -c 'set syntax=yaml' -
 }
 
 function ,plogs {

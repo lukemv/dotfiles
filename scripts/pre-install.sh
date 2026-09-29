@@ -94,7 +94,6 @@ install_basic_deps() {
         glibc-gconv-extra \
         curl \
         wget \
-        vim \
         htop \
         tree \
         ripgrep \
