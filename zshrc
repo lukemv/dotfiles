@@ -23,8 +23,11 @@ eval "$(starship init zsh)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-z/z.sh
-source ~/.atuin/bin/env
-eval "$(atuin init zsh)"
+# atuin can arrive two ways: its own installer puts it under ~/.atuin, the
+# machine config installs it system-wide. Guard both, so a box without it
+# opens a clean shell rather than printing two errors at every prompt.
+[[ -r ~/.atuin/bin/env ]] && source ~/.atuin/bin/env
+command -v atuin >/dev/null && eval "$(atuin init zsh)"
 
 # End timing and print result if ZSHRC_TIMING is set
 if [[ -n "$ZSHRC_TIMING" ]]; then
