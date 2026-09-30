@@ -1,3 +1,9 @@
+-- The docker test image and CI set this to check that the config itself loads
+-- without cloning and installing every plugin from GitHub on first start.
+if vim.env.SKIP_NVIM_PLUGINS == "true" then
+	return
+end
+
 -- Install lazy.nvim if not already installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
