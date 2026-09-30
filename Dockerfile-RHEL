@@ -20,7 +20,7 @@ RUN ARCH=$(uname -m) && \
 
 RUN dnf makecache
 # Install my shell
-RUN dnf install -y zsh tmux git gcc-c++
+RUN dnf install -y zsh tmux git gcc-c++ which
 
 # Install requirements for nvim build
 WORKDIR /tmp
@@ -49,11 +49,18 @@ ENV PATH="/home/me/.cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN echo 'source ~/.cargo/env' >> /home/me/.bashrc
 
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+# cargo-binstall pulls each tool's prebuilt release binary rather than
+# compiling it. Compiling is disabled as a fallback so a missing binary fails
+# the build instead of quietly adding minutes to it. musl builds come first:
+# they are static, whereas the gnu builds can need a newer glibc than EL9's.
+RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+RUN ARCH=$(uname -m) && cargo binstall -y --disable-strategies compile \
+    --targets "$ARCH-unknown-linux-musl" --targets "$ARCH-unknown-linux-gnu" \
+    eza ripgrep atuin
 
-RUN cargo install eza
-RUN cargo install ripgrep
-RUN cargo install atuin
+# `docker run` does not set USER the way a login does, and the goss suite
+# keys its user check on it.
+ENV USER=me
 
 # RUN set -x; cd "$(mktemp -d)" && \
 #   OS="$(uname | tr '[:upper:]' '[:lower:]')" && \
