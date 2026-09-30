@@ -63,7 +63,6 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true }),
 				callback = function(ev)
 					local bufnr = ev.buf
-					local client = vim.lsp.get_client_by_id(ev.data.client_id)
 					local lsp_map = require("helpers.keys").lsp_map
 
 					lsp_map("<leader>lr", vim.lsp.buf.rename, bufnr, "Rename symbol")
@@ -84,10 +83,10 @@ return {
 
 					lsp_map("<leader>ff", "<cmd>Format<cr>", bufnr, "Format")
 
-					-- Attach and configure vim-illuminate
-					if client then
-						require("illuminate").on_attach(client)
-					end
+					-- No illuminate.on_attach: that is vim-illuminate's v1 API.
+					-- v2 starts itself from plugin/illuminate.vim and uses the LSP
+					-- provider on its own; calling on_attach also hit the
+					-- deprecated client.supports_method.
 				end,
 			})
 
