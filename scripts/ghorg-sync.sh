@@ -31,7 +31,8 @@ trap 'echo "Received shutdown signal, exiting..."; exit 0' SIGINT SIGTERM
 
 # Function to run a single sync
 run_sync() {
-    local timestamp=$(date +%Y%m%d-%H%M%S)
+    local timestamp
+    timestamp=$(date +%Y%m%d-%H%M%S)
     local log_file="${LOG_DIR}/sync-${timestamp}.log"
 
     echo "Starting ghorg sync at $(date)" | tee -a "${log_file}"

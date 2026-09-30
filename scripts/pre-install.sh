@@ -216,6 +216,7 @@ install_rust() {
     else
         # Install as current user
         curl https://sh.rustup.rs -sSf | sh -s -- -y
+        # shellcheck source=/dev/null
         source ~/.cargo/env
         cargo install eza
         cargo install ripgrep
