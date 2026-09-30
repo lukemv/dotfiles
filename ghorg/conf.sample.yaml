@@ -261,4 +261,4 @@ GHORG_RECLONE_VERBOSE: false
 
 # Quiet logging output with reclone command
 # flag (--quiet)
-G
+GHORG_RECLONE_QUIET: false
