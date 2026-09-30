@@ -1,13 +1,85 @@
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build -t testimage .
+      - uses: actions/checkout@v4
+
+      - name: Lint workflows
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:latest -color
+
+      - name: Shellcheck
+        run: git ls-files -z '*.sh' githooks/pre-commit | xargs -0 shellcheck -S warning
+
+      - name: Check shell rc syntax
+        run: |
+          sudo apt-get install -y --no-install-recommends zsh
+          bash -n bashrc
+          for f in zshrc $(git ls-files zshrc.d); do
+            echo "zsh -n $f"
+            zsh -n "$f"
+          done
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse config files
+        run: |
+          pip install --quiet pyyaml
+          python .github/scripts/parse-configs.py
+
+  install:
+    # Installs the shell config into the same Rocky image `make test-docker`
+    # uses, then runs the goss suite against the result.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: docker/setup-buildx-action@v3
+
+      # The image compiles neovim and several cargo tools, so an uncached
+      # build takes a while. It never copies the repo in, so the cache only
+      # goes stale when Dockerfile-RHEL itself changes.
+      - name: Build test image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile-RHEL
+          tags: dotfiles-test:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # The checkout belongs to the runner's uid, not the container's `me`,
+      # so git would reject a bind-mounted repo as dubious ownership and the
+      # hook installer could not write .git/hooks. Copy it in as `me` instead.
+      - name: Install dotfiles and run goss
+        run: |
+          docker run --rm \
+            -v "$PWD:/src:ro" \
+            -e SKIP_NVIM_PLUGINS=true \
+            dotfiles-test:latest \
+            /bin/zsh -c '
+              set -e
+              cp -r /src ~/dotfiles
+              cd ~/dotfiles
+              ./install install.shell.conf.yaml
+              goss validate --format documentation
+            '
