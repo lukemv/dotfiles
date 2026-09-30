@@ -1,0 +1,6 @@
+self-hosted-runner:
+  # Not self-hosted: ubuntu-26.04 is a GitHub-hosted label that went GA after
+  # actionlint's built-in label list was last updated. Drop this once
+  # actionlint knows it.
+  labels:
+    - ubuntu-26.04
