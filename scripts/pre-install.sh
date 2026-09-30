@@ -458,7 +458,7 @@ main() {
 
     check_root
     check_system
-    determine_target_user
+    determine_target_user "$@"
     update_system
     install_basic_deps
     install_ninja
