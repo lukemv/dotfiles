@@ -1,0 +1,14 @@
+# herdr configuration -- macOS [terminal] block.
+#
+# Concatenated onto herdr/config.shared.toml by
+# scripts/install-herdr-config.sh. Only platform-specific settings belong
+# here; keybindings and UI live in the shared fragment.
+
+[terminal]
+# No default_shell: herdr falls back to the login shell, which Directory
+# Services reports as /bin/zsh here (not /etc/passwd, which macOS keeps only
+# for the system accounts). Naming it here would only drift.
+shell_mode = "non_login"
+
+# tmux: splits use -c "#{pane_current_path}"
+new_cwd = "follow"
