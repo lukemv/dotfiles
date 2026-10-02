@@ -36,8 +36,9 @@ This runs `scripts/darwin/install-nix.sh`, which:
    It shows its plan and asks you to confirm, then asks for your password.
    It creates a `/nix` volume, a background daemon, and a few `_nixbld`
    users. That's expected.
-2. **Finds this machine's entry** in `flake.nix`, named `<your username>@darwin`
-   (for example `me@darwin`).
+2. **Finds the `darwin` entry** in `flake.nix`. There's one per OS, not per
+   user: it reads your username and home directory from `$USER` and `$HOME`
+   when it runs, so nothing personal is written into the repo.
 3. **Applies it** with home-manager, which installs the pinned herdr and atuin
    into `~/.nix-profile`.
 4. **Lists older copies** of herdr or atuin that would still win on `PATH`.
@@ -113,9 +114,10 @@ Then reinstall herdr and atuin the old way if you need them.
 **`error: flake.nix is not tracked by git`**: run `git add flake.nix nix/`.
 Nix only sees tracked files.
 
-**`flake.nix has no homeConfigurations."<you>@darwin"`**: your macOS username
-isn't in `flake.nix` yet. Copy the `me@darwin` entry and change the
-username and home directory.
+**`USER is unset; run with --impure`**: you ran a home-manager or `nix`
+command by hand without `--impure`. The flake reads `$USER` and `$HOME`, and
+Nix hides the environment unless `--impure` is passed. `make install-nix`
+already passes it.
 
 **`which herdr` still points at `~/.local/bin`**: you skipped step 4, or
 haven't opened a new shell since.

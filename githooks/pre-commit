@@ -11,8 +11,10 @@
 # only patterns with no match in the current tree are enforced (private IP
 # ranges are deliberately absent: several tracked files already carry them).
 #
-# Extra machine-local patterns can go in `private/secret-patterns.txt`, one
-# extended-regex per line, `#` for comments. That path is gitignored.
+# Anything that names the employer or a person goes in
+# `private/secret-patterns.txt`, one extended-regex per line, `#` for
+# comments. That path is gitignored: a public pattern list would publish the
+# very names it exists to keep out. Only generic shapes live here.
 #
 # To commit anyway, when you are certain: git commit --no-verify
 set -uo pipefail
@@ -20,9 +22,8 @@ set -uo pipefail
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 LOCAL_PATTERNS="$REPO_ROOT/private/secret-patterns.txt"
 
-# Employer-internal identifiers. Case-insensitive.
+# Generic shapes of internal identifiers. Case-insensitive.
 PATTERNS=(
-  'REDACTED'                 # org name in any domain, repo or URL
   '\.int\.'                     # internal-only domain segment
   '\.ops\.'                     # ops subdomain scheme
   'atlassian\.net'              # Jira/Confluence tenant
@@ -40,8 +41,7 @@ joined="$(IFS='|'; echo "${PATTERNS[*]}")"
 
 # The scan below only reads file contents. The author and committer identities
 # never appear in a diff -- they go into commit metadata -- so a work address
-# passes straight through it. That is how a third of this repo's history came
-# to carry one. `git var` resolves the identity actually about to be used,
+# passes straight through it. `git var` resolves the identity actually about to be used,
 # including any env override, which `git config user.email` would miss.
 for role in AUTHOR COMMITTER; do
   ident="$(git var "GIT_${role}_IDENT" 2>/dev/null)" || continue

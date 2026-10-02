@@ -15,7 +15,7 @@ than the installed binary. To avoid repeating it:
 
 1. Find the pinned version on any Nix machine:
    ```bash
-   nix eval --raw ~/dotfiles#homeConfigurations."me@darwin".pkgs.herdr.version
+   nix eval --raw ~/dotfiles#homeConfigurations.darwin.pkgs.herdr.version
    ```
 2. Install that version (or newer) on Windows.
 3. After re-running `install.ps1`, check the composed config is accepted:

@@ -7,20 +7,12 @@ differs on Linux. Read the macOS page for the full explanation.
 Nix sits alongside the rest of the setup. Salt still owns system packages and
 services on Fedora/RHEL, and nothing here replaces it.
 
-## 1. Add this machine to the flake
+## 1. Check the flake entry
 
-Linux entries aren't in `flake.nix` by default. Add one named
-`<your username>@linux`, since that's the name the install script looks for:
-
-```nix
-"me@linux" = mkHome {
-  system = "x86_64-linux";        # "aarch64-linux" on ARM
-  username = "me";
-  homeDirectory = "/home/me";
-};
-```
-
-Commit it. Nix ignores files git doesn't track.
+`flake.nix` has one `linux` entry for every Linux machine. It reads your
+username and home directory from `$USER` and `$HOME` at install time, so
+there's nothing per-machine to add. It assumes `x86_64-linux`. On an ARM box,
+add an `aarch64-linux` entry beside it.
 
 ## 2. Install
 
@@ -35,7 +27,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 # Apply this machine's entry, using the home-manager pinned in flake.lock
 cd ~/dotfiles
-nix run --inputs-from . home-manager -- switch -b hm-backup --flake ".#$USER@linux"
+nix run --inputs-from . home-manager -- switch -b hm-backup --impure --flake .#linux
 ```
 
 The installer sets up the multi-user daemon with systemd, so it needs a

@@ -13,7 +13,7 @@ NIX_PROFILE_SCRIPT=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 die() { echo "error: $*" >&2; exit 1; }
 
 [ "$(uname -s)" = Darwin ] || die "this is the macOS installer; see scripts/<os>/"
-TARGET="$USER@darwin"
+TARGET=darwin
 
 # Nix only sees files git tracks when the flake lives in a git repo, so an
 # unstaged flake.nix fails later with a confusing "path does not exist".
@@ -42,16 +42,17 @@ echo "==> $(nix --version)"
 
 # 2. This machine's entry in flake.nix.
 if ! nix eval --raw "$REPO_DIR#homeConfigurations" \
-    --apply "c: if c ? \"$TARGET\" then \"ok\" else \"\"" 2>/dev/null | grep -q ok; then
-  die "flake.nix has no homeConfigurations.\"$TARGET\"; add one (see docs/nix-macos.md)"
+    --apply "c: if c ? $TARGET then \"ok\" else \"\"" 2>/dev/null | grep -q ok; then
+  die "flake.nix has no homeConfigurations.$TARGET (see docs/nix-macos.md)"
 fi
 
 # 3. Apply it. --inputs-from runs the home-manager pinned in flake.lock rather
 # than whatever is newest, so the tool that applies the config is as pinned as
 # the config. -b moves aside any file it would otherwise refuse to replace.
+# --impure lets flake.nix read $USER and $HOME instead of hardcoding them.
 echo "==> Switching to $TARGET"
 nix run --inputs-from "$REPO_DIR" home-manager -- \
-  switch -b hm-backup --flake "$REPO_DIR#$TARGET"
+  switch -b hm-backup --impure --flake "$REPO_DIR#$TARGET"
 
 # 4. Older installs that would shadow the Nix ones. zshrc.d/export.zsh puts
 # ~/.local/bin ahead of the Nix profile and ~/.atuin/bin/env prepends itself,

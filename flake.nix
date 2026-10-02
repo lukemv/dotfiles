@@ -22,31 +22,37 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
+      # The user comes from the environment rather than being written here,
+      # so no username or home path is published and one entry serves every
+      # machine of an OS. That needs --impure, which scripts/<os>/install-nix.sh
+      # passes; tool versions are still fixed by flake.lock.
+      env =
+        name:
+        let
+          v = builtins.getEnv name;
+        in
+        if v == "" then throw "${name} is unset; run with --impure (see docs/nix-*.md)" else v;
+
       mkHome =
-        { system, username, homeDirectory }:
+        system:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             ./nix/home.nix
-            { home = { inherit username homeDirectory; }; }
+            {
+              home = {
+                username = env "USER";
+                homeDirectory = env "HOME";
+              };
+            }
           ];
         };
     in
     {
-      # Named "<user>@<os>": scripts/<os>/install-nix.sh looks up
-      # "$USER@<os>". Apply with `make install-nix`.
+      # Keyed by OS: scripts/<os>/install-nix.sh switches to ".#<os>".
       homeConfigurations = {
-        "me@darwin" = mkHome {
-          system = "aarch64-darwin";
-          username = "me";
-          homeDirectory = "/Users/me";
-        };
-        # Linux boxes get an entry here once they move over, e.g.
-        # "<user>@linux" = mkHome {
-        #   system = "x86_64-linux";
-        #   username = "<user>";
-        #   homeDirectory = "/home/<user>";
-        # };
+        darwin = mkHome "aarch64-darwin";
+        linux = mkHome "x86_64-linux";
       };
     };
 }

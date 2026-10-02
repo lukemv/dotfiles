@@ -55,7 +55,6 @@ scan on
 pair XX:XX:XX:XX:XX:XX
 connect XX:XX:XX:XX:XX:XX
 trust XX:XX:XX:XX:XX:XX
-(Airpods: XX:XX:XX:XX:XX:XX)
 exit
 ```
 
