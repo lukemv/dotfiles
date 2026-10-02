@@ -11,6 +11,7 @@ This is a comprehensive dotfiles repository for workstation configuration manage
 ### Configuration Management Stack
 - **Dotbot**: Handles file linking and basic directory creation
 - **Salt**: Manages system packages, services, and complex configurations
+- **Nix (home-manager)**: Pins user-level CLI tool versions via `flake.nix` and `flake.lock` (currently herdr and atuin; packages only, configs stay with Dotbot)
 - **Docker**: Provides isolated testing environment
 - **Shell Configuration**: Zsh with custom configurations, plugins, and tools
 
@@ -33,6 +34,13 @@ sudo ./scripts/pre-install.sh <username>
 
 # Install desktop environment (Fedora/Wayland)
 ./install install.fedora.conf.yaml
+
+# Install Nix and the pinned user-level tools (herdr, atuin)
+# Walkthroughs: docs/nix-macos.md, docs/nix-linux.md, docs/nix-windows.md
+make install-nix
+
+# Bump pinned tool versions and apply, then commit flake.lock
+make nix-update
 
 # Apply Salt profiles for development tools
 sudo salt-call state.apply profiles.golang

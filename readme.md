@@ -13,6 +13,10 @@ make install-desktop
 make test
 ```
 
+CLI tools whose versions the configs depend on (herdr, atuin) are pinned
+with Nix. Getting started: [macOS](docs/nix-macos.md) ·
+[Linux](docs/nix-linux.md) · [Windows](docs/nix-windows.md).
+
 ## Testing
 
 This repository includes comprehensive [Goss](https://goss.rocks/) tests to validate configurations.

@@ -1,9 +1,11 @@
-.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins pgadmin-start pgadmin-stop pgadmin-logs pgadmin-status test test-host test-docker test-docker-build install-shell install-desktop
+.PHONY: help keyboard keyboard-build keyboard-server-start keyboard-server-stop keyboard-server-status keyboard-server-logs tmux-plugins pgadmin-start pgadmin-stop pgadmin-logs pgadmin-status test test-host test-docker test-docker-build install-shell install-desktop install-nix nix-update
 
 help:
 	@echo "Installation Targets:"
 	@echo "  install-shell          - Install shell-only configuration"
 	@echo "  install-desktop        - Install desktop environment (Fedora/Wayland)"
+	@echo "  install-nix            - Install Nix and the pinned tools in flake.nix"
+	@echo "  nix-update             - Bump flake.lock to newer tool versions and apply"
 	@echo ""
 	@echo "Testing Targets:"
 	@echo "  test                   - Run Goss tests on host system"
@@ -35,6 +37,17 @@ install-shell:
 install-desktop:
 	@echo "Installing desktop environment..."
 	./install install.fedora.conf.yaml
+
+# OS-specific installers live in scripts/<os>/; only darwin exists so far.
+NIX_INSTALLER := scripts/$(shell uname -s | tr A-Z a-z)/install-nix.sh
+
+install-nix:
+	@test -x $(NIX_INSTALLER) || { echo "No $(NIX_INSTALLER) yet; see docs/nix-*.md"; exit 1; }
+	./$(NIX_INSTALLER)
+
+nix-update:
+	nix flake update
+	$(MAKE) install-nix
 
 # Testing targets
 test:
